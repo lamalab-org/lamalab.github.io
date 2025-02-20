@@ -8,6 +8,8 @@ social:
     url: "https://kjablonka.com/"
   - icon: "orcid"
     url: "https://orcid.org/0000-0003-4894-4660"
+  - icon: "google-scholar"
+    url: "https://scholar.google.com/citations?user=R2ntI8IAAAAJ&hl=en"
   - icon: "github"
     url: "https://github.com/kjappelbaum"
   - icon: "twitter"
