@@ -2,7 +2,7 @@ we apply data-driven techniques to discover materials that work in the real worl
 
 our group is funded by the carl-zeiss foundation as the "czs research group polymers in energy applications". we are part of the [friedrich-schiller-university jena](https://www.uni-jena.de/) and the [helmholz institute for polymers in energy applications jena](https://www.hipole-jena.de/).
 
-we are also funded by merck, intel, openphilanthropy, the helmholtz foundation model intiative, and the german research foundation (dfg).
+other major funding sources are merck and intel ([awases research center](https://community.intel.com/t5/Blogs/Thought-Leadership/Big-Ideas/Intel-and-Merck-KGaA-Darmstadt-Germany-Fund-Semiconductor/post/1478514)), [openphilanthropy](https://www.openphilanthropy.org/grants/friedrich-schiller-university-jena-analytical-chemistry-benchmark/), [the helmholtz foundation model initiative (sol-ai project)](https://www.chemgeo.uni-jena.de/en/11781/helmholtz-supports-sol-ai-foundation-model-project), the german research foundation (dfg, [via the graduate school "coin"](https://www.uni-jena.de/286000/die-legosteine-von-morgen-anfertigen-koennen)), and the carl zeiss foundation (via other projects such as [nano@liver](https://www.carl-zeiss-stiftung.de/themen-projekte/uebersicht-projekte/detail/nanoliver-nanopartikelsysteme-und-innovative-makromolekuele-zur-selektiven-modulation-des-mikromilieus-der-leber)).
 
 ## research
 
