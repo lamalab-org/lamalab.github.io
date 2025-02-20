@@ -4,6 +4,10 @@ role: "pi"
 image: "team/kevin.jpg"
 bio: "i am a chemist by training and diffused into machine learning. i did my phd at epfl and moved directly after it, in june 2023, to jena."
 social:
+  - icon: "globe"
+    url: "https://kjablonka.com/"
+  - icon: "orcid"
+    url: "https://orcid.org/0000-0003-4894-4660"
   - icon: "github"
     url: "https://github.com/kjappelbaum"
   - icon: "twitter"
@@ -14,6 +18,4 @@ social:
     url: "mailto:mail@kjablonka.com"
   - icon: "linkedin"
     url: "https://linkedin.com/in/kjablonka"
-  - icon: "globe"
-    url: "https://kjablonka.com/"
 ---
