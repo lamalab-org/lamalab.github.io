@@ -1,0 +1,12 @@
+baseURL = 'http://lamalab.org'
+languageCode = 'en-us'
+title = 'Lab for AI in Materials Science'
+theme = "cactus"
+colortheme = "white"
+
+[params]
+  mathjax = true
+  
+[[params.social]]
+  name = "github"
+  link = "https://github.com/lamalab-org"
