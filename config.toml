@@ -1,12 +1,40 @@
 baseURL = 'http://lamalab.org'
 languageCode = 'en-us'
+relativeURLs = true
 title = 'Lab for AI in Materials Science'
 theme = "cactus"
 colortheme = "white"
+description = "we are a research group trying to teach computers how to design materials that work in the real world"
+enableEmoji = true
 
 [params]
-  mathjax = true
-  
+mathjax = true
+css = ["css/custom.css"]
+logo = "png-file.png"
+customHead = ["extra-head.html"]
+
 [[params.social]]
-  name = "github"
-  link = "https://github.com/lamalab-org"
+name = "github"
+link = "https://github.com/lamalab-org"
+
+[[menu.main]]
+name = "team"
+url = "/team"
+weight = 1
+
+[[menu.main]]
+name = "pubs"
+url = "https://scholar.google.com/citations?user=R2ntI8IAAAAJ&hl=en"
+weight = 2
+
+
+[[menu.main]]
+name = "news"
+url = "/news"
+weight = 4
+
+
+# [[menu.main]]
+# name = "blog"
+# url = "/posts"
+# weight = 6

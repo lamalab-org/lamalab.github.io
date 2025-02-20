@@ -1,0 +1,135 @@
+/* Custom theme colors */
+:root {
+    --primary-color: #A43830;       /* Lamalab burgundy */
+    --primary-dark: #8A2E27;        /* Darker shade for hover */
+    --text-color: #333333;          /* Dark gray for better readability */
+    --secondary-color: #666666;     /* Medium gray for secondary text */
+    --background-color: #FFFFFF;    /* Clean white background */
+    --border-color: #E0E0E0;        /* Light gray for borders */
+}
+
+/* Update header style */
+#header {
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 2rem;
+}
+
+#header h1, #header .h1 {
+    color: var(--primary-color);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+#header #nav {
+    color: var(--primary-color);
+}
+
+#header #nav ul a {
+    color: var(--primary-color);
+}
+
+#header #nav ul a:hover {
+    background-image: linear-gradient(transparent, transparent 5px, var(--primary-dark) 5px, var(--primary-dark));
+}
+
+/* Update link styles */
+.content a {
+    color: var(--primary-color);
+    background-image: linear-gradient(transparent, transparent 5px, var(--primary-color) 5px, var(--primary-color));
+}
+
+.content a:hover {
+    color: var(--primary-dark);
+    background-image: linear-gradient(transparent, transparent 4px, var(--primary-dark) 4px, var(--primary-dark));
+}
+
+/* Update headings */
+h1, .h1 {
+    color: var(--primary-color);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+h2:before {
+    color: var(--primary-color) !important;
+}
+
+/* Update code blocks */
+pre {
+    border: 1px solid var(--border-color);
+    background-color: #FAFAFA;
+}
+
+pre .code-copy-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Update blockquotes */
+blockquote {
+    border-left: 4px solid var(--primary-color);
+    color: var(--secondary-color);
+    padding-left: 1rem;
+}
+
+/* Update navigation elements */
+#footer-post #nav-footer {
+    background-color: #FAFAFA;
+}
+
+#footer-post #nav-footer a {
+    color: var(--primary-color);
+}
+
+/* Update post title styles */
+.posttitle {
+    color: var(--primary-color);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+/* Update tag and category styles */
+.article-tag .tag-link:before {
+    color: var(--primary-color);
+}
+
+.article-category .category-link {
+    color: var(--primary-color);
+}
+
+/* Update table styles */
+table th {
+    border-bottom: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* Custom styles for scientific/lab theme */
+.content img, .content video {
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Add a subtle gradient to the header */
+#header:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+}
+
+/* Update list markers */
+.content ul li::before {
+    content: '▪';
+    color: var(--primary-color);
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+/* Add smooth transitions */
+a, button {
+    transition: all 0.3s ease;
+}
