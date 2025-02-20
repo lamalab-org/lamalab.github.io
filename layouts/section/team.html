@@ -1,7 +1,7 @@
 {{ define "main" }}
 <div class="content">
     <!-- Add Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     
     {{ .Content }}  <!-- This will render your _index.md content -->
     
@@ -79,6 +79,10 @@
                             <a href="{{ .url }}" target="_blank">
                                 {{ if eq .icon "envelope" }}
                                     <i class="fas fa-envelope"></i>
+                                {{ else if eq .icon "bluesky" }}
+                                    <i class="fab fa-square-bluesky"></i>
+                                {{ else if eq .icon "globe" }}
+                                    <i class="fas fa-globe"></i>
                                 {{ else }}
                                     <i class="fab fa-{{ .icon }}"></i>
                                 {{ end }}

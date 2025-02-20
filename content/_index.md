@@ -2,6 +2,8 @@ we apply data-driven techniques to discover materials that work in the real worl
 
 our group is funded by the carl-zeiss foundation as the "czs research group polymers in energy applications". we are part of the [friedrich-schiller-university jena](https://www.uni-jena.de/) and the [helmholz institute for polymers in energy applications jena](https://www.hipole-jena.de/).
 
+we are also funded by merck, intel, openphilanthropy, the helmholtz foundation model intiative, and the german research foundation (dfg).
+
 ## research
 
 we develop actionable, data-driven solutions for real-world materials design challenges across multiple scales. our machine learning models serve as navigation systems for the chemical space, created in partnership with experimental collaborators.
