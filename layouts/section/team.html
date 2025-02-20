@@ -1,0 +1,93 @@
+{{ define "main" }}
+<div class="content">
+    <!-- Add Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    {{ .Content }}  <!-- This will render your _index.md content -->
+    
+    <style>
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+        
+        .team-member {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .member-image img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        
+        .member-role {
+            font-weight: bold;
+            margin: 0.5rem 0;
+            color: #666;
+        }
+        
+        .member-bio {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin: 0.5rem 0;
+        }
+        
+        .member-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .member-social a {
+            color: #666;
+            text-decoration: none;
+            font-size: 1.2rem;
+            background: none !important;  /* Override any theme link styles */
+        }
+        
+        .member-social a:hover {
+            color: #A43830;
+        }
+    </style>
+
+    <div class="team-grid">
+        {{ range .Pages }}
+            <div class="team-member">
+                {{ if .Params.image }}
+                    <div class="member-image">
+                        <img src="/images/{{ .Params.image }}" alt="{{ .Title }}">
+                    </div>
+                {{ end }}
+                <h3>{{ .Title }}</h3>
+                {{ if .Params.role }}
+                    <div class="member-role">{{ .Params.role }}</div>
+                {{ end }}
+                {{ if .Params.bio }}
+                    <div class="member-bio">{{ .Params.bio }}</div>
+                {{ end }}
+                {{ if .Params.social }}
+                    <div class="member-social">
+                        {{ range .Params.social }}
+                            <a href="{{ .url }}" target="_blank">
+                                {{ if eq .icon "envelope" }}
+                                    <i class="fas fa-envelope"></i>
+                                {{ else }}
+                                    <i class="fab fa-{{ .icon }}"></i>
+                                {{ end }}
+                            </a>
+                        {{ end }}
+                    </div>
+                {{ end }}
+            </div>
+        {{ end }}
+    </div>
+</div>
+{{ end }}
