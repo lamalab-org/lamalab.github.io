@@ -28,10 +28,10 @@ url = "https://scholar.google.com/citations?user=R2ntI8IAAAAJ&hl=en"
 weight = 2
 
 
-# [[menu.main]]
-# name = "news"
-# url = "/news"
-# weight = 4
+[[menu.main]]
+name = "benches and tools"
+url = "/benches"
+weight = 4
 
 
 # [[menu.main]]
