@@ -29,7 +29,7 @@ weight = 2
 
 
 [[menu.main]]
-name = "benches and tools"
+name = "benches, data, tools"
 url = "/benches"
 weight = 4
 
