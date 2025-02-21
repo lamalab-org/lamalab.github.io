@@ -1,5 +1,15 @@
 ---
 title: "benches and tools"
+
+software:
+  - name: "ChemBench"
+    logo: "CHEMBENCH_LOGO_NO_BACK.png"
+    description: "testing the chemical capabilities of llms"
+    link: "/software/package1"
+  - name: "MaCBench"
+    logo: "MacBench_logo_black_wbg.png"
+    description: "probing vision-language models in materials science and chemistry."
+    link: "/software/package2"
 ---
 
 > Progress in science depends on new techniques, new discoveries and new ideas, probably in that order. - Sydney Brenner
@@ -9,6 +19,4 @@ a focus of our work has been on developing benchmarks ("benches") to understand 
 
 ## benches
 
-- ChemBench
-- MacBench 
-- MatText
+{{< software-grid >}}

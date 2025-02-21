@@ -1,0 +1,69 @@
+<style>
+    .software-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 2rem;
+        padding: 2rem 0;
+    }
+    
+    .software-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1rem;
+    }
+    
+    .software-logo {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 1rem;
+    }
+    
+    .software-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    
+    .software-name {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 1.2rem;
+        margin: 0.5rem 0;
+        color: #A43830;
+    }
+    
+    .software-description {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin: 0.5rem 0;
+        color: #666;
+    }
+    
+    .software-link {
+        margin-top: 1rem;
+        text-decoration: none;
+        color: #A43830;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.9rem;
+    }
+    
+    .software-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="software-grid">
+    {{ range .Page.Params.software }}
+    <div class="software-item">
+        {{ if .logo }}
+        <div class="software-logo">
+            <img src="/images/software/{{ .logo }}" alt="{{ .name }} logo">
+        </div>
+        {{ end }}
+        <h3 class="software-name">{{ .name }}</h3>
+        <p class="software-description">{{ .description }}</p>
+        <a href="{{ .link }}" class="software-link">learn more ></a>
+    </div>
+    {{ end }}
+</div>
