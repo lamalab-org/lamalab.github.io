@@ -13,7 +13,7 @@ software:
   - name: "MatText"
     logo: "mattext_logo.png"
     description: "testing the limits of (l)lms in modeling materials"
-    link: "/software/package3"
+    link: "https://arxiv.org/abs/2406.17295"
 ---
 
 > Progress in science depends on new techniques, new discoveries and new ideas, probably in that order. - Sydney Brenner
