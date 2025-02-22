@@ -10,6 +10,10 @@ software:
     logo: "MacBench_logo_black_wbg.png"
     description: "probing vision-language models in materials science and chemistry."
     link: "/software/package2"
+  - name: "MatText"
+    logo: "mattext_logo.png"
+    description: "testing the limits of (l)lms in modeling materials"
+    link: "/software/package3"
 ---
 
 > Progress in science depends on new techniques, new discoveries and new ideas, probably in that order. - Sydney Brenner
