@@ -1,7 +1,7 @@
 ---
 title: "anagha aneesh"
 role: "research student"
-image: "team/"
+image: "team/anagha.jpg"
 bio: "i completed my undergraduate studies in chemistry and physics at haverford college in may, 2024 and am now, as a fulbright research grantee, completing a 10-month stay in the lama lab."
 social:
   - icon: "orcid"

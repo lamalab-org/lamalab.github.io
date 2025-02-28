@@ -1,7 +1,7 @@
 ---
 title: "martiño rios garcia"
 role: "phd student"
-image: "portraits/martino.jpg"
+image: "team/martino.png"
 bio: "i am chemist by training that converted into the computational side for my research. i am currently doing my phd at the friedrich schiller university jena."
 social:
   - icon: "orcid"
