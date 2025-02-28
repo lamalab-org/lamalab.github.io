@@ -1,8 +1,8 @@
 ---
-title: "reza aliakbari"
-role: "master student"
-image: "team/reza.jpg"
-bio: "an engineer who is good at math and likes programming"
+title: "Reza Aliakbari"
+role: "Master Student"
+image: "reza.jpg"
+bio: "An engineer who is good at math and likes programming"
 social:
   - icon: "github"
     url: "https://github.com/r3zu"
