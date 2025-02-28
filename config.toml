@@ -6,6 +6,8 @@ theme = "cactus"
 colortheme = "white"
 description = "we are a research group trying to teach computers how to design materials that work in the real world"
 enableEmoji = true
+googleAnalyticsAsync = false
+googleAnalytics = false
 
 [params]
 mathjax = true
