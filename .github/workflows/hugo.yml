@@ -41,6 +41,10 @@ jobs:
         run: |
           rm -rf themes/cactus
           git clone https://github.com/monkeyWzr/hugo-theme-cactus.git themes/cactus
+      - name: Fix Google Analytics template
+        run: |
+          mkdir -p layouts/_internal
+          echo '<!-- Google Analytics placeholder -->' > layouts/_internal/google_analytics_async.html
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
