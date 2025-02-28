@@ -1,0 +1,68 @@
+<style>
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-gap: 1.5rem;
+        margin: 2rem 0;
+    }
+    
+    .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 4px;
+        transition: transform 0.3s ease;
+    }
+    
+    .gallery-item:hover {
+        transform: translateY(-5px);
+    }
+    
+    .gallery-image {
+        width: 100%;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+        display: block;
+    }
+    
+    .gallery-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 0.5rem;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.8rem;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .gallery-item:hover .gallery-caption {
+        opacity: 1;
+    }
+    
+    .gallery-intro {
+        margin-bottom: 2rem;
+        font-family: "JetBrains Mono", monospace;
+        color: #666;
+        max-width: 800px;
+    }
+</style>
+
+<div class="gallery-intro">
+    {{ .Inner }}
+    bla
+</div>
+
+<div class="gallery">
+    bla
+    {{ range $.Page.Params.photos }}
+    <div class="gallery-item">
+        <img src="/images/gallery/{{ .image }}" alt="{{ .caption }}" class="gallery-image">
+        {{ if .caption }}
+        <div class="gallery-caption">{{ .caption }}</div>
+        {{ end }}
+    </div>
+    {{ end }}
+</div>

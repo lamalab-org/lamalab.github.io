@@ -6,8 +6,6 @@ theme = "cactus"
 colortheme = "white"
 description = "we are a research group trying to teach computers how to design materials that work in the real world"
 enableEmoji = true
-googleAnalyticsAsync = false
-googleAnalytics = false
 
 [params]
 mathjax = true
@@ -35,6 +33,10 @@ name = "benches, data, tools"
 url = "/benches"
 weight = 4
 
+[[menu.main]]
+name = "vibes"
+url = "/gallery"
+weight = 5
 
 # [[menu.main]]
 # name = "blog"
