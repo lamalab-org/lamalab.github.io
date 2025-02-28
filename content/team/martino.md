@@ -2,7 +2,7 @@
 title: "martiño rios garcia"
 role: "phd student"
 image: "portraits/martino.jpg"
-bio: "i am chemist by training that converted into the computational side for my research. i am currently doing my phd at the university of jena."
+bio: "i am chemist by training that converted into the computational side for my research. i am currently doing my phd at the friedrich schiller university jena."
 social:
   - icon: "orcid"
     url: "https://orcid.org/0000-0003-1507-4048"
