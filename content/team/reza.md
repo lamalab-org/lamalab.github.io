@@ -1,5 +1,5 @@
 ---
-title: "Reza Aliakbari"
+title: "reza aliakbari"
 role: "master student"
 image: "team/reza.jpg"
 bio: "an engineer who is good at math and likes programming"
