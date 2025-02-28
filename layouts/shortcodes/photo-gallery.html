@@ -52,11 +52,9 @@
 
 <div class="gallery-intro">
     {{ .Inner }}
-    bla
 </div>
 
 <div class="gallery">
-    bla
     {{ range $.Page.Params.photos }}
     <div class="gallery-item">
         <img src="/images/gallery/{{ .image }}" alt="{{ .caption }}" class="gallery-image">
