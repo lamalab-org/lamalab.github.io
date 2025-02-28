@@ -1,7 +1,7 @@
 ---
 title: "meiling sun"
-role: "phd. student"
-image: "team/meiling.jpg"
+role: "phd student"
+image: "team/meiling_sun.jpg"
 bio: "I did my bachelor's in polymer engineering. my current research interest is to explore how artificial intelligence can contribute to chemical universe."
 social:
   - icon: "github"
