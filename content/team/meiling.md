@@ -1,7 +1,7 @@
 ---
 title: "Meiling Sun"
 role: "PhD student"
-image: ""
+image: "team/meiling.png"
 bio: "I am a PhD student in LamaLab in Jena, I did my bachelor in polymer engineering. My current research interest is to explore how artificial intelligence can contribute to chemical universe."
 social:
   - icon: "github"
