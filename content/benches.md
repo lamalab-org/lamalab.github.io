@@ -5,11 +5,11 @@ software:
   - name: "ChemBench"
     logo: "CHEMBENCH_LOGO_NO_BACK.png"
     description: "testing the chemical capabilities of llms"
-    link: "/software/package1"
+    link: "https://chembench.lamalab.org"
   - name: "MaCBench"
     logo: "MacBench_logo_black_wbg.png"
     description: "probing vision-language models in materials science and chemistry."
-    link: "/software/package2"
+    link: "https://macbench.lamalab.org"
   - name: "MatText"
     logo: "mattext_logo.png"
     description: "testing the limits of (l)lms in modeling materials"
@@ -25,11 +25,11 @@ a focus of our work has been on developing benchmarks ("benches") to understand 
 
 {{< software-grid >}}
 
-
+<!-- 
 ## data 
 
 ... 
 
 ## tools 
 
-... 
+...  -->

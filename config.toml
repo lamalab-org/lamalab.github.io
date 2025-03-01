@@ -33,6 +33,10 @@ name = "benches, data, tools"
 url = "/benches"
 weight = 4
 
+[[menu.main]]
+name = "vibes"
+url = "/gallery"
+weight = 5
 
 # [[menu.main]]
 # name = "blog"
