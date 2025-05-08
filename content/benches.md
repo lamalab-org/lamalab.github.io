@@ -14,6 +14,11 @@ software:
     logo: "mattext_logo.png"
     description: "testing the limits of (l)lms in modeling materials"
     link: "https://arxiv.org/abs/2406.17295"
+data:
+  - name: "ChemPile"
+    logo: "CHEMPILE_LOGO.png"
+    description: "large-scale dataset for chemical language models"
+    link: "https://chempile.lamalab.org"
 ---
 
 > Progress in science depends on new techniques, new discoveries and new ideas, probably in that order. - Sydney Brenner
@@ -25,9 +30,11 @@ a focus of our work has been on developing benchmarks ("benches") to understand 
 
 {{< software-grid >}}
 
-<!-- 
-## data 
+## data
 
+{{< data-grid >}}
+
+<!-- 
 ... 
 
 ## tools 
