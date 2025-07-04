@@ -12,7 +12,7 @@ we develop actionable, data-driven solutions for real-world materials design cha
 
 ### leveraging tacit knowledge
 
-while abundant chemical data exists in publications, most remains unutilized. 
+while abundant chemical data exists in publications, most remains unutilized.
 laboratory experiments often proceed without optimal integration of existing scientific knowledge - sometimes even disconnected from previous work within the same group.
 
 machine learning techniques, especially large language models, help us unlock and access this valuable information. they capture subtle, tacit aspects of chemistry that conventional machine learning approaches - limited to "idealized" structural representations - cannot grasp.

@@ -2,13 +2,11 @@
 title: "best research environment award"
 date: 2025-07-04T10:00:00+00:00
 draft: false
+author: "LamaLab"
 description: "A short comment on the best research environment award we received, and the application that we submitted"
 tags: ["award", "research_environment", "AI"]
+intro: "last month, we were awarded as one of the ten best research environment by [Die Jungen Akademie](https://www.diejungeakademie.de/en/projekte/best-research-environment-award/shortlist-2024). our application was one of 25 selected from 270 applicants to attend the selection event in Berlin. randomly, we were selected as a winner! here we share the english version of the essay component of our application (there is also a german version, translated by our native german speaking colleague)."
 ---
-
-last month, we were awarded as one of the ten best research environment by [Die Jungen Akademie](https://www.diejungeakademie.de/en/projekte/best-research-environment-award/shortlist-2024). our application was one of 25 selected from 270 applicants to attend the selection event in Berlin. randomly, we were selected as a winner! here we share the english version of the essay component of our application (there is also a german version, translated by our native german speaking colleague).
-
-# application
 
 building an inclusive, supportive research space that balances creativity and productivity is no easy task, yet, **&lt;Lama Lab&gt;** has accomplished this feat. only through a non-hierarchical structure that emphasizes collaboration over competition is this balance achieved.
 

@@ -50,6 +50,17 @@ h1, .h1 {
     letter-spacing: -0.02em;
 }
 
+h3, .h3 {
+    text-decoration: underline;
+    text-underline-offset: 1px;
+    text-decoration-thickness: 1px;
+}
+
+/* Remove the "#" symbol from h2 headings in blog posts to match main page style */
+article .content h2:before {
+    display: none !important;
+}
+
 h2:before {
     color: var(--primary-color) !important;
 }
@@ -121,15 +132,34 @@ table th {
 }
 
 /* Update list markers */
+.content ul {
+    list-style-type: none;
+    padding-left: -0.1em;
+}
+
+.content ul li {
+    position: relative;
+    padding-left: 1.2em;
+}
+
 .content ul li::before {
     content: '▪';
     color: var(--primary-color);
-    display: inline-block;
-    width: 1em;
-    margin-left: -1em;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 /* Add smooth transitions */
 a, button {
     transition: all 0.3s ease;
+}
+
+/* Blog post intro styling */
+.post-intro {
+    margin-bottom: 2rem;
+}
+
+.post-intro p {
+    margin: 0;
 }

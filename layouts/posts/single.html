@@ -1,14 +1,20 @@
-{{ define "main" }}
-<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    <h1 class="posttitle" itemprop="name headline">
-      {{ .Title }}
-    </h1>
+{{ define "main" }}  <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    {{ if .Params.intro }}
+    <div class="post-intro">
+      {{ .Params.intro | markdownify }}
+    </div>
+    {{ end }}
+    <header>
+      <h1 class="posttitle" itemprop="name headline">
+        {{ .Title }}
+      </h1>
     <div class="meta">
-      {{ if (or (isset .Site "author") (isset .Site "title"))}}
+      {{ if (or (isset .Params "author") (isset .Site "author") (isset .Site "title"))}}
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
         <span itemprop="name">
-          {{ if isset .Site "author" }}
+          {{ if isset .Params "author" }}
+            {{ .Params.author }}
+          {{ else if isset .Site "author" }}
             {{ .Site.Author }}
           {{ else if isset .Site "title" }}
             {{ .Site.Title }}
@@ -25,15 +31,6 @@
           {{ range $index, $value := .Params.categories }}
           {{ if gt $index 0 }} {{ print ", " }} {{ end }}
           <a class="category-link" href="{{ "/categories/" | relLangURL }}{{ $value | urlize }}">{{ $value }}</a>
-          {{ end }}
-      </div>
-      {{ end }}
-      {{ if gt .Params.tags 0 }}
-      <div class="article-tag">
-          <i class="fas fa-tag"></i>
-          {{ range $index, $value := .Params.tags }}
-          {{ if gt $index 0 }} {{ print ", " }} {{ end }}
-          <a class="tag-link" href="{{ "/tags/" | relLangURL }}{{ $value | urlize }}" rel="tag">{{ $value }}</a>
           {{ end }}
       </div>
       {{ end }}
