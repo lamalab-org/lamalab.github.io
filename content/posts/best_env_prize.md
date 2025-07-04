@@ -6,7 +6,7 @@ description: "A short comment on the best research environment award we received
 tags: ["award", "research_environment", "AI"]
 ---
 
-last month, we were awarded as one of the ten best research environment by [Die Jungen Akademie](https://www.diejungeakademie.de/en/projekte/best-research-environment-award/shortlist-2024). our application was one of 25 selected from 270 applicants to attend a random selection event in Berlin. randomly, we were selected as a winner! here we share the english version of the essay component of our application (there is also a german version, translated by our native german speaking colleague).
+last month, we were awarded as one of the ten best research environment by [Die Jungen Akademie](https://www.diejungeakademie.de/en/projekte/best-research-environment-award/shortlist-2024). our application was one of 25 selected from 270 applicants to attend the selection event in Berlin. randomly, we were selected as a winner! here we share the english version of the essay component of our application (there is also a german version, translated by our native german speaking colleague).
 
 # application
 
