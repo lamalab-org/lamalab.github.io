@@ -12,4 +12,6 @@ social:
     url: "https://github.com/aaneesh1"
   - icon: "linkedin"
     url: "www.linkedin.com/in/anagha-aneesh"
+  - icon: "envelope"
+    url: "mailto:aaneesh@stanford.edu"
 ---

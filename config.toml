@@ -6,6 +6,8 @@ theme = "cactus"
 colortheme = "white"
 description = "we are a research group trying to teach computers how to design materials that work in the real world"
 enableEmoji = true
+# Disable Google Analytics to avoid template errors
+googleAnalytics = ""
 
 [params]
 mathjax = true
@@ -38,7 +40,7 @@ name = "vibes"
 url = "/gallery"
 weight = 5
 
-# [[menu.main]]
-# name = "blog"
-# url = "/posts"
-# weight = 6
+[[menu.main]]
+name = "blog"
+url = "/posts"
+weight = 6

@@ -12,4 +12,6 @@ social:
     url: "https://github.com/marawilhelmi"
   - icon: "linkedin"
     url: "https://www.linkedin.com/in/mara-schilling-wilhelmi-853530314/"
+  - icon: "envelope"
+    url: "mailto:mara.wilhelmi@uni-jena.de"
 ---

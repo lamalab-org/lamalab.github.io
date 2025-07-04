@@ -1,0 +1,63 @@
+{{ define "main" }}
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    <h1 class="posttitle" itemprop="name headline">
+      {{ .Title }}
+    </h1>
+    <div class="meta">
+      {{ if (or (isset .Site "author") (isset .Site "title"))}}
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">
+          {{ if isset .Site "author" }}
+            {{ .Site.Author }}
+          {{ else if isset .Site "title" }}
+            {{ .Site.Title }}
+          {{ end }}
+        </span>
+      </span>
+      {{ end }}
+      <span class="date" itemprop="datePublished">
+        {{ .Date.Format (.Site.Params.dateFormat | default "2006-01-02") }}
+      </span>
+      {{ if gt .Params.categories 0 }}
+      <div class="article-category">
+          <i class="fas fa-archive"></i>
+          {{ range $index, $value := .Params.categories }}
+          {{ if gt $index 0 }} {{ print ", " }} {{ end }}
+          <a class="category-link" href="{{ "/categories/" | relLangURL }}{{ $value | urlize }}">{{ $value }}</a>
+          {{ end }}
+      </div>
+      {{ end }}
+      {{ if gt .Params.tags 0 }}
+      <div class="article-tag">
+          <i class="fas fa-tag"></i>
+          {{ range $index, $value := .Params.tags }}
+          {{ if gt $index 0 }} {{ print ", " }} {{ end }}
+          <a class="tag-link" href="{{ "/tags/" | relLangURL }}{{ $value | urlize }}" rel="tag">{{ $value }}</a>
+          {{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </header>
+
+  {{ with .Resources.ByType "image" }}
+    <div class="article-gallery">
+      {{ range $index, $value := . }}
+      <a class="gallery-item" href="{{ .RelPermalink }}" rel="gallery_{{ $index }}">
+        <img class="article-gallery-img" src="{{ .RelPermalink }}" />
+      </a>
+      {{ end }}
+    </div>
+  {{ end }}
+  {{ if .Site.Params.tocInline }}
+  <div id="toc">
+    {{ .TableOfContents }}
+  </div>
+  {{ end }}
+  <div class="content" itemprop="articleBody">
+    {{ .Content}}
+  </div>
+</article>
+
+{{ partial "comments.html" . }}
+{{ end }}
