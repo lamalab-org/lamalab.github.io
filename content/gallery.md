@@ -38,7 +38,7 @@ photos:
   - image: "PHOTO-2025-04-11-19-07-27.jpg"
     caption: "in a tulip garden in the netherlands"
   - image: "PHOTO-2025-05-06-12-59-40.jpg"
-    caption: "garden at the bay in singapore"
+    caption: "gardens at the bay in singapore"
 ---
 
 {{< photo-gallery >}}
