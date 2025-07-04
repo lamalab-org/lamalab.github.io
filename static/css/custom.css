@@ -57,7 +57,7 @@ h3, .h3 {
 }
 
 /* Remove the "#" symbol from h2 headings in blog posts to match main page style */
-article .content h2:before {
+.content h2:before {
     display: none !important;
 }
 
@@ -162,4 +162,110 @@ a, button {
 
 .post-intro p {
     margin: 0;
+}
+
+/* Unified content styling for all pages */
+.content {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Ensure consistent spacing within content areas */
+.content > section,
+.content > article {
+    margin-bottom: 1rem;
+}
+
+/* Post-specific styling within content wrapper */
+.content .post {
+    width: 100%;
+}
+
+.content .post header {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--color-accent-3, #666);
+    padding-bottom: 1rem;
+}
+
+.content .post .meta {
+    margin-top: 0.5rem;
+    color: var(--color-meta, #666);
+    font-size: 0.9rem;
+}
+
+.content .post .meta .author {
+    font-weight: bold;
+    margin-right: 1rem;
+}
+
+.content .post .meta .date {
+    font-style: italic;
+}
+
+/* Archive list styling within content */
+.content #archive {
+    margin-top: 2rem;
+}
+
+.content #archive h2 {
+    color: var(--color-accent-1);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Ensure proper page layout for footer positioning */
+html, body {
+    min-height: 100vh;
+}
+
+.content.index {
+    min-height: calc(100vh - 4rem); /* Account for footer height */
+    position: relative;
+}
+
+/* Improve footer positioning */
+#footer {
+    position: relative;
+    margin-top: auto;
+    margin-bottom: 1rem;
+}
+
+/* Ensure proper spacing between blog post content and footer */
+.post {
+    margin-bottom: 1rem;
+}
+
+/* Additional spacing for the entire content wrapper on blog posts */
+body .content.index.py4 {
+    padding-bottom: 1rem;
+}
+
+/* Ensure blog post articles have proper bottom spacing */
+article.post {
+    margin-bottom: 1rem;
+}
+
+/* Comments section should also have proper spacing */
+.blog-post-comments {
+    margin-bottom: 1rem;
+}
+
+/* Mobile responsive spacing to account for fixed mobile footer */
+@media (max-width: 500px) {
+    .post {
+        margin-bottom: 3rem; /* Reasonable space for mobile footer */
+    }
+    
+    body .content.index.py4 {
+        padding-bottom: 3rem;
+    }
+}
+
+/* Ensure the content doesn't get cut off by fixed footers */
+@media (min-width: 501px) and (max-width: 900px) {
+    .post {
+        margin-bottom: 2.5rem;
+    }
 }
