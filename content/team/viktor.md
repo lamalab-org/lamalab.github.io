@@ -9,7 +9,7 @@ social:
   - icon: "github"
     url: "https://github.com/ViktorWeissenborn"
   - icon: "linkedin"
-    url: "www.linkedin.com/in/viktor-weißenborn
+    url: "www.linkedin.com/in/viktor-weißenborn"
   - icon: "envelope"
     url: "mailto:viktor.kurt.weissenborn@uni-jena.de"
 ---
