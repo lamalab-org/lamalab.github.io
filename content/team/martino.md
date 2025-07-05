@@ -13,5 +13,5 @@ social:
   - icon: "twitter"
     url: "https://x.com/MrtinoRG"
   - icon: "envelope"
-    url: "martinriosgarcia@gmail.com"
+    url: "mailto:martinriosgarcia@gmail.com"
 ---

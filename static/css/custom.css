@@ -6,15 +6,20 @@
     --secondary-color: #666666;     /* Medium gray for secondary text */
     --background-color: #FFFFFF;    /* Clean white background */
     --border-color: #E0E0E0;        /* Light gray for borders */
+    --light-bg: #FAFAFA;           /* Light background for code/footer */
 }
 
 /* Update header style */
 #header {
     border-bottom: 2px solid var(--primary-color);
     padding-bottom: 2rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
 }
 
-#header h1, #header .h1 {
+#header h1, #header .h1,
+h1, .h1,
+.posttitle {
     color: var(--primary-color);
     font-weight: 800;
     letter-spacing: -0.02em;
@@ -44,10 +49,16 @@
 }
 
 /* Update headings */
-h1, .h1 {
-    color: var(--primary-color);
-    font-weight: 800;
-    letter-spacing: -0.02em;
+
+h3, .h3 {
+    text-decoration: underline;
+    text-underline-offset: 1px;
+    text-decoration-thickness: 1px;
+}
+
+/* Remove the "#" symbol from h2 headings in blog posts to match main page style */
+.content h2:before {
+    display: none !important;
 }
 
 h2:before {
@@ -57,12 +68,12 @@ h2:before {
 /* Update code blocks */
 pre {
     border: 1px solid var(--border-color);
-    background-color: #FAFAFA;
+    background-color: var(--light-bg);
 }
 
 pre .code-copy-btn:hover {
     background-color: var(--primary-color);
-    color: white;
+    color: var(--background-color);
 }
 
 /* Update blockquotes */
@@ -74,19 +85,14 @@ blockquote {
 
 /* Update navigation elements */
 #footer-post #nav-footer {
-    background-color: #FAFAFA;
+    background-color: var(--light-bg);
 }
 
 #footer-post #nav-footer a {
     color: var(--primary-color);
 }
 
-/* Update post title styles */
-.posttitle {
-    color: var(--primary-color);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-}
+/* Update post title styles - merged with heading styles above */
 
 /* Update tag and category styles */
 .article-tag .tag-link:before {
@@ -121,15 +127,131 @@ table th {
 }
 
 /* Update list markers */
+.content ul {
+    list-style-type: none;
+    padding-left: -0.1em;
+}
+
+.content ul li {
+    position: relative;
+    padding-left: 1.2em;
+}
+
 .content ul li::before {
     content: '▪';
     color: var(--primary-color);
-    display: inline-block;
-    width: 1em;
-    margin-left: -1em;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 /* Add smooth transitions */
 a, button {
     transition: all 0.3s ease;
+}
+
+/* Blog post intro styling */
+.post-intro {
+    margin-bottom: 2rem;
+}
+
+.post-intro p {
+    margin: 0;
+}
+
+/* Unified content styling for all pages */
+.content {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Ensure consistent spacing within content areas */
+.content > section,
+.content > article {
+    margin-bottom: 1rem;
+}
+
+/* Post-specific styling within content wrapper */
+.content .post {
+    width: 100%;
+}
+
+.content .post header {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--secondary-color);
+    padding-bottom: 1rem;
+}
+
+.content .post .meta {
+    margin-top: 0.5rem;
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+}
+
+.content .post .meta .author {
+    font-weight: bold;
+    margin-right: 1rem;
+}
+
+.content .post .meta .date {
+    font-style: italic;
+}
+
+/* Archive list styling within content */
+.content #archive {
+    margin-top: 2rem;
+}
+
+.content #archive h2 {
+    color: var(--primary-color);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Ensure proper page layout for footer positioning */
+html, body {
+    min-height: 100vh;
+}
+
+.content.index {
+    min-height: calc(100vh - 4rem); /* Account for footer height */
+    position: relative;
+}
+
+/* Improve footer positioning */
+#footer {
+    position: relative;
+    margin-top: auto;
+    margin-bottom: 1rem;
+}
+
+/* Responsive spacing for posts and content */
+.post,
+article.post {
+    margin-bottom: 1rem;
+}
+
+body .content.index.py4 {
+    padding-bottom: 1rem;
+}
+
+/* Mobile and tablet responsive spacing */
+@media (max-width: 500px) {
+    .post,
+    article.post {
+        margin-bottom: 3rem;
+    }
+    
+    body .content.index.py4 {
+        padding-bottom: 3rem;
+    }
+}
+
+@media (min-width: 501px) and (max-width: 900px) {
+    .post,
+    article.post {
+        margin-bottom: 2.5rem;
+    }
 }
