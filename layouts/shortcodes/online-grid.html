@@ -1,0 +1,69 @@
+<style>
+    .online-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 2rem;
+        padding: 2rem 0;
+    }
+    
+    .online-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1rem;
+    }
+    
+    .online-logo {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 1rem;
+    }
+    
+    .online-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    
+    .online-name {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 1.2rem;
+        margin: 0.5rem 0;
+        color: #A43830;
+    }
+    
+    .online-description {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin: 0.5rem 0;
+        color: #666;
+    }
+    
+    .online-link {
+        margin-top: 1rem;
+        text-decoration: none;
+        color: #A43830;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.9rem;
+    }
+    
+    .online-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="online-grid">
+    {{ range .Page.Params.online }}
+    <div class="online-item">
+        {{ if .logo }}
+        <div class="online-logo">
+            <img src="/images/software/{{ .logo }}" alt="{{ .name }} logo">
+        </div>
+        {{ end }}
+        <h3 class="online-name">{{ .name }}</h3>
+        <p class="online-description">{{ .description }}</p>
+        <a href="{{ .link }}" class="online-link">learn more ></a>
+    </div>
+    {{ end }}
+</div>

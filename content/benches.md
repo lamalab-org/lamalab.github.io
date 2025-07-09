@@ -19,6 +19,15 @@ data:
     logo: "CHEMPILE_LOGO.png"
     description: "large-scale dataset for chemical language models"
     link: "https://chempile.lamalab.org"
+online:
+  - name: "MatExtract"
+    logo: "logo_matextract.png"
+    description: "data extraction online tuturial for materials science"
+    link: "https://matextract.pub"
+  - name: "GPMs book"
+    logo: "gpm_logo.png"
+    description: "online book on general-purpose models in chemistry and materials science"
+    link: "https://gpm.lamalab.org"
 ---
 
 > Progress in science depends on new techniques, new discoveries and new ideas, probably in that order. - Sydney Brenner
@@ -33,6 +42,10 @@ a focus of our work has been on developing benchmarks ("benches") to understand 
 ## data
 
 {{< data-grid >}}
+
+## online content
+
+{{< online-grid >}}
 
 <!-- 
 ... 
