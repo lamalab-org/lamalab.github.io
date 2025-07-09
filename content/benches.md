@@ -22,7 +22,7 @@ data:
 online:
   - name: "MatExtract"
     logo: "logo_matextract.png"
-    description: "data extraction online tuturial for materials science"
+    description: "data extraction online tutorial for materials science"
     link: "https://matextract.pub"
   - name: "GPMs book"
     logo: "gpm_logo.png"
