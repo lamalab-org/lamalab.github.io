@@ -27,7 +27,7 @@ online:
   - name: "GPMs book"
     logo: "gpm_logo.png"
     description: "online book on general-purpose models in chemistry and materials science"
-    link: "https://gpm.lamalab.org"
+    link: "https://gpmbook.lamalab.org/"
 ---
 
 > Progress in science depends on new techniques, new discoveries and new ideas, probably in that order. - Sydney Brenner
