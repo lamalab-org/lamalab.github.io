@@ -4,6 +4,8 @@ role: "phd student"
 image: "team/nawaf.png"
 bio: "i studied physics at bit mesra for my bachelor's degree and pursued a master in energy from iit bombay. my research interest is in accelerating scientific discovery."
 social:
+  - icon: "globe"
+    url: "https://alampara.com"
   - icon: "orcid"
     url: "https://orcid.org/0009-0001-7697-7315"
   - icon: "google-scholar"
