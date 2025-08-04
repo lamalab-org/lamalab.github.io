@@ -1,3 +1,92 @@
+pre, code, .md-fences {
+  background-color: #263238 !important;
+  color: rgba(233, 237, 237, 1) !important;
+  border: none !important;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', 'Fira Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
+  font-size: 1em;
+  padding: 1em;
+  overflow-x: auto;
+  /* Allow vertical scrolling for long code blocks */
+  max-height: 500px;
+  overflow-y: auto;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  margin: 1.2em 0;
+  line-height: 1.6;
+  word-break: break-word;
+  white-space: pre-wrap; /* Enable line wrapping for markdown codeblocks */
+}
+
+
+pre code {
+  background: none !important;
+  color: inherit !important;
+  padding: 0;
+  border: none;
+  font-size: 1em;
+  white-space: pre-wrap; /* Enable line wrapping inside code blocks */
+  word-break: break-word;
+  display: block;
+}
+
+
+code {
+  background-color: #263238 !important;
+  color: #c3e88d !important;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-size: 0.95em;
+  white-space: pre-wrap; /* Wrap inline code if needed */
+  word-break: break-word;
+}
+
+
+.md-fences .code-tooltip {
+  background-color: #263238 !important;
+  color: rgba(233, 237, 237, 1) !important;
+}
+
+/* Add line numbers for code blocks (optional, can be removed if not wanted) */
+.md-fences[data-line-numbers] pre {
+  counter-reset: line;
+}
+.md-fences[data-line-numbers] pre code {
+  position: relative;
+}
+.md-fences[data-line-numbers] pre code span {
+  display: block;
+  padding-left: 2.5em;
+  position: relative;
+}
+.md-fences[data-line-numbers] pre code span:before {
+  counter-increment: line;
+  content: counter(line);
+  position: absolute;
+  left: 0;
+  width: 2em;
+  color: #546e7a;
+  text-align: right;
+  opacity: 0.7;
+  user-select: none;
+}
+
+/* Optional: Syntax highlighting for code blocks */
+.hljs-keyword, .cm-keyword { color: #c792ea !important; }
+.hljs-string, .cm-string { color: #c3e88d !important; }
+.hljs-number, .cm-number { color: #f77669 !important; }
+.hljs-comment, .cm-comment { color: #546e7a !important; font-style: italic; }
+.hljs-variable, .cm-variable { color: #82b1ff !important; }
+.hljs-title, .cm-def { color: #ffcb6b !important; }
+.hljs-attr, .cm-attribute { color: #ffcb6b !important; }
+.hljs-meta, .cm-meta { color: #80cbc4 !important; }
+.hljs-tag, .cm-tag { color: #ff5370 !important; }
+.hljs-built_in, .cm-builtin { color: #decb6b !important; }
+.hljs-literal, .cm-atom { color: #f77669 !important; }
+.hljs-section, .cm-section { color: #82b1ff !important; }
+.hljs-emphasis { font-style: italic; }
+.hljs-strong { font-weight: bold; }
+.hljs-addition { background-color: #144212; }
+.hljs-deletion { background-color: #600; }
 /* Custom theme colors */
 :root {
     --primary-color: #A43830;       /* Lamalab burgundy */
@@ -65,15 +154,10 @@ h2:before {
     color: var(--primary-color) !important;
 }
 
-/* Update code blocks */
+/* Remove border and background override for pre, handled above */
 pre {
-    border: 1px solid var(--border-color);
-    background-color: var(--light-bg);
-}
-
-pre .code-copy-btn:hover {
-    background-color: var(--primary-color);
-    color: var(--background-color);
+    /* border: 1px solid var(--border-color); */
+    /* background-color: var(--light-bg); */
 }
 
 /* Update blockquotes */

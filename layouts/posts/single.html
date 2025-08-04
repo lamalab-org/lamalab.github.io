@@ -1,15 +1,27 @@
 {{ define "main" }}
 <div class="content">
+
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+      {{ if .Params.header_image }}
+      <div class="post-header-flex" style="display: flex; flex-wrap: wrap; align-items: stretch; margin-bottom: 2rem;">
+        <div class="post-header-image" style="flex: 1 1 50%; min-width: 300px; max-width: 50vw; display: flex; align-items: center; justify-content: center; background: #f8f8f8;">
+          <img src="/images/posts/{{ .Params.header_image }}" alt="Header Image" style="width: 100%; height: auto; object-fit: cover; border-radius: 8px;" />
+        </div>
+        <div class="post-intro" style="flex: 1 1 50%; min-width: 300px; max-width: 50vw; display: flex; align-items: center; justify-content: center; padding: 2rem;">
+          {{ .Params.intro | markdownify }}
+        </div>
+      </div>
+      {{ else }}
         {{ if .Params.intro }}
         <div class="post-intro">
           {{ .Params.intro | markdownify }}
         </div>
         {{ end }}
-        <header>
-          <h1 class="posttitle" itemprop="name headline">
-            {{ .Title }}
-          </h1>
+      {{ end }}
+      <header>
+        <h1 class="posttitle" itemprop="name headline">
+          {{ .Title }}
+        </h1>
         <div class="meta">
           {{ if (or (isset .Params "author") (isset .Site "author") (isset .Site "title"))}}
           <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
