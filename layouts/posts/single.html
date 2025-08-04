@@ -66,8 +66,35 @@
       </div>
       {{ end }}
       <div itemprop="articleBody">
-        {{ .Content}}
+        {{ .Content }}
       </div>
+      <script>
+        // Wait for DOM content to be loaded
+        document.addEventListener('DOMContentLoaded', function() {
+          document.querySelectorAll('pre > code').forEach(function(codeNode) {
+            // Only add copy button if not already present
+            if (!codeNode.parentNode.querySelector('.copy-code-btn')) {
+              var btn = document.createElement('button');
+              btn.className = 'copy-code-btn';
+              btn.type = 'button';
+              btn.title = 'Copy code';
+              btn.innerHTML = '<i class="fas fa-copy"></i>';
+              btn.addEventListener('click', function() {
+                var text = codeNode.innerText;
+                navigator.clipboard.writeText(text).then(function() {
+                  btn.classList.add('copied');
+                  btn.innerHTML = '<i class="fas fa-check"></i>';
+                  setTimeout(function() {
+                    btn.classList.remove('copied');
+                    btn.innerHTML = '<i class="fas fa-copy"></i>';
+                  }, 1200);
+                });
+              });
+              codeNode.parentNode.appendChild(btn);
+            }
+          });
+        });
+      </script>
     </article>
 </div>
 

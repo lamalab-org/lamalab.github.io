@@ -1,92 +1,404 @@
-pre, code, .md-fences {
-  background-color: #263238 !important;
-  color: rgba(233, 237, 237, 1) !important;
-  border: none !important;
-  border-radius: 6px;
-  font-family: 'JetBrains Mono', 'Fira Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
-  font-size: 1em;
-  padding: 1em;
-  overflow-x: auto;
-  /* Allow vertical scrolling for long code blocks */
-  max-height: 500px;
-  overflow-y: auto;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
-  margin: 1.2em 0;
-  line-height: 1.6;
-  word-break: break-word;
-  white-space: pre-wrap; /* Enable line wrapping for markdown codeblocks */
+/* Copy button styling for codpre .copy-code-btn.copied {
+    background-color: var(--primary-color, #2bbc8a);
+    color: #fff;
 }
 
+/* ==========================================
+   ATOM DARK INSPIRED CODE BLOCK STYLING
+   ========================================== */
 
-pre code {
-  background: none !important;
-  color: inherit !important;
-  padding: 0;
-  border: none;
-  font-size: 1em;
-  white-space: pre-wrap; /* Enable line wrapping inside code blocks */
-  word-break: break-word;
-  display: block;
+/* Override default code block styling with Atom Dark theme */
+pre {
+    background-color: var(--code-bg) !important;
+    color: var(--code-text) !important;
+    border: 1px solid #21252b !important;
+    border-radius: 6px !important;
+    padding: 1.2rem !important;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'SF Mono', 'Monaco', 'Consolas', monospace !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    overflow-x: auto;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-
+/* Inline code styling */
 code {
-  background-color: #263238 !important;
-  color: #c3e88d !important;
-  padding: 0.2em 0.4em;
-  border-radius: 3px;
-  font-size: 0.95em;
-  white-space: pre-wrap; /* Wrap inline code if needed */
-  word-break: break-word;
+    background-color: #f8f8f8 !important;
+    color: #e83e8c !important;
+    padding: 0.2em 0.4em !important;
+    border-radius: 3px !important;
+    border: none !important;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'SF Mono', 'Monaco', 'Consolas', monospace !important;
+    font-size: 0.9em !important;
 }
 
-
-.md-fences .code-tooltip {
-  background-color: #263238 !important;
-  color: rgba(233, 237, 237, 1) !important;
+/* Code inside pre blocks */
+pre code {
+    background-color: transparent !important;
+    color: var(--code-text) !important;
+    padding: 0 !important;
+    border: none !important;
+    display: block;
 }
 
-/* Add line numbers for code blocks (optional, can be removed if not wanted) */
-.md-fences[data-line-numbers] pre {
-  counter-reset: line;
+/* Syntax highlighting for common elements */
+.highlight pre, 
+.highlight code {
+    background-color: var(--code-bg) !important;
+    color: var(--code-text) !important;
 }
-.md-fences[data-line-numbers] pre code {
+
+/* Generic syntax highlighting classes */
+.highlight .c,     /* Comments */
+.highlight .cm,    /* Multiline comments */
+.highlight .cp,    /* Preprocessor comments */
+.highlight .c1,    /* Single line comments */
+.highlight .cs {   /* Special comments */
+    color: var(--code-comment) !important;
+    font-style: italic;
+}
+
+.highlight .k,     /* Keywords */
+.highlight .kc,    /* Keyword constants */
+.highlight .kd,    /* Keyword declarations */
+.highlight .kn,    /* Keyword namespaces */
+.highlight .kp,    /* Keyword pseudo */
+.highlight .kr,    /* Keyword reserved */
+.highlight .kt {   /* Keyword types */
+    color: var(--code-keyword) !important;
+    font-weight: bold;
+}
+
+.highlight .s,     /* Strings */
+.highlight .sb,    /* String backtick */
+.highlight .sc,    /* String char */
+.highlight .sd,    /* String doc */
+.highlight .s2,    /* String double */
+.highlight .se,    /* String escape */
+.highlight .sh,    /* String heredoc */
+.highlight .si,    /* String interpol */
+.highlight .sx,    /* String other */
+.highlight .sr,    /* String regex */
+.highlight .s1,    /* String single */
+.highlight .ss {   /* String symbol */
+    color: var(--code-string) !important;
+}
+
+.highlight .m,     /* Numbers */
+.highlight .mf,    /* Float */
+.highlight .mh,    /* Hex */
+.highlight .mi,    /* Integer */
+.highlight .mo,    /* Octal */
+.highlight .il {   /* Integer long */
+    color: var(--code-number) !important;
+}
+
+.highlight .n,     /* Names */
+.highlight .nf,    /* Function names */
+.highlight .fm {   /* Magic functions */
+    color: var(--code-function) !important;
+}
+
+.highlight .nv,    /* Variables */
+.highlight .vc,    /* Class variables */
+.highlight .vg,    /* Global variables */
+.highlight .vi {   /* Instance variables */
+    color: var(--code-variable) !important;
+}
+
+.highlight .o,     /* Operators */
+.highlight .ow {   /* Word operators */
+    color: var(--code-operator) !important;
+}
+
+.highlight .nc,    /* Class names */
+.highlight .ne,    /* Exceptions */
+.highlight .nn {   /* Namespaces */
+    color: var(--code-class) !important;
+    font-weight: bold;
+}
+
+.highlight .nt,    /* Tags */
+.highlight .nl {   /* Labels */
+    color: var(--code-tag) !important;
+}
+
+.highlight .na,    /* Attributes */
+.highlight .nb {   /* Builtins */
+    color: var(--code-attribute) !important;
+}
+
+.highlight .p {    /* Punctuation */
+    color: var(--code-punctuation) !important;
+}
+
+/* Language-specific highlighting */
+
+/* Python specific */
+.highlight .language-python .k,
+.highlight .language-py .k {
+    color: var(--code-keyword) !important;
+}
+
+.highlight .language-python .kn,
+.highlight .language-py .kn {
+    color: var(--code-keyword) !important;
+}
+
+/* JavaScript specific */
+.highlight .language-javascript .kd,
+.highlight .language-js .kd,
+.highlight .language-jsx .kd {
+    color: var(--code-keyword) !important;
+}
+
+.highlight .language-javascript .nx,
+.highlight .language-js .nx,
+.highlight .language-jsx .nx {
+    color: var(--code-text) !important;
+}
+
+/* CSS specific */
+.highlight .language-css .k,
+.highlight .language-scss .k,
+.highlight .language-sass .k {
+    color: var(--code-keyword) !important;
+}
+
+.highlight .language-css .nc,
+.highlight .language-scss .nc,
+.highlight .language-sass .nc {
+    color: var(--code-class) !important;
+}
+
+/* HTML specific */
+.highlight .language-html .nt {
+    color: var(--code-tag) !important;
+}
+
+.highlight .language-html .na {
+    color: var(--code-attribute) !important;
+}
+
+/* JSON specific */
+.highlight .language-json .nt {
+    color: var(--code-string) !important;
+}
+
+/* Bash/Shell specific */
+.highlight .language-bash .nv,
+.highlight .language-sh .nv,
+.highlight .language-shell .nv {
+    color: var(--code-variable) !important;
+}
+
+/* Additional styling for better readability */
+.highlight .err {
+    color: #f8f8f2 !important;
+    background-color: #e74c3c !important;
+    border-radius: 2px;
+    padding: 1px 2px;
+}
+
+.highlight .w {
+    color: var(--code-text) !important;
+}
+
+/* Selection color for code blocks */
+pre::selection,
+pre code::selection {
+    background-color: var(--code-selection) !important;
+}
+
+/* Scrollbar styling for code blocks */
+pre::-webkit-scrollbar {
+    height: 8px;
+}
+
+pre::-webkit-scrollbar-track {
+    background: #21252b;
+    border-radius: 4px;
+}
+
+pre::-webkit-scrollbar-thumb {
+    background: #3e4451;
+    border-radius: 4px;
+}
+
+pre::-webkit-scrollbar-thumb:hover {
+    background: #4a5161;
+}
+
+/* Line numbers styling (if used) */
+.highlight .linenos {
+    color: #5c6370 !important;
+    background-color: #21252b !important;
+    padding-right: 1em !important;
+    border-right: 1px solid #3e4451 !important;
+    margin-right: 1em !important;
+}
+
+/* Code fence language label */
+.highlight .code-header {
+    background-color: #21252b;
+    color: var(--code-comment);
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    border-radius: 6px 6px 0 0;
+    border-bottom: 1px solid #3e4451;
+    margin-bottom: 0;
+}
+
+/* Ensure copy button works well with dark theme */
+pre .copy-code-btn {
+    background-color: var(--primary-color, #8c8c8c) !important;
+    border: 1px solid #3e4451;
+    border-radius: 0 6px 0 6px !important;
+    transition: all 0.2s ease !important;
+}
+
+pre .copy-code-btn:hover {
+    background-color: var(--primary-dark, #666) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Code block animations and interactions */
+pre {
+    transition: all 0.3s ease;
+}
+
+pre:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
+    transform: translateY(-2px);
+}
+
+/* Beautiful code block headers for different languages */
+pre[class*="language-"]:before {
+    content: attr(class);
+    position: absolute;
+    top: -1.5rem;
+    right: 1rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    padding: 0.2rem 0.8rem;
+    border-radius: 4px 4px 0 0;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Language-specific labels */
+pre.language-javascript:before,
+pre.highlight.language-javascript:before { content: "JavaScript"; }
+pre.language-python:before,
+pre.highlight.language-python:before { content: "Python"; }
+pre.language-css:before,
+pre.highlight.language-css:before { content: "CSS"; }
+pre.language-html:before,
+pre.highlight.language-html:before { content: "HTML"; }
+pre.language-bash:before,
+pre.highlight.language-bash:before { content: "Bash"; }
+pre.language-json:before,
+pre.highlight.language-json:before { content: "JSON"; }
+pre.language-sql:before,
+pre.highlight.language-sql:before { content: "SQL"; }
+pre.language-typescript:before,
+pre.highlight.language-typescript:before { content: "TypeScript"; }
+pre.language-jsx:before,
+pre.highlight.language-jsx:before { content: "JSX"; }
+pre.language-tsx:before,
+pre.highlight.language-tsx:before { content: "TSX"; }
+
+/* Enhanced token highlighting with better contrast */
+.highlight .gh {   /* Generic heading */
+    color: var(--code-class) !important;
+    font-weight: bold;
+}
+
+.highlight .gi {   /* Generic inserted */
+    color: var(--code-string) !important;
+    background-color: rgba(152, 195, 121, 0.1);
+}
+
+.highlight .gd {   /* Generic deleted */
+    color: var(--code-variable) !important;
+    background-color: rgba(224, 108, 117, 0.1);
+}
+
+.highlight .gu {   /* Generic subheading */
+    color: var(--code-operator) !important;
+    font-weight: bold;
+}
+
+/* Better highlighting for important keywords */
+.highlight .language-python .bp,  /* Python builtins */
+.highlight .language-py .bp {
+    color: var(--code-attribute) !important;
+    font-weight: bold;
+}
+
+.highlight .language-javascript .p,
+.highlight .language-js .p {
+    color: var(--code-punctuation) !important;
+}
+
+/* Special highlighting for decorators */
+.highlight .nd {   /* Decorators */
+    color: var(--code-class) !important;
+    font-weight: bold;
+}
+
+/* Better visibility for escape sequences */
+.highlight .se {
+    color: var(--code-operator) !important;
+    font-weight: bold;
+}
+
+/* Improved documentation strings */
+.highlight .sd {
+    color: var(--code-comment) !important;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+/* Copy button styling for code blocks - based on original Cactus theme */
+pre {
   position: relative;
 }
-.md-fences[data-line-numbers] pre code span {
-  display: block;
-  padding-left: 2.5em;
-  position: relative;
-}
-.md-fences[data-line-numbers] pre code span:before {
-  counter-increment: line;
-  content: counter(line);
+
+pre .copy-code-btn {
   position: absolute;
-  left: 0;
-  width: 2em;
-  color: #546e7a;
-  text-align: right;
-  opacity: 0.7;
-  user-select: none;
+  top: 0;
+  right: 0;
+  border: 0;
+  border-radius: 0 2px;
+  padding: 0;
+  font-family: "JetBrains Mono", monospace;
+  font-weight: 800;
+  font-size: 0.9em;
+  line-height: 1.7;
+  color: #fff;
+  background-color: var(--primary-color, #8c8c8c);
+  min-width: 60px;
+  text-align: center;
+  cursor: pointer;
+  letter-spacing: 0em;
+  transition: background-color 0.2s, color 0.2s;
 }
 
-/* Optional: Syntax highlighting for code blocks */
-.hljs-keyword, .cm-keyword { color: #c792ea !important; }
-.hljs-string, .cm-string { color: #c3e88d !important; }
-.hljs-number, .cm-number { color: #f77669 !important; }
-.hljs-comment, .cm-comment { color: #546e7a !important; font-style: italic; }
-.hljs-variable, .cm-variable { color: #82b1ff !important; }
-.hljs-title, .cm-def { color: #ffcb6b !important; }
-.hljs-attr, .cm-attribute { color: #ffcb6b !important; }
-.hljs-meta, .cm-meta { color: #80cbc4 !important; }
-.hljs-tag, .cm-tag { color: #ff5370 !important; }
-.hljs-built_in, .cm-builtin { color: #decb6b !important; }
-.hljs-literal, .cm-atom { color: #f77669 !important; }
-.hljs-section, .cm-section { color: #82b1ff !important; }
-.hljs-emphasis { font-style: italic; }
-.hljs-strong { font-weight: bold; }
-.hljs-addition { background-color: #144212; }
-.hljs-deletion { background-color: #600; }
+pre .copy-code-btn:hover {
+  background-color: var(--primary-dark, #666);
+  color: #fff;
+}
+
+pre .copy-code-btn.copied {
+  background-color: var(--primary-color, #2bbc8a);
+  color: #fff;
+}
 /* Custom theme colors */
 :root {
     --primary-color: #A43830;       /* Lamalab burgundy */
@@ -96,6 +408,22 @@ code {
     --background-color: #FFFFFF;    /* Clean white background */
     --border-color: #E0E0E0;        /* Light gray for borders */
     --light-bg: #FAFAFA;           /* Light background for code/footer */
+    
+    /* Atom Dark-inspired code theme colors */
+    --code-bg: #282c34;             /* Dark background like Atom Dark */
+    --code-text: #abb2bf;           /* Default text color */
+    --code-comment: #5c6370;        /* Comments */
+    --code-keyword: #c678dd;        /* Keywords (purple) */
+    --code-string: #98c379;         /* Strings (green) */
+    --code-number: #d19a66;         /* Numbers (orange) */
+    --code-function: #61afef;       /* Functions (blue) */
+    --code-variable: #e06c75;       /* Variables (red) */
+    --code-operator: #56b6c2;       /* Operators (cyan) */
+    --code-class: #e5c07b;          /* Classes (yellow) */
+    --code-tag: #e06c75;            /* HTML tags (red) */
+    --code-attribute: #d19a66;      /* Attributes (orange) */
+    --code-punctuation: #abb2bf;    /* Punctuation */
+    --code-selection: #3e4451;      /* Selection background */
 }
 
 /* Update header style */
@@ -152,12 +480,6 @@ h3, .h3 {
 
 h2:before {
     color: var(--primary-color) !important;
-}
-
-/* Remove border and background override for pre, handled above */
-pre {
-    /* border: 1px solid var(--border-color); */
-    /* background-color: var(--light-bg); */
 }
 
 /* Update blockquotes */
