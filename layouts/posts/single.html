@@ -1,15 +1,27 @@
 {{ define "main" }}
 <div class="content">
+
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+      {{ if .Params.header_image }}
+      <div class="post-header-flex" style="display: flex; flex-wrap: wrap; align-items: stretch; margin-bottom: 2rem;">
+        <div class="post-header-image" style="flex: 1 1 50%; min-width: 300px; max-width: 50vw; display: flex; align-items: center; justify-content: center; background: #f8f8f8;">
+          <img src="/images/posts/{{ .Params.header_image }}" alt="Header Image" style="width: 100%; height: auto; object-fit: cover; border-radius: 8px;" />
+        </div>
+        <div class="post-intro" style="flex: 1 1 50%; min-width: 300px; max-width: 50vw; display: flex; align-items: center; justify-content: center; padding: 2rem;">
+          {{ .Params.intro | markdownify }}
+        </div>
+      </div>
+      {{ else }}
         {{ if .Params.intro }}
         <div class="post-intro">
           {{ .Params.intro | markdownify }}
         </div>
         {{ end }}
-        <header>
-          <h1 class="posttitle" itemprop="name headline">
-            {{ .Title }}
-          </h1>
+      {{ end }}
+      <header>
+        <h1 class="posttitle" itemprop="name headline">
+          {{ .Title }}
+        </h1>
         <div class="meta">
           {{ if (or (isset .Params "author") (isset .Site "author") (isset .Site "title"))}}
           <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -54,8 +66,35 @@
       </div>
       {{ end }}
       <div itemprop="articleBody">
-        {{ .Content}}
+        {{ .Content }}
       </div>
+      <script>
+        // Wait for DOM content to be loaded
+        document.addEventListener('DOMContentLoaded', function() {
+          document.querySelectorAll('pre > code').forEach(function(codeNode) {
+            // Only add copy button if not already present
+            if (!codeNode.parentNode.querySelector('.copy-code-btn')) {
+              var btn = document.createElement('button');
+              btn.className = 'copy-code-btn';
+              btn.type = 'button';
+              btn.title = 'Copy code';
+              btn.innerHTML = '<i class="fas fa-copy"></i>';
+              btn.addEventListener('click', function() {
+                var text = codeNode.innerText;
+                navigator.clipboard.writeText(text).then(function() {
+                  btn.classList.add('copied');
+                  btn.innerHTML = '<i class="fas fa-check"></i>';
+                  setTimeout(function() {
+                    btn.classList.remove('copied');
+                    btn.innerHTML = '<i class="fas fa-copy"></i>';
+                  }, 1200);
+                });
+              });
+              codeNode.parentNode.appendChild(btn);
+            }
+          });
+        });
+      </script>
     </article>
 </div>
 
