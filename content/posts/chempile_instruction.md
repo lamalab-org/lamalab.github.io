@@ -13,7 +13,7 @@ header_image: "instruction_image_1.svg"
 
 ![datasets token count](/images/posts/instruction_image_2.svg)
 
-*figure 1. token count of bigger chemistry datasets.*
+*figure 1. token count of the largest chemistry datasets.*
 
 while existing chemistry instruction datasets like llasmol exist[^ref5], they typically focus narrowly on specific tasks such as property prediction, limiting both their diversity and the resulting models' general capabilities. this creates a need for more comprehensive instruction-following datasets covering diverse chemistry topics and tasks.
 
