@@ -13,7 +13,7 @@ header_image: "instruction_image_1.svg"
 
 ![datasets token count](/images/posts/instruction_image_2.svg)
 
-*figure 1. token count of bigger chemistry datasets.*
+*figure 1. token count of the largest chemistry datasets.*
 
 while existing chemistry instruction datasets like llasmol exist[^ref5], they typically focus narrowly on specific tasks such as property prediction, limiting both their diversity and the resulting models' general capabilities. this creates a need for more comprehensive instruction-following datasets covering diverse chemistry topics and tasks.
 
@@ -69,7 +69,7 @@ as described, the curation process primarily leveraged an llm to transform exist
     Now, rephrase this text into a multi-turn conversation about chemistry.
     ```
 
-  we processed documents in 10k batches via openai's batch api with structured outputs to enforce consistent conversation formats. each conversation contains message lists (with "user"/"assistant" roles) and dual tagging (following Mirza et al.[^ref3]) for required skills and chemical subdomains. the schema implemented was:
+  we processed documents in 10k batches via openai's batch api with structured outputs to enforce consistent conversation formats. each conversation contains message lists (with "user"/"assistant" roles) and tagging (following Mirza et al.[^ref3]) for required skills and chemical subdomains. the schema implemented was:
 
   ```python
   class Message(BaseModel):
