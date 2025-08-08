@@ -69,7 +69,7 @@ as described, the curation process primarily leveraged an llm to transform exist
     Now, rephrase this text into a multi-turn conversation about chemistry.
     ```
 
-  we processed documents in 10k batches via openai's batch api with structured outputs to enforce consistent conversation formats. each conversation contains message lists (with "user"/"assistant" roles) and dual tagging (following Mirza et al.[^ref3]) for required skills and chemical subdomains. the schema implemented was:
+  we processed documents in 10k batches via openai's batch api with structured outputs to enforce consistent conversation formats. each conversation contains message lists (with "user"/"assistant" roles) and tagging (following Mirza et al.[^ref3]) for required skills and chemical subdomains. the schema implemented was:
 
   ```python
   class Message(BaseModel):
