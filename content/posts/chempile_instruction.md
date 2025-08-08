@@ -9,7 +9,7 @@ intro: "we are pleased to announce the release of chempile-instruction, a datase
 header_image: "instruction_image_1.svg"
 ---
 
-[the chempile collection](https://huggingface.co/collections/jablonkagroup/chempile-6824e88c60d3286ba9b0dae1), shown in the figure below, represents the largest chemistry-focused dataset collection available. originally containing over 75 billion tokens spanning all chemistry education levels, from high school to research literature, it serves as an exceptional resource for training chemistry domain language models. however, the original chempile did not include instruction-following tasks, which are essential for training language models.
+[the chempile collection](https://chempile.lamalab.org/), shown in the figure below, represents the largest chemistry-focused dataset collection available. originally containing over 75 billion tokens spanning all chemistry education levels, from high school to research literature, it serves as an exceptional resource for training chemistry domain language models. however, the original chempile did not include instruction-following tasks, which are essential for training language models.
 
 ![datasets token count](/images/posts/instruction_image_2.svg)
 
@@ -133,9 +133,10 @@ the chempile-instruction dataset is unique in its multi-turn structure, enabling
 
 | dataset             | scale (rows)  | conversation length (turns/row)| domain/specialty       |
 |:-------------------:|:-------------:|:----------------------:|:------------------------------:|
-| **general datasets**|               |                        |                                |
 |  &nbsp;             |  &nbsp;       |  &nbsp;                |  &nbsp;                        |
-| coqa                | ~127k         | ~16                    | mixed (news, literature, wiki) |
+| **common conversational datasets**|               |                        |                                |
+|  &nbsp;             |  &nbsp;       |  &nbsp;                |  &nbsp;                        |
+| coqa                | ~127k         | ~15                    | mixed (news, literature, wiki) |
 | quac                | ~100k         | ~7                     | wikipedia articles             |
 | topiocqa            | ~3900         | ~13                    | wikipedia / retrieval setting  |
 | scigraphqa          | ~295k         | ~2–3                   | academic graphs/text           |
@@ -150,13 +151,13 @@ the chempile-instruction dataset is unique in its multi-turn structure, enabling
 
 table 1 shows a comparison of general and chemistry-specific instruction-following datasets, illustrating the scale and domain diversity of the chempile-instruction dataset relative to other resources. chempile-instruction achieves a favorable scale-conversation length ratio, compensating for its smaller scale relative to other chemistry datasets. regarding data sources, chempile-instruction exhibits greater diversity through textbooks, course transcripts, research papers, and reasoning traces. conversely, general datasets predominantly focus on news, literature, and wiki articles, with notable absence of books or long documents.
 
-however, general datasets benefit from real conversational sources, whereas chempile-instruction relies on rephrased documents. llasmol further contrasts by using templated tabular data with limited diversity.
+however, most common conversational datasets are based on human data, whereas chempile-instruction relies on rephrased documents. llasmol further contrasts by using templated tabular data with limited diversity.
 
 ![embeddings comparison](/images/posts/instruction_image_3.svg)
 
 *figure 2. comparison of the embeddings of the different datasets. the embeddings were produced with the model [qwen3-embedding-0.6b](https://huggingface.co/Qwen/Qwen3-Embedding-0.6B) sampling 1000 rows for each dataset.*
 
-figure 2 compares the embeddings of different datasets. this comparison highlights how chempile-instruction achieves greater diversity in its latent space compared to other datasets. this divergence likely stems from chempile-instruction's exclusion of smiles and other tabular data, instead prioritizing long documents and dialogues. consequently, chempile-instruction better supports general chemistry instruction tasks, while smolinstruct targets specialized applications like property/reaction prediction.
+figure 2 compares the embeddings of different datasets. this comparison highlights how chempile-instruction achieves greater diversity in its latent space compared to other datasets. this diversity likely stems from chempile-instruction's prioritization of long documents and dialogues, instead of fully embracing short q&a pairs about molecular properties. consequently, chempile-instruction better supports general chemistry instruction tasks, while smolinstruct targets specialized applications like property/reaction prediction.
 
 ## comparison with the original chempile
 
@@ -182,6 +183,8 @@ figure 3 reveals that embeddings for the reasoning and education subsets of chem
 | chempile-instruction (reasoning)  | 73006    |  41158636   |   563.77 |
 
 no consistent trends emerge in average tokens per row between original and rephrased subsets. a substantial token reduction occurs in the education subset, attributable to the challenge of preserving information from lengthy textbooks and transcripts. for the paper subset, the modest token increase suggests embedding dispersion results from rephrasing-induced diversity rather than length changes.
+
+manual inspection of the chempile-paper subset indicates that this variance primarily stems from the rephrasing model prioritizing the paper’s core contributions. during rewriting, contextual details and ancillary elaborations used by authors to frame findings, are systematically omitted.
 
 ## is chempile-instruction a good dataset?
 
