@@ -1,6 +1,6 @@
 ---
 title: "winners for the nmr challenge"
-date: 2025-07-04T10:00:00+00:00
+date: 2025-08-23
 draft: false
 author: "Kevin Jablonka"
 description: "announcing the winners of the nmr challenge"
