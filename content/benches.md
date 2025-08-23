@@ -14,6 +14,11 @@ software:
     logo: "mattext_logo.png"
     description: "testing the limits of (l)lms in modeling materials"
     link: "https://arxiv.org/abs/2406.17295"
+  - name: "Eval-Cards"
+    logo: "eval_Card.png"
+    description: "ml evaluation frameworks through the lens of measurement theory."
+    link: https://huggingface.co/spaces/jablonkagroup/eval-cards-gallery
+
 data:
   - name: "ChemPile"
     logo: "CHEMPILE_LOGO.png"
