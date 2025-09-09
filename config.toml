@@ -44,3 +44,9 @@ weight = 5
 name = "blog"
 url = "/posts"
 weight = 6
+
+
+[[menu.main]]
+name = "handbook"
+url = "https://lamalab-org.github.io/group-handbook/"
+weight = 6
