@@ -47,6 +47,12 @@ weight = 6
 
 
 [[menu.main]]
+name = "teaching"
+url = "/teaching"
+weight = 6
+
+
+[[menu.main]]
 name = "handbook"
 url = "https://lamalab-org.github.io/group-handbook/"
 weight = 6
