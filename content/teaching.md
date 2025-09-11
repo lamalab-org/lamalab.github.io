@@ -23,4 +23,4 @@ we have also written about teaching and mentorship:
 we also have written a [tiny textbook (in german)](https://link.springer.com/book/10.1007/978-3-658-17021-9) about thermodynamics.
 
 
-at fsu jena, we currently offer a seminar (with sociology) on "critical aspects of ai" and a lecture on "advanced methods in digital chemistry". we also run the seminar "current topics in cheminformatics" in collaboration with the steinbeck group (who leads the organization).
+at fsu jena, we currently offer a seminar (with sociology) on "critical aspects of ai" and a lecture on "advanced methods in digital chemistry". we also run the seminar "current topics in cheminformatics" in collaboration with the steinbeck group (who leads the organization). some notes about it can be found [here](https://lamalab-org.github.io/toolminutes/).
