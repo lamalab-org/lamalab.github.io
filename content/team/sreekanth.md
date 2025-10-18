@@ -1,7 +1,7 @@
 ---
 title: "sreekanth kunchapu"
 role: "phd student"
-image: "team/sreekanth.jpg"
+image: "team/sree.jpg"
 bio: "i am an engineer who developed a keen interest in machine learning while studying for my master's degree in chemical and energy engineering. i graduated with my master's in 2023. in the same year, i moved to jena to pursue my phd with the lamalab group. my main focus is on leveraging deep learning techniques for molecular applications."
 social:
   - icon: "orcid"
