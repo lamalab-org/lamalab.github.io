@@ -51,6 +51,11 @@ name = "teaching"
 url = "/teaching"
 weight = 6
 
+[[menu.main]]
+name = "mentoring"
+url = "/mentoring"
+weight = 6
+
 
 [[menu.main]]
 name = "handbook"
