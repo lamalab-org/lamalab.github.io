@@ -2,7 +2,7 @@
 title: "rostislav fedorov"
 role: "postdoc"
 image: "team/rostislav-fedorov_orig.jpg"
-bio: "phd in computational science and engineering from Heidelberg University.
+bio: "phd in computational science and engineering from Heidelberg University."
 social:
   - icon: "orcid"
     url: "orcid.org/0000-0002-5341-3066"
