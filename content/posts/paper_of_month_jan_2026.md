@@ -23,6 +23,14 @@ Deadline: 29th of Jan
 
 @ Adrian
 
+https://arxiv.org/pdf/2601.02671 (Ahmed, Cooper et al.) Extracting books from production language models
+
+This paper demonstrates that it is possible to extract copyrighted material from Large Language Models. Interestingly, not all production-ready models required jail-breaking to achieve this (Gemini-2.5-Pro and Grok 3 required, Claude-3.7-Sonnet and GPT-4.1 models did not). Often, LLM providers argue, for legal reasons, that their models do not memorize the data, and this paper clearly shows that at least they memorize part of it. For me one limitation of the paper hides in its very study cases, which are books that are widely known, and thus spread on the Internet. Additional work would be required to see if the same is possible for science books.
+
+https://arxiv.org/pdf/2512.13668 (Liu et al.) A Scientific Reasoning Model for Organic Synthesis Procedure Generation
+
+This paper demonstrates the application of Reinforcement Learning from Verifiable Rewards (RLVR) to a real chemical problem: the prediction of procedural information for organic synthesis. GRPO worked in this case, because the authors designed a set of actions which can occur in organic synthesis, thus verifiable and usable in the RVLR paradigm. More ablations of the reward function would be valuable to learn from, and additionally the ablation of the supervised finetuning (is it valuable compared to starting from the base model?).
+
 @ Meiling
 
 @ Mara
