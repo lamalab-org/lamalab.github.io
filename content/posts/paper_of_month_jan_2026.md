@@ -35,7 +35,9 @@ This paper demonstrates the application of Reinforcement Learning from Verifiabl
 
 @ Mara
 
-@ Sreekanth
+https://doi.org/10.26434/chemrxiv-2025-6c250 (Qiu et al.) A Robust and Versatile Generative Model for Inverse Design of Polymers
+
+This work tackles the fragility of polymer generative models, specifically their tendency to hallucinate invalid structures or lose track of functional group requirements. By replacing standard text representations with Group SELFIES, the authors integrate chemical validity and polymer class definitions directly into the tokenization, achieving 100% structural validity. They pair this with PRECISE, a physics-informed reinforcement learning strategy that intelligently balances novelty and synthesizability, even when trained on small datasets (~1,000 polyimides). While the validation against DFT calculations for dielectric constants is promising, the current limitation to homopolymers leaves a gap for complex co-polymer designs, where the most interesting material properties often emerge.
 
 @ Nawaf
 
