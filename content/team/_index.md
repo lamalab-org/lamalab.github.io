@@ -17,4 +17,4 @@ for students pursuing a masters degree, we compiled a list of potential topics.
 | Organic data extraction | Martiño Ríos-García | Multiple directions possible: extract all protocols from OrgSyn (high-value data), or other organic chemistry extraction tasks |
 | Flexible polymer data extraction | Mara Schilling-Wilhelmi | Focus on flexible extraction pipelines rather than extraction quality improvement, leveraging strong capabilities of recent models (e.g., Gemini) |
 | ChemPile subset & model training | Adrian Mirza | Create or contribute to building a curated subset of ChemPile and train a model on it |
-| IUPAC-SMILES bootstrapping | Adrian Mirza | Bootstrapping project for IUPAC-SMILES conversion (and potentially NMR bootstrapping); Kevin to supervise and provide initial code/data |
+| IUPAC-SMILES bootstrapping | Adrian Mirza | Bootstrapping project for IUPAC-SMILES conversion (and potentially NMR bootstrapping)|
