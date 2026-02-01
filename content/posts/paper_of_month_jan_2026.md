@@ -21,6 +21,25 @@ Deadline: 29th of Jan
 
 @ Kevin
 
+
+My pick this month is a [paper from DeepSeek](conditional Memory via Scalable Lookup: A New Axis of Sparsity for Large Language Models) that highlights how simple n‑gram mechanisms, combined with careful hardware–software co‑design, can improve LLM behaviour and efficiency.
+
+Summary
+- n‑grams are one of the simplest language models: a lookup of how likely a token is given the preceding n tokens. Prior work (e.g. [TinyStories](https://arxiv.org/abs/2305.07759)) has shown structural similarities between scaled n‑gram models and large transformers; we observed related effects in our [MatText](https://arxiv.org/abs/2406.17295) study.
+- DeepSeek take this further by injecting n‑gram knowledge into an LLM via a new layer they call the Engram. Instead of forcing model parameters to memorize facts, the Engram performs a hash‑based lookup to retrieve embeddings derived from the input token sequence; those embeddings are then mixed and gated with context from the transformer.
+- Because the lookup is hashing‑based, the system can prefetch n‑gram contributions from cheaper memory tiers (for example, CPU memory) and schedule retrievals to overlap with transformer computation. Based on [language statistics](https://en.wikipedia.org/wiki/Zipf%27s_law) they can build a caching hierarchy to make this efficient.
+
+Key takeaways
+- Model design: Engram offloads factual memorization to an external, lookup‑style mechanism while letting transformer parameters focus more on reasoning and higher‑level computation.
+- Engineering: hashing + prefetching + cache hierarchy enables using large n‑gram stores without prohibitive on‑device memory costs.
+- Empirical effect: improved performance on some reasoning tasks, attributed to relieved parameter capacity (parameters are less occupied with rote retrieval).
+- Broader implication: this is another example of how open models and system-level co‑design are diverging across ecosystems; see this writeup on the developing China–Western gap in open models for context: [open‑model ecosystem divide](https://substack.com/redirect/3f51978c-1574-4129-aaf8-33916eac3a24?j=eyJ1IjoiMzBrbWZ0In0.oHpO_VmDNCXJgfbvu8nA5EKFQpbikjInwzUhD8fXD94).
+
+Why I find it interesting
+- It revives a very simple idea (n‑grams) but combines it with practical systems engineering to gain useful trade‑offs in cost, latency and capability. 
+
+
+
 @ Adrian
 
 https://arxiv.org/pdf/2601.02671 (Ahmed, Cooper et al.) Extracting books from production language models
