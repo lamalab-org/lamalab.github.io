@@ -15,7 +15,7 @@ for students pursuing a masters degree, we compiled a list of potential topics. 
 | mechanism parsing & lift training | martiño ríos-garcía | parse mechanism explanations from books/webpages for common reactions, then train using [language interfaced finetuning (lift)](https://arxiv.org/abs/2206.06565) to potentially improve performance of models like [flower](https://www.nature.com/articles/s41586-025-09426-9) |
 | organic data extraction | martiño ríos-garcía | multiple directions possible: extract all protocols from orgsyn (high-value data), or other organic chemistry extraction tasks |
 | flexible polymer data extraction | mara schilling-wilhelmi | focus on flexible extraction pipelines rather than extraction quality improvement, leveraging strong capabilities of recent models (e.g., gemini) |
-| chempile subset & model training | adrian mirza | create or contribute to building a curated subset of [chempile](chempile.lamalab.org) and train a model on it |
++| chempile subset & model training | adrian mirza | create or contribute to building a curated subset of [chempile](https://chempile.lamalab.org) and train a model on it |
 | iupac-smiles bootstrapping | adrian mirza | bootstrapping iupac-smiles conversion (and potentially nmr bootstrapping) using verifable rewards |
 | llm-agent for data schema updates | | if we extract data, we might need to adjust the data schema on the fly or adjust synonym maps. llm-based agents should be able to implement this. |
 | finetuning of open models for data extraction | | we have now many results from extraction pipelines. based on those we should be able to perform distillation to have our "own" open models to perform  data extraction | 
