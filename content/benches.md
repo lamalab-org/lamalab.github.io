@@ -24,6 +24,10 @@ data:
     logo: "CHEMPILE_LOGO.png"
     description: "large-scale dataset for chemical language models"
     link: "https://chempile.lamalab.org"
+  - name: "PERLA" 
+    logo: "perla.png"
+    description: "perovskite living archive" 
+    link: "https://perla.lamalab.org"
 online:
   - name: "MatExtract"
     logo: "logo_matextract.png"
