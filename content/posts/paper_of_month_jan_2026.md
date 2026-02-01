@@ -52,6 +52,10 @@ This paper demonstrates the application of Reinforcement Learning from Verifiabl
 
 @ Meiling
 
+https://arxiv.org/pdf/2412.18196v3  Auto-Prompt Generation is Not Robust: Prompt Optimization Driven by Pseudo Gradient
+
+This paper addresses the fragility of prompt optimization, showing that prompts tuned on clean inputs often break under realistic noise. The authors introduce PertBench, which evaluates robustness by fixing the instruction prompt and perturbing task inputs with common variations such as typos and paraphrases, revealing significant performance degradation across existing methods. They further propose PGO as a simple baseline that searches for instruction prompts more stable under this evaluation protocol. While the method itself is lightweight, the main contribution is the benchmark: it defines a clear robustness dimension and a unified evaluation setup, though the resulting robustness is limited to input-level perturbations rather than the broader prompt space.
+
 @ Mara
 
 @ Sreekanth
