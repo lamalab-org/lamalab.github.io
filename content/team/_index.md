@@ -7,4 +7,4 @@ each new hire is an opportunity for us to bring in a different perspective, and 
 
 we value doing impactful work. [but we do not believe in rushing things, but instead aim for a sustainable pace.](https://kjablonka.com/blog/posts/take_it_easy/)
 
-for students pursuing a masters degree, we compiled a list of potential topics [here](../msc/index.md). however, we are happy to also explore projects beyond this list. 
+for students pursuing a masters degree, we compiled a list of potential topics [here](../msc/). however, we are happy to also explore projects beyond this list. 
