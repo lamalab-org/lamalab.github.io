@@ -3,7 +3,7 @@ title: "lamalab picks papers of the month - jan. 2026"
 date: 2026-01-31T10:00:00+00:00
 draft: false
 author: "gordan prastalo"
-description: "A short comment on the best research environment award we received, and the application that we submitted"
+description: "a collection of research papers picked by lamalab members as interesting or important for january 2026."
 tags: ["paper_of_month", "chemistry", "machine_learning", "research"]
 intro: ""
 ---
@@ -63,6 +63,20 @@ This work tackles the fragility of polymer generative models, specifically their
 @ Nawaf
 
 @ Martiño
+
+my pick for this month is [terminal-bench](https://arxiv.org/pdf/2601.11868). this paper provides a systematic evaluation of the already-public dataset across diverse swe tasks, ranging from dataset manipulation and analysis to replicating cobol legacy code.
+
+summary:
+
+- they created 89 very diverse tasks that can be solved using a terminal. these tasks were selected from the 210 proposed ones, based on their difficulty and uniqueness. task creation involved multiple human reviews to ensure quality and robustness.
+- they evaluated 16 different frontier models using different scaffolds and clis (swe-agent, claude code, codex, etc).
+- they carried out an automatic evaluation (verified by human review) to extract the most common failure cases, finding that models primarily still fail in execution over coherence and verification. [previous works already did this](https://openai.com/index/paperbench/), but with greater human involvement, which does not scale well.
+
+key takeaways:
+
+- llm evaluation can aid in the development and verification of the tasks.
+- llms can also be used for fine-grained evaluation through very detailed workflows.
+- they acknowledge that not releasing a private dataset might lead to fast overfitting.
 
 @ Viktor
 
