@@ -27,7 +27,7 @@ data:
   - name: "PERLA" 
     logo: "perla.png"
     description: "perovskite living archive" 
-    link: "https://perla.lamalab.org"
+    link: "https://fairmat-nfdi.github.io/perla/"
 online:
   - name: "MatExtract"
     logo: "logo_matextract.png"
