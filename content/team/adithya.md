@@ -2,7 +2,7 @@
 title: "adithya maurya k r"
 role: "master's student"
 image: "team/adithya.png"
-bio: "i’m a final-year integrated m.sc. student in chemical sciences at um dae centre for excellence in basic sciences, mumbai. I love blending artificial intelligence, chemistry to figure out how complex systems work. currently working on modelling reaction mechanisms using llms. lately, I’ve even picked up a new passion for scientific illustration!"
+bio: "i’m a final-year integrated m.sc. student in chemical sciences at um dae centre for excellence in basic sciences, mumbai. i love blending artificial intelligence, chemistry to figure out how complex systems work. currently working on modelling reaction mechanisms using llms. lately, I’ve even picked up a new passion for scientific illustration!"
 
 social:
   - icon: "orcid"
