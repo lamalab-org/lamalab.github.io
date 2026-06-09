@@ -42,7 +42,7 @@ weight = 5
 
 [[menu.main]]
 name = "blog"
-url = "/posts"
+url = "https://lamalaborg.substack.com"
 weight = 6
 
 
