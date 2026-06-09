@@ -12,7 +12,7 @@ Friedrich-Schiller Universität Jena
 
 Leutragraben 1
 
-97743 Jena
+07743 Jena
 
 **Contact:**
 
