@@ -1,7 +1,6 @@
 <footer id="footer">
   <div class="footer-left">
-    Copyright  &copy; {{ now.Format "2006" }} {{ if .Site.Copyright }} {{ print .Site.Copyright | markdownify }} {{ else }} {{ print .Site.Title }} {{ end }}
-    &middot; <a href="{{ "impressum" | relURL }}">legal disclosure</a>
+    Copyright &copy; {{ now.Format "2006" }} {{ if .Site.Copyright }}{{ .Site.Copyright | markdownify }}{{ else }}{{ .Site.Title }}{{ end }} &middot; <a href="{{ "impressum" | relURL }}">legal disclosure</a>
   </div>
   <div class="footer-right">
     <nav>
