@@ -8,7 +8,7 @@ title: "Legal Disclosure"
 
 Kevin Maik Jablonka
 
-Friedrich-Schiller Universität Jena
+Friedrich-Schiller-Universität Jena
 
 Leutragraben 1
 
