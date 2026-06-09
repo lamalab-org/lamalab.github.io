@@ -2,7 +2,7 @@
 title: "alan joshy "
 role: "student assistant"
 image: "team/alan.jpg"
-bio: " pursuing masters in chemistry of materials at fsu jena. exploring different facets of chemistry. currently working on data extraction for llm. "
+bio: " pursuing masters in chemistry of materials at fsu jena. exploring different facets of chemistry. currently working on data extraction for foundation models. "
 social:
   - icon: "orcid"
     url: "https://orcid.org/0009-0004-3310-2780"
