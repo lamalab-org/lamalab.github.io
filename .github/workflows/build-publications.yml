@@ -31,10 +31,8 @@ jobs:
 
       - name: Rebuild data/publications.json
         env:
-          # OPENAI_API_KEY -> text-embedding-3-large for the landscape layout
-          # ANTHROPIC_API_KEY -> Claude classifies each paper into a research thread
-          # Both optional: the script falls back gracefully if a key is absent.
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          # ANTHROPIC_API_KEY -> Claude assigns each paper to one or two threads.
+          # Optional: without it the script falls back to a keyword heuristic.
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python publications/build.py ${{ inputs.force && '--force' || '' }}
 
