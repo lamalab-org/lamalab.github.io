@@ -122,14 +122,24 @@
     var threads = DATA.threads, n = threads.length;
     var colx = {}; threads.forEach(function (t, i) { colx[t.name] = i; });
 
-    // incidence matrix: threads are columns, papers are rows (already ordered by
-    // build.py so primary-thread blocks are contiguous). A dot marks each
-    // membership; a connector spans the threads a shared paper belongs to.
-    var rows = DATA.papers.map(function (p, idx) {
+    // incidence matrix: threads are columns, papers are rows. The card list is
+    // chronological, but the figure groups rows by primary thread (singles before
+    // multis, multis by their second thread) so each column reads as a clean block.
+    var rows = DATA.papers.map(function (p) {
         var ps = (p.pillars || []).filter(function (x) { return colx[x] !== undefined; });
         if (!ps.length) ps = [threads[0].name];
-        return { p: p, ps: ps, cols: ps.map(function (x) { return colx[x]; }), y: -idx };
+        var cols = ps.map(function (x) { return colx[x]; });
+        return { p: p, ps: ps, cols: cols, primary: cols[0],
+                 secondary: cols.length > 1 ? Math.max.apply(null, cols.slice(1)) : -1 };
     });
+    rows.sort(function (a, b) {
+        return a.primary - b.primary
+            || (a.secondary > -1 ? 1 : 0) - (b.secondary > -1 ? 1 : 0)
+            || a.secondary - b.secondary
+            || (b.p.year || 0) - (a.p.year || 0)
+            || (a.p.title < b.p.title ? -1 : 1);
+    });
+    rows.forEach(function (row, idx) { row.y = -idx; });
     var R = rows.length;
 
     var el = document.getElementById("pub-landscape");

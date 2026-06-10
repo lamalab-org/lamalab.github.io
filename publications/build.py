@@ -492,17 +492,9 @@ def main() -> None:
                 "color": PILLAR_COLOR[name], "description": PILLAR_BLURB[name]}
                for name in present]
 
-    # order papers so the figure's rows (and the card list) group by primary
-    # thread, singles before multis, multis by their second thread, then by year.
-    order = {name: i for i, name in enumerate(PILLAR_ORDER)}
-
-    def sort_key(p: dict):
-        cols = [order[x] for x in p["pillars"] if x in order] or [0]
-        secondary = max(cols[1:]) if len(cols) > 1 else -1
-        return (cols[0], 1 if len(cols) > 1 else 0, secondary,
-                -(p["year"] or 0), p["title"].lower())
-
-    papers.sort(key=sort_key)
+    # the card list reads in this order: most recent first. (The figure re-orders
+    # its rows by thread client-side, so the two views stay independent.)
+    papers.sort(key=lambda p: (-(p["year"] or 0), p["title"].lower()))
 
     OUT_FILE.parent.mkdir(exist_ok=True)
     OUT_FILE.write_text(json.dumps({"threads": threads, "papers": papers},

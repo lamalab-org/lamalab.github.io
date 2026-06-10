@@ -1,7 +1,19 @@
+<style>
+  #footer .footer-social { display: inline-flex; gap: 14px; align-items: center; }
+  #footer .footer-social a { text-decoration: none; background-image: none; font-size: 15px; }
+  #footer .footer-social a:hover { color: var(--primary-color, #A43830); }
+</style>
 <footer id="footer">
   <div class="footer-left">
     Copyright &copy; {{ now.Format "2006" }} {{ if .Site.Copyright }}{{ .Site.Copyright | markdownify }}{{ else }}{{ .Site.Title }}{{ end }} &middot; <a href="{{ "impressum" | relURL }}">legal disclosure</a>
   </div>
+  {{ with .Site.Params.social }}
+  <div class="footer-social">
+    {{ range . }}
+    <a href="{{ .link }}" target="_blank" rel="me noopener" aria-label="{{ .name }}" title="{{ .name }}"><i class="{{ .icon | default (printf "fab fa-%s" .name) }}" aria-hidden="true"></i></a>
+    {{ end }}
+  </div>
+  {{ end }}
   <div class="footer-right">
     <nav>
       <ul>
