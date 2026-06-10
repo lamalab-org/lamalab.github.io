@@ -1,70 +1,64 @@
 # Curated DOI list for the lamalab publications page.
 #
 # One entry per line: a DOI or `arXiv:<id>`, plus an optional `# comment` whose
-# {…} block carries curated annotations that flow into the page:
-#     {perception|reasoning|evaluation|action|unclassified}   research thread (the plot colour)
-#     {corresponding|first|coauthor}                          author role (mirrors the group CV)
-#     {venue=NeurIPS 2025}                                    show a conference/journal venue
-# e.g.  10.1038/s41557-025-01815-x   # ChemBench {evaluation, corresponding}
+# {…} block carries curated annotations:
+#     {perception|reasoning|evaluation|action|community}   research thread(s) — up to two
+#     {type=peer-reviewed|preprint|editorial}              publication type (else inferred)
+#     {venue=NeurIPS 2025}                                 show a conference/journal venue
 #
-# The four threads are the group's research pillars — perception, reasoning,
-# evaluation, action. If a line has NO pillar annotation, build.py auto-classifies
-# it (a strong LLM reads the abstract against the pillar descriptions; the GitHub
-# Action provides the API key). An explicit pillar always wins, so this file stays
-# the human-reviewed source of truth.
+# Threads are the group's research pillars. If a line has NO thread annotation,
+# build.py asks a strong LLM to read the abstract and assign one or two threads
+# (the GitHub Action / a local .env provides ANTHROPIC_API_KEY). An explicit
+# annotation always wins, so this file stays the human-reviewed source of truth.
+# Type is inferred (arXiv -> preprint, else peer-reviewed) unless annotated.
 #
-# This list alone decides which papers appear — add/remove a line and re-run
-# `python build.py`. Scope: independent-PI era (2023+).
+# This list alone decides which papers appear. Scope: independent-PI era (2023+).
 
-# ── corresponding author ────────────────────────────────────────────────────
-10.1038/s41467-026-73846-y      # Elucidating structures from spectra {perception, corresponding}
-10.1021/acs.chemrev.5c00583     # General-purpose models for the chemical sciences {reasoning, corresponding}
-10.1038/s41524-025-01823-y      # PolyMetriX: digital polymer chemistry {action, corresponding}
-10.1016/j.commatsci.2025.114041 # Lessons from the trenches on evaluating ML systems {evaluation, corresponding}
-10.1038/s43588-025-00836-3      # Probing the limitations of multimodal language models {evaluation, corresponding}
-10.1038/s41557-025-01815-x      # A framework for evaluating chemical knowledge of LLMs (ChemBench) {evaluation, corresponding}
-10.1039/d4cs00913d              # From text to insight: LLMs for materials data extraction {perception, corresponding}
-10.1039/d3dd00113j              # 14 examples of how LLMs can transform materials science {reasoning, corresponding}
+# ── peer-reviewed ───────────────────────────────────────────────────────────
+10.1038/s41467-026-73846-y      # Elucidating structures from spectra
+10.1021/acs.chemrev.5c00583     # General-purpose models for the chemical sciences
+10.1038/s41524-025-01823-y      # PolyMetriX: digital polymer chemistry
+10.1016/j.commatsci.2025.114041 # Lessons from the trenches on evaluating ML systems
+10.1038/s43588-025-00836-3      # Probing the limitations of multimodal language models
+10.1038/s41557-025-01815-x      # A framework for evaluating chemical knowledge of LLMs (ChemBench)
+10.1039/d4cs00913d              # From text to insight: LLMs for materials data extraction
+10.1039/d3dd00113j              # 14 examples of how LLMs can transform materials science
+10.1039/d4sc04401k              # Assessment of fine-tuned LLMs for real-world chemistry
+10.1038/s42256-023-00788-1      # Leveraging LLMs for predictive chemistry
+10.1016/j.carbpol.2026.124890   # Predicting acetalated dextran nanoparticle features
+10.1039/d5dd00109a              # MOFChecker
+arXiv:2505.12534                # ChemPile: 250GB dataset for chemical foundation models {type=peer-reviewed, venue=NeurIPS 2025}
 
-# ── first author ────────────────────────────────────────────────────────────
-10.1039/d4sc04401k              # Assessment of fine-tuned LLMs for real-world chemistry {evaluation, first}
-10.1038/s42256-023-00788-1      # Leveraging LLMs for predictive chemistry {action, first}
-# 10.1021/acscentsci.2c01177      # An ecosystem for digital reticular chemistry {first}
-# 10.1126/sciadv.adc9576          # Machine learning for industrial processes (amine emissions) {action, first}
+# ── preprints ───────────────────────────────────────────────────────────────
+arXiv:2406.17295                # Less can be more for predicting properties with LLMs
+arXiv:2604.18805                # AI scientists produce results without reasoning scientifically
+arXiv:2602.17730                # Clever materials: good materials for the wrong reasons
+arXiv:2605.13826                # Reducing cross-sample prediction churn in scientific ML
+arXiv:2602.04696                # Beyond learning on molecules by weakly supervising on molecules
+arXiv:2601.21618                # Semantic content determines algorithmic performance
+arXiv:2601.17807                # An autonomous living database for perovskite photovoltaics
+arXiv:2605.08956                # Agentic AI scientists are not built for autonomous discovery
 
-# ── coauthor ────────────────────────────────────────────────────────────────
-10.1016/j.carbpol.2026.124890   # Predicting acetalated dextran nanoparticle features {action, coauthor}
-10.1039/d5dd00109a              # MOFChecker {action, coauthor}
-# 10.1021/acsmaterialsau.4c00139  # Non-uniform chiralization of metal-organic frameworks {coauthor}
-10.1016/j.chempr.2024.10.010    # Chemical education in digital chemistry {unclassified, coauthor}
-# 10.1039/d4dd00116h              # Deep learning-based recommendation system for MOFs {coauthor}
-# 10.1038/s41586-024-07683-8      # A holistic platform for accelerating sorbent-based carbon capture {coauthor}
-10.1021/acscentsci.3c00500      # Prioritizing mentorship as scientific leaders {unclassified, coauthor}
-# 10.1039/d3dd00079f              # Biomass to energy: ML model for optimum gasification {coauthor}
-# 10.1002/adfm.202301594          # DFT-based discovery of COF photocatalysts {coauthor}
-
-# ── community / perspectives ────────────────────────────────────────────────
-10.1038/s43588-025-00871-0      # Vision language models excel at perception, struggle at reasoning {evaluation, corresponding}
-10.1038/s41557-025-01865-1      # Are large language models superhuman chemists? (briefing) {evaluation, corresponding}
-10.1038/s41570-025-00750-2      # Real AI advances require collaboration {unclassified, corresponding}
-10.1088/2632-2153/ae0d5d        # Perspective on AI for accelerated materials design (AI4Mat) {unclassified, coauthor}
-
-# ── preprints / conference papers ───────────────────────────────────────────
-arXiv:2505.12534                # ChemPile: 250GB dataset for chemical foundation models {reasoning, corresponding, venue=NeurIPS 2025}
-arXiv:2406.17295                # Less can be more for predicting properties with LLMs {action, corresponding}
-arXiv:2604.18805                # AI scientists produce results without reasoning scientifically {evaluation, corresponding}
-arXiv:2602.17730                # Clever materials: good materials for the wrong reasons {evaluation, corresponding}
-arXiv:2605.13826                # Reducing cross-sample prediction churn in scientific ML {evaluation, corresponding}
-arXiv:2602.04696                # Beyond learning on molecules by weakly supervising on molecules {reasoning, corresponding}
-arXiv:2601.21618                # Semantic content determines algorithmic performance {evaluation, corresponding}
-arXiv:2601.17807                # An autonomous living database for perovskite photovoltaics {perception, corresponding}
-arXiv:2605.08956                # Agentic AI scientists are not built for autonomous discovery {evaluation, coauthor}
+# ── editorials & comments ───────────────────────────────────────────────────
+10.1016/j.chempr.2024.10.010    # Chemical education in digital chemistry {type=editorial}
+10.1021/acscentsci.3c00500      # Prioritizing mentorship as scientific leaders {type=editorial}
+10.1038/s43588-025-00871-0      # Vision language models excel at perception, struggle at reasoning {type=editorial}
+10.1038/s41557-025-01865-1      # Are large language models superhuman chemists? (briefing) {type=editorial}
+10.1038/s41570-025-00750-2      # Real AI advances require collaboration {type=editorial}
+10.1088/2632-2153/ae0d5d        # Perspective on AI for accelerated materials design (AI4Mat) {type=editorial}
 
 # ── earlier work (pre-2023, before independent PI) — uncomment to include ────
-# 10.1038/s41557-022-00910-7    # Making the collective knowledge of chemistry machine-actionable {perception, first}
-# 10.1021/acs.jchemed.1c01101   # Making molecules vibrate: interactive IR spectroscopy teaching {unclassified, first}
-# 10.1038/s41557-021-00717-y    # Using collective knowledge to assign oxidation states {perception, first}
-# 10.1038/s41467-021-22437-0    # Bias-free multiobjective active learning for materials design {action, first}
-# 10.1039/d0sc05337f            # A data-driven perspective on the colours of MOFs {perception, first}
-# 10.1021/acs.chemrev.0c00004   # Big-data science in porous materials {reasoning, first}
-# 10.1021/acs.jctc.9b00586      # Applicability of tail corrections in molecular simulations {action, first}
+# 10.1038/s41557-022-00910-7    # Making the collective knowledge of chemistry machine-actionable
+# 10.1021/acs.jchemed.1c01101   # Making molecules vibrate: interactive IR spectroscopy teaching
+# 10.1038/s41557-021-00717-y    # Using collective knowledge to assign oxidation states
+# 10.1038/s41467-021-22437-0    # Bias-free multiobjective active learning for materials design
+# 10.1039/d0sc05337f            # A data-driven perspective on the colours of MOFs
+# 10.1021/acs.chemrev.0c00004   # Big-data science in porous materials
+# 10.1021/acs.jctc.9b00586      # Applicability of tail corrections in molecular simulations
+# 10.1021/acscentsci.2c01177    # An ecosystem for digital reticular chemistry
+# 10.1126/sciadv.adc9576        # Machine learning for industrial processes (amine emissions)
+# 10.1021/acsmaterialsau.4c00139 # Non-uniform chiralization of metal-organic frameworks
+# 10.1039/d4dd00116h            # Deep learning-based recommendation system for MOFs
+# 10.1038/s41586-024-07683-8    # A holistic platform for accelerating sorbent-based carbon capture
+# 10.1039/d3dd00079f            # Biomass to energy: ML model for optimum gasification
+# 10.1002/adfm.202301594        # DFT-based discovery of COF photocatalysts

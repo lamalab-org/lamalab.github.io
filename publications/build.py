@@ -1,17 +1,14 @@
 #!/usr/bin/env python3
 """Build data/publications.json for the lamalab.org publications page.
 
-Pipeline:  dois.txt -> metadata + abstracts (CrossRef / Semantic Scholar)
-           -> abstract embeddings -> 2D projection -> topic clusters + labels
-           -> data/publications.json  (committed; rendered by Hugo, never recomputed
-              at build time).
+Pipeline:  dois.txt -> metadata + abstracts (CrossRef / Semantic Scholar / arXiv)
+           -> classify each paper into one or two research threads (pillars)
+           -> data/publications.json  (committed; rendered by Hugo as a pillar map
+              + filterable list, never recomputed at build time).
 
-The backends degrade gracefully so the script runs anywhere:
-  * embeddings: a hosted model over HTTPS (OPENAI_API_KEY -> text-embedding-3-large,
-                or VOYAGE_API_KEY -> voyage-3.5; no torch) -> local
-                sentence-transformers -> TF-IDF + TruncatedSVD
-  * pillars:    a strong LLM (ANTHROPIC_API_KEY) -> embedding similarity -> keywords
-  * 2D layout:  UMAP if installed, else PCA
+Classification degrades gracefully: a strong LLM reads the abstract
+(ANTHROPIC_API_KEY) -> keyword heuristic. An explicit pillar in dois.txt always
+wins. The figure is anchored on the pillars (no embeddings needed).
 
 Human review = edit data/publications.json directly. Re-runs preserve human-renamed
 topics by matching each new cluster to the prior topic with the most DOIs in common.
@@ -31,7 +28,6 @@ import sys
 import time
 from pathlib import Path
 
-import numpy as np
 import requests
 
 HERE = Path(__file__).resolve().parent
@@ -71,7 +67,7 @@ def _parse_annotations(comment: str) -> dict:
     """Parse the `{...}` block of a dois.txt comment. Supports bare flags
     (a role, a pillar, or `highlight`) and `key=value` pairs (`venue=NeurIPS 2025`,
     `pillar=evaluation`). Comma-separated so values may contain spaces."""
-    ann = {"role": None, "highlight": False, "pillar": None, "venue": None}
+    ann = {"role": None, "highlight": False, "pillars": [], "venue": None, "type": None}
     m = re.search(r"\{([^}]*)\}", comment)
     if not m:
         return ann
@@ -82,16 +78,25 @@ def _parse_annotations(comment: str) -> dict:
         if "=" in tok:
             key, _, val = tok.partition("=")
             key, val = key.strip().lower(), val.strip()
-            if key in ann:
-                ann[key] = val.lower() if key in ("role", "pillar") else val
+            if key == "pillar":
+                ann["pillars"].append(val.lower())
+            elif key in ann:
+                ann[key] = val.lower() if key in ("role", "type") else val
             continue
         low = tok.lower()
         if low in ("highlight", "highlighted"):
             ann["highlight"] = True
         elif low in ROLES:
             ann["role"] = low
-        elif low in PILLARS or low == "unclassified":
-            ann["pillar"] = low
+        elif low in PILLARS:
+            ann["pillars"].append(low)
+        elif low in ("community", "unclassified"):     # old alias maps to community
+            ann["pillars"].append("community")
+    seen: list[str] = []
+    for p in ann["pillars"]:
+        if p not in seen:
+            seen.append(p)
+    ann["pillars"] = seen[:2]
     return ann
 
 
@@ -273,92 +278,27 @@ def fetch(entry: dict, force: bool) -> dict | None:
 
 
 # --------------------------------------------------------------------------- #
-# embeddings + 2D projection
+# classification into the group's research threads (pillars)
 # --------------------------------------------------------------------------- #
-def _api_embed(texts: list[str]) -> np.ndarray | None:
-    """Embed via a hosted model over plain HTTPS — no torch. Prefers OpenAI
-    (`text-embedding-3-large`), then Voyage. Returns None if no key is set."""
-    texts = [t[:8000] for t in texts]                      # stay under token limits
-    if os.environ.get("OPENAI_API_KEY"):
-        key = os.environ["OPENAI_API_KEY"]
-        model = os.environ.get("PUBLICATIONS_EMBED_MODEL", "text-embedding-3-large")
-        url, payload, prov = ("https://api.openai.com/v1/embeddings",
-                              {"model": model, "input": texts}, "OpenAI")
-    elif os.environ.get("VOYAGE_API_KEY"):
-        key = os.environ["VOYAGE_API_KEY"]
-        model = os.environ.get("PUBLICATIONS_EMBED_MODEL", "voyage-3.5")
-        url, payload, prov = ("https://api.voyageai.com/v1/embeddings",
-                              {"model": model, "input": texts, "input_type": "document"}, "Voyage")
-    else:
-        return None
-    try:
-        from sklearn.preprocessing import normalize
-        r = requests.post(url, headers={"Authorization": f"Bearer {key}"},
-                          json=payload, timeout=120)
-        r.raise_for_status()
-        rows = sorted(r.json()["data"], key=lambda d: d.get("index", 0))
-        print(f"  embeddings: {prov} {model}")
-        return normalize(np.asarray([d["embedding"] for d in rows], dtype=float))
-    except Exception as e:                                  # noqa: BLE001
-        print(f"  embeddings: {prov} API failed ({e.__class__.__name__}), falling back",
-              file=sys.stderr)
-        return None
-
-
-def embed(texts: list[str]) -> np.ndarray:
-    """Dense embeddings. Preference: hosted model (OpenAI/Voyage, no torch) →
-    local sentence-transformers → TF-IDF + SVD."""
-    api = _api_embed(texts)
-    if api is not None:
-        return api
-    try:
-        from sentence_transformers import SentenceTransformer
-        model = SentenceTransformer("all-MiniLM-L6-v2")
-        print("  embeddings: sentence-transformers/all-MiniLM-L6-v2")
-        return np.asarray(model.encode(texts, normalize_embeddings=True))
-    except Exception as e:                                  # noqa: BLE001
-        print(f"  embeddings: TF-IDF fallback ({e.__class__.__name__})")
-        from sklearn.decomposition import TruncatedSVD
-        from sklearn.feature_extraction.text import TfidfVectorizer
-        from sklearn.preprocessing import normalize
-        tfidf = TfidfVectorizer(stop_words="english", max_features=4096,
-                                ngram_range=(1, 2)).fit_transform(texts)
-        dim = max(2, min(50, tfidf.shape[1] - 1, len(texts) - 1))
-        with np.errstate(divide="ignore", over="ignore", invalid="ignore"):
-            svd = TruncatedSVD(n_components=dim, random_state=42)
-            reduced = np.nan_to_num(svd.fit_transform(tfidf))
-        return normalize(reduced)
-
-
-def project_2d(emb: np.ndarray) -> np.ndarray:
-    n = len(emb)
-    if n < 3:                                               # too few for any reducer
-        coords = np.zeros((n, 2))
-        for i in range(n):
-            coords[i] = [i, 0]
-        return coords
-    try:
-        import umap
-        reducer = umap.UMAP(n_components=2, n_neighbors=min(15, n - 1),
-                            min_dist=0.1, metric="cosine", random_state=42)
-        print("  layout: UMAP")
-        return reducer.fit_transform(emb)
-    except Exception as e:                                  # noqa: BLE001
-        print(f"  layout: PCA fallback ({e.__class__.__name__})")
-        from sklearn.decomposition import PCA
-        return PCA(n_components=2, random_state=42).fit_transform(emb)
-
-
-# --------------------------------------------------------------------------- #
-# classification into the group's four research threads (pillars)
-# --------------------------------------------------------------------------- #
-PILLAR_ORDER = PILLARS + ["unclassified"]
+PILLAR_ORDER = PILLARS + ["community"]
 PILLAR_COLOR = {
     "perception": "#2C6E91",   # blue
     "reasoning": "#8E5BA6",    # purple
     "evaluation": "#A43830",   # brand burgundy
     "action": "#5B8C5A",       # green
-    "unclassified": "#9AA0A6", # grey
+    "community": "#C98A3C",    # amber — perspectives, education, community-building
+}
+# one-line blurbs shown as a legend on the page
+PILLAR_BLURB = {
+    "perception": "understanding chemistry from what we actually measure — spectra and "
+                  "characterization data, and the knowledge buried in the literature.",
+    "reasoning": "combining formal rules with the tacit heuristics expert chemists use, "
+                 "so models reason rather than pattern-match.",
+    "evaluation": "honestly measuring what models and agents can really do — and where "
+                  "they only look capable.",
+    "action": "predictions experimentalists can act on, starting from the recipes and "
+              "processing conditions they control.",
+    "community": "perspectives, education, and community-building around AI for chemistry.",
 }
 # short descriptions (for embedding-based auto-suggestion) and keyword fallbacks
 PILLAR_DESC = {
@@ -390,17 +330,25 @@ PILLAR_KEYWORDS = {
 }
 
 
-def _keyword_pillar(text: str) -> str:
+def _keyword_pillars(text: str) -> list[str]:
     t = f" {text.lower()} "
     scores = {p: sum(t.count(k) for k in kws) for p, kws in PILLAR_KEYWORDS.items()}
     best = max(scores, key=scores.get)
-    return best if scores[best] > 0 else "unclassified"
+    return [best] if scores[best] > 0 else ["community"]
 
 
-def _llm_classify(papers: list[dict]) -> list[str] | None:
-    """Classify papers into pillars with a strong LLM (Claude), reading the full
-    abstract against the pillar descriptions. Returns None if the SDK or an API
-    key is unavailable, so the caller can fall back."""
+def _dedupe(seq: list[str]) -> list[str]:
+    out: list[str] = []
+    for x in seq:
+        if x in PILLAR_ORDER and x not in out:
+            out.append(x)
+    return out[:2]
+
+
+def _llm_classify(papers: list[dict]) -> list[list[str]] | None:
+    """Ask a strong LLM (Claude) to read each abstract and assign one or two
+    research threads. Returns a list of 1–2 pillar names per paper, or None if no
+    key/SDK is available (so the caller can fall back)."""
     if not (os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("ANTHROPIC_AUTH_TOKEN")):
         return None
     try:
@@ -411,74 +359,48 @@ def _llm_classify(papers: list[dict]) -> list[str] | None:
     pillar_block = "\n".join(f"- {p}: {PILLAR_DESC[p]}" for p in PILLARS)
     items = [{"i": i, "title": p["title"], "abstract": (p.get("abstract") or "")[:3000]}
              for i, p in enumerate(papers)]
-    schema = {
-        "type": "object",
-        "properties": {
-            "classifications": {
-                "type": "array",
-                "items": {
-                    "type": "object",
-                    "properties": {
-                        "i": {"type": "integer"},
-                        "pillar": {"type": "string", "enum": PILLAR_ORDER},
-                    },
-                    "required": ["i", "pillar"],
-                    "additionalProperties": False,
-                },
-            }
-        },
-        "required": ["classifications"],
-        "additionalProperties": False,
-    }
-    system = (
-        "You classify scientific papers into a research group's four pillars. "
-        "Read each paper's title and abstract and assign the single best-fitting "
-        "pillar. Use 'unclassified' only when a paper (e.g. an editorial or "
-        "community note) genuinely fits none. Return every paper exactly once."
-    )
-    user = (f"The four pillars:\n{pillar_block}\n\n"
-            f"Classify these papers by their index `i`:\n{json.dumps(items, ensure_ascii=False)}")
+    prompt = (
+        "You assign scientific papers to a research group's threads. The four "
+        f"research threads:\n{pillar_block}\n- community: non-research outputs "
+        "(editorials, comments, education, perspectives).\n\n"
+        "For each paper below, pick the ONE or TWO threads that genuinely fit "
+        "(prefer one; use two only when a paper substantively spans both). Use "
+        "'community' only for non-research outputs, and then alone.\n\n"
+        f"Papers:\n{json.dumps(items, ensure_ascii=False)}\n\n"
+        "Respond with ONLY a JSON array, no prose, each element "
+        '{"i": <index>, "pillars": ["<thread>", ...]} using these exact names: '
+        f"{PILLAR_ORDER}.")
     try:
         resp = anthropic.Anthropic().messages.create(
-            model=model, max_tokens=8000, system=system,
-            messages=[{"role": "user", "content": user}],
-            output_config={"format": {"type": "json_schema", "schema": schema}})
+            model=model, max_tokens=4000,
+            messages=[{"role": "user", "content": prompt}])
         text = next(b.text for b in resp.content if b.type == "text")
-        by_i = {c["i"]: c["pillar"] for c in json.loads(text)["classifications"]}
+        arr = json.loads(re.search(r"\[.*\]", text, re.S).group(0))
+        by_i = {d["i"]: _dedupe(d.get("pillars", [])) for d in arr}
         print(f"  pillars: LLM classification ({model})")
-        return [by_i.get(i, "unclassified") for i in range(len(papers))]
+        return [by_i.get(i) or ["community"] for i in range(len(papers))]
     except Exception as e:                                 # noqa: BLE001
         print(f"  pillars: LLM failed ({e.__class__.__name__}), falling back", file=sys.stderr)
         return None
 
 
-def suggest_pillars(papers: list[dict], texts: list[str]) -> list[str]:
-    """Auto-suggest a pillar per paper. Preference order: a strong LLM reading the
-    abstract → transformer similarity to the pillar descriptions → keyword heuristic."""
+def suggest_pillars(papers: list[dict], texts: list[str]) -> list[list[str]]:
+    """Auto-suggest 1–2 pillars per paper: a strong LLM reading the abstract,
+    else a keyword heuristic."""
     llm = _llm_classify(papers)
     if llm is not None:
         return llm
-    try:
-        from sentence_transformers import SentenceTransformer
-        model = SentenceTransformer("all-MiniLM-L6-v2")
-        pe = model.encode([PILLAR_DESC[p] for p in PILLARS], normalize_embeddings=True)
-        te = model.encode(texts, normalize_embeddings=True)
-        sims = np.asarray(te) @ np.asarray(pe).T
-        print("  pillars: embedding similarity (sentence-transformers)")
-        return [PILLARS[i] for i in sims.argmax(1)]
-    except Exception:                                      # noqa: BLE001
-        print("  pillars: keyword heuristic")
-        return [_keyword_pillar(t) for t in texts]
+    print("  pillars: keyword heuristic")
+    return [_keyword_pillars(t) for t in texts]
 
 
 def classify_pillars(papers: list[dict], texts: list[str]) -> None:
-    """Fill in a pillar for every paper: explicit annotation wins, otherwise
-    auto-suggest. Mutates papers in place."""
-    need = [i for i, p in enumerate(papers) if not p.get("pillar")]
+    """Fill in pillars for papers lacking an explicit annotation. Mutates in place."""
+    need = [i for i, p in enumerate(papers) if not p.get("pillars")]
     if need:
         suggestions = suggest_pillars([papers[i] for i in need], [texts[i] for i in need])
-        for idx, pil in zip(need, suggestions):
-            papers[idx]["pillar"] = pil
+        for idx, pillars in zip(need, suggestions):
+            papers[idx]["pillars"] = pillars or ["community"]
             papers[idx]["pillar_auto"] = True              # flag for human review
 
 
@@ -501,40 +423,33 @@ def main() -> None:
     for entry in entries:
         rec = fetch(entry, args.force)
         if rec:
-            rec["role"] = entry["role"]
             rec["highlighted"] = entry["highlight"]
-            rec["pillar"] = entry["pillar"]                 # explicit annotation (may be None)
+            rec["pillars"] = entry["pillars"] or None       # explicit annotation, else LLM fills
+            is_arxiv = rec["doi"].lower().startswith("10.48550/arxiv")
+            rec["type"] = entry["type"] or ("preprint" if is_arxiv else "peer-reviewed")
             print(f"  ✓ {rec['year']}  {rec['title'][:70]}")
             papers.append(rec)
     if not papers:
         sys.exit("no papers resolved — check the DOIs")
 
     texts = [f"{p['title']}. {p.get('abstract', '')}".strip() for p in papers]
-    print("embedding abstracts ...")
-    emb = embed(texts)
-    coords = project_2d(emb)
-
     print("classifying into research threads ...")
-    classify_pillars(papers, texts)                        # fills any missing pillar
+    classify_pillars(papers, texts)                        # fills any missing pillars
 
-    # the four pillars are the landscape's topics — fixed colours, canonical order
-    present = [p for p in PILLAR_ORDER if any(pp["pillar"] == p for pp in papers)]
-    pid = {name: PILLAR_ORDER.index(name) for name in PILLAR_ORDER}
-    topics = [{"id": pid[name], "name": name, "color": PILLAR_COLOR[name]}
-              for name in present]
-
-    for p, (x, y) in zip(papers, coords):
-        p["topic"] = pid[p["pillar"]]
-        p["x"] = round(float(x), 4)
-        p["y"] = round(float(y), 4)
+    # threads are the group's pillars — canonical order, fixed colours + blurbs
+    present = [name for name in PILLAR_ORDER
+               if any(name in p["pillars"] for p in papers)]
+    threads = [{"id": PILLAR_ORDER.index(name), "name": name,
+                "color": PILLAR_COLOR[name], "description": PILLAR_BLURB[name]}
+               for name in present]
 
     papers.sort(key=lambda p: (-(p["year"] or 0), p["title"].lower()))
 
     OUT_FILE.parent.mkdir(exist_ok=True)
-    OUT_FILE.write_text(json.dumps({"topics": topics, "papers": papers},
+    OUT_FILE.write_text(json.dumps({"threads": threads, "papers": papers},
                                    indent=2, ensure_ascii=False) + "\n")
     print(f"\nwrote {OUT_FILE.relative_to(REPO)}: "
-          f"{len(papers)} papers across {len(topics)} threads")
+          f"{len(papers)} papers across {len(threads)} threads")
 
 
 if __name__ == "__main__":
