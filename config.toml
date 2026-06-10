@@ -1,4 +1,4 @@
-baseURL = 'http://lamalab.org'
+baseURL = 'https://lamalab.org'
 languageCode = 'en-us'
 relativeURLs = true
 title = 'Lab for AI in Materials Science'
@@ -6,6 +6,7 @@ theme = "cactus"
 colortheme = "white"
 description = "we are a research group trying to teach computers how to design materials that work in the real world"
 enableEmoji = true
+enableRobotsTXT = true
 # Disable Google Analytics to avoid template errors
 googleAnalytics = ""
 

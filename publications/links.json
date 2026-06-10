@@ -1,0 +1,23 @@
+{
+  "_comment": "Curated media / news / companion links per DOI (keys are case-insensitive). Shown under each paper. arXiv entries are keyed by their arXiv DOI, e.g. 10.48550/arXiv.2604.18805.",
+
+  "10.1038/s41557-025-01815-x": [
+    { "label": "chembench.lamalab.org", "url": "http://chembench.lamalab.org/" },
+    { "label": "Chemistry World", "url": "https://www.chemistryworld.com/news/large-language-models-are-better-than-humans-at-answering-chemistry-questions/4020562.article" },
+    { "label": "State of AI 2025", "url": "https://www.stateof.ai" },
+    { "label": "research briefing", "url": "https://www.nature.com/articles/s41557-025-01865-1" }
+  ],
+  "10.1038/s42256-023-00788-1": [
+    { "label": "MIT Technology Review", "url": "https://www.technologyreview.com/2023/03/25/1070275/chatgpt-revolutionize-economy-decide-what-looks-like/" },
+    { "label": "Nature News", "url": "https://www.nature.com/articles/d41586-024-00347-7" }
+  ],
+  "10.1038/s43588-025-00836-3": [
+    { "label": "research briefing", "url": "https://www.nature.com/articles/s43588-025-00871-0" }
+  ],
+  "10.1039/d4cs00913d": [
+    { "label": "matextract.pub", "url": "https://matextract.pub/" }
+  ],
+  "10.48550/arxiv.2604.18805": [
+    { "label": "Science News", "url": "https://www.sciencenews.org/article/ai-ignore-evidence-trust-science" }
+  ]
+}
