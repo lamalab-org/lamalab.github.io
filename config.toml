@@ -26,7 +26,7 @@ weight = 1
 
 [[menu.main]]
 name = "pubs"
-url = "https://scholar.google.com/citations?user=R2ntI8IAAAAJ&hl=en"
+url = "/publications"
 weight = 2
 
 

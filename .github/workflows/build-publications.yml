@@ -1,0 +1,47 @@
+name: Rebuild publications data
+
+# Manual trigger only — the publications landscape is expensive to compute, so it
+# is regenerated on demand (not on every site build). The job opens a pull request
+# with the refreshed data/publications.json for human review before it goes live.
+on:
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Ignore the fetch cache and re-fetch all metadata"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r publications/requirements.txt
+
+      - name: Rebuild data/publications.json
+        run: python publications/build.py ${{ inputs.force && '--force' || '' }}
+
+      - name: Open pull request with refreshed data
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: bot/publications-data
+          title: "Refresh publications data"
+          commit-message: "chore: refresh data/publications.json from dois.txt"
+          body: |
+            Automated rebuild of the publications landscape from `publications/dois.txt`.
+
+            **Review before merging** — in particular the auto-generated topic names
+            (edit them in `data/publications.json`; renames are preserved on the next run).
+          add-paths: data/publications.json
+          delete-branch: true

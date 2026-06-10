@@ -1,0 +1,181 @@
+{{- $data := .Site.Data.publications -}}
+<style>
+    .pub-landscape {
+        width: 100%;
+        height: 480px;
+        margin: 1.5rem 0 0.5rem;
+        border: 1px solid var(--border-color, #E0E0E0);
+        border-radius: 6px;
+    }
+    .pub-hint {
+        font-size: 0.8rem;
+        color: var(--secondary-color, #666);
+        margin: 0 0 2rem;
+    }
+    .pub-filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 1.5rem 0 1rem;
+        align-items: center;
+    }
+    .pub-filter {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.8rem;
+        padding: 0.25rem 0.7rem;
+        border: 1px solid var(--border-color, #E0E0E0);
+        border-radius: 999px;
+        background: none;
+        color: var(--secondary-color, #666);
+        cursor: pointer;
+    }
+    .pub-filter.active {
+        background: var(--primary-color, #A43830);
+        border-color: var(--primary-color, #A43830);
+        color: #fff;
+    }
+    .pub-list { display: flex; flex-direction: column; gap: 1.25rem; }
+    .pub-card {
+        border-left: 3px solid var(--border-color, #E0E0E0);
+        padding: 0.4rem 0 0.4rem 1rem;
+        scroll-margin-top: 5rem;
+        transition: background 0.3s ease;
+    }
+    .pub-card.flash { background: rgba(164, 56, 48, 0.08); }
+    .pub-card-title { margin: 0 0 0.3rem; font-size: 1.02rem; line-height: 1.35; }
+    .pub-card-title a { color: var(--text-color, #333) !important; background: none !important; }
+    .pub-card-title a:hover { color: var(--primary-color, #A43830) !important; }
+    .pub-meta {
+        font-size: 0.82rem;
+        color: var(--secondary-color, #666);
+        margin-bottom: 0.4rem;
+        line-height: 1.4;
+    }
+    .pub-authors { font-style: italic; }
+    .pub-tags { display: inline-flex; flex-wrap: wrap; gap: 0.4rem; vertical-align: middle; }
+    .pub-topic {
+        display: inline-flex; align-items: center; gap: 0.35rem;
+        font-family: "JetBrains Mono", monospace; font-size: 0.72rem;
+    }
+    .pub-dot { width: 0.6rem; height: 0.6rem; border-radius: 50%; display: inline-block; }
+    .pub-role {
+        font-family: "JetBrains Mono", monospace; font-size: 0.68rem;
+        text-transform: uppercase; letter-spacing: 0.03em;
+        padding: 0.05rem 0.4rem; border-radius: 3px;
+        background: var(--light-bg, #FAFAFA); color: var(--secondary-color, #666);
+        border: 1px solid var(--border-color, #E0E0E0);
+    }
+    .pub-star { color: var(--primary-color, #A43830); font-weight: bold; }
+    .pub-abstract {
+        font-size: 0.9rem; line-height: 1.5; color: var(--text-color, #333);
+        display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    .pub-abstract.open { -webkit-line-clamp: unset; }
+    .pub-more {
+        font-family: "JetBrains Mono", monospace; font-size: 0.75rem;
+        background: none; border: none; padding: 0.2rem 0; cursor: pointer;
+        color: var(--primary-color, #A43830);
+    }
+</style>
+
+<div id="pub-landscape" class="pub-landscape"></div>
+<p class="pub-hint">each point is a paper · colour = topic · ★ = highlighted · hover to peek · click to jump · use the legend to toggle topics</p>
+
+<div class="pub-filters">
+    <button class="pub-filter active" data-role="all">all</button>
+    <button class="pub-filter" data-role="corresponding">corresponding author</button>
+    <button class="pub-filter" data-role="first">first author</button>
+    <button class="pub-filter" data-role="coauthor">coauthor</button>
+</div>
+
+<div class="pub-list">
+    {{- range $data.papers -}}
+    {{- $id := printf "pub-%s" (replaceRE "[^a-zA-Z0-9]+" "-" .doi) -}}
+    {{- $topic := index (where $data.topics "id" .topic) 0 -}}
+    <div class="pub-card" id="{{ $id }}" data-role="{{ .role | default "" }}">
+        <h3 class="pub-card-title">
+            {{ if .highlighted }}<span class="pub-star" title="highlighted">★</span> {{ end }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ .title }}</a>
+        </h3>
+        <div class="pub-meta">
+            <span class="pub-authors">{{ delimit (first 8 .authors) ", " }}{{ if gt (len .authors) 8 }}, et al.{{ end }}</span><br>
+            {{ with .venue }}{{ . }} · {{ end }}{{ .year }}{{ if .citations }}{{ if gt .citations 0.0 }} · {{ .citations }} citations{{ end }}{{ end }}
+            &nbsp; <span class="pub-tags">
+                {{ with $topic }}<span class="pub-topic"><span class="pub-dot" style="background:{{ .color }}"></span>{{ .name }}</span>{{ end }}
+                {{ with .role }}<span class="pub-role">{{ . }}</span>{{ end }}
+            </span>
+        </div>
+        {{ with .abstract }}
+        <div class="pub-abstract">{{ . }}</div>
+        <button class="pub-more" onclick="this.previousElementSibling.classList.toggle('open');this.textContent=this.previousElementSibling.classList.contains('open')?'show less':'show more'">show more</button>
+        {{ end }}
+    </div>
+    {{- end -}}
+</div>
+
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+<script>
+(function () {
+    var DATA = JSON.parse({{ $data | jsonify }});
+    var idOf = function (doi) { return "pub-" + doi.replace(/[^a-zA-Z0-9]+/g, "-"); };
+
+    // one Plotly trace per topic; highlighted papers get a larger star marker
+    var traces = DATA.topics.map(function (t) {
+        var pts = DATA.papers.filter(function (p) { return p.topic === t.id; });
+        return {
+            name: t.name,
+            x: pts.map(function (p) { return p.x; }),
+            y: pts.map(function (p) { return p.y; }),
+            customdata: pts.map(function (p) {
+                return [p.title, p.venue || "", p.year, idOf(p.doi)];
+            }),
+            mode: "markers",
+            type: "scatter",
+            marker: {
+                color: t.color,
+                size: pts.map(function (p) { return p.highlighted ? 16 : 11; }),
+                symbol: pts.map(function (p) { return p.highlighted ? "star" : "circle"; }),
+                line: { width: 1, color: "rgba(255,255,255,0.8)" },
+                opacity: 0.9
+            },
+            hovertemplate: "<b>%{customdata[0]}</b><br>%{customdata[1]} · %{customdata[2]}<extra></extra>"
+        };
+    });
+
+    var hidden = { showgrid: false, zeroline: false, showticklabels: false, title: "" };
+    var layout = {
+        hovermode: "closest",
+        dragmode: "pan",
+        margin: { l: 10, r: 10, t: 10, b: 10 },
+        xaxis: hidden, yaxis: hidden,
+        legend: { orientation: "h", y: -0.02, font: { size: 11 } },
+        paper_bgcolor: "rgba(0,0,0,0)",
+        plot_bgcolor: "rgba(0,0,0,0)",
+        hoverlabel: { align: "left", bgcolor: "#fff", bordercolor: "#A43830" }
+    };
+
+    var el = document.getElementById("pub-landscape");
+    Plotly.newPlot(el, traces, layout, { responsive: true, displayModeBar: false }).then(function () {
+        el.on("plotly_click", function (ev) {
+            var id = ev.points[0].customdata[3];
+            var card = document.getElementById(id);
+            if (!card) return;
+            card.scrollIntoView({ behavior: "smooth", block: "center" });
+            card.classList.add("flash");
+            setTimeout(function () { card.classList.remove("flash"); }, 1500);
+        });
+    });
+
+    // role filter for the card list
+    document.querySelectorAll(".pub-filter").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+            document.querySelectorAll(".pub-filter").forEach(function (b) { b.classList.remove("active"); });
+            btn.classList.add("active");
+            var role = btn.dataset.role;
+            document.querySelectorAll(".pub-card").forEach(function (card) {
+                card.style.display = (role === "all" || card.dataset.role === role) ? "" : "none";
+            });
+        });
+    });
+}());
+</script>
