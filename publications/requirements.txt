@@ -4,8 +4,10 @@ numpy
 scikit-learn
 
 # Optional, higher-quality backends. The script falls back gracefully if these
-# are absent (TF-IDF embeddings instead of transformers; PCA instead of UMAP),
-# so they are not required to run — but the GitHub Action installs them for the
-# best research-landscape quality.
+# are absent (TF-IDF embeddings instead of transformers; PCA instead of UMAP;
+# embedding/keyword pillar classification instead of the LLM), so they are not
+# required to run — but the GitHub Action installs them for the best quality.
 umap-learn
 sentence-transformers
+# Pillar classification with a strong LLM (needs ANTHROPIC_API_KEY at runtime).
+anthropic

@@ -1,2 +1,3 @@
 # cached API responses — safe to delete, regenerated on demand
 .cache/
+__pycache__/

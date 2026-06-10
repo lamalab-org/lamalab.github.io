@@ -2,26 +2,151 @@
   "topics": [
     {
       "id": 0,
-      "name": "polymer / digital / chemistry",
-      "color": "#A43830"
-    },
-    {
-      "id": 1,
-      "name": "language / llms / models",
+      "name": "perception",
       "color": "#2C6E91"
     },
     {
+      "id": 1,
+      "name": "reasoning",
+      "color": "#8E5BA6"
+    },
+    {
       "id": 2,
-      "name": "ai / data / chemistry",
-      "color": "#E2A33C"
+      "name": "evaluation",
+      "color": "#A43830"
     },
     {
       "id": 3,
-      "name": "metal / organic / organic frameworks",
+      "name": "action",
       "color": "#5B8C5A"
+    },
+    {
+      "id": 4,
+      "name": "unclassified",
+      "color": "#9AA0A6"
     }
   ],
   "papers": [
+    {
+      "doi": "10.48550/arXiv.2605.08956",
+      "url": "https://arxiv.org/abs/2605.08956",
+      "title": "Agentic AI Scientists Are Not Built For Autonomous Scientific Discovery",
+      "authors": [
+        "Harshit Bisht",
+        "Vinay Kumar",
+        "Kevin Maik Jablonka",
+        " Mausam",
+        "N. M. Anoop Krishnan"
+      ],
+      "venue": "arXiv",
+      "year": 2026,
+      "abstract": "A growing body of work pursues AI scientists capable of end-to-end autonomous scientific discovery. This position paper argues that although they already function as co-scientists, agentic AI scientists are not built for autonomous scientific discovery. We identify the following challenges in building and deploying autonomous AI scientists: (1) Problem selection is influenced by the McNamara fallacy; (2) Agents are built on large language models (LLMs) whose training corpora omit tacit procedural and failure knowledge of laboratory practice; (3) Preference optimisation during post-training compresses output diversity toward consensus; and (4) Most scientific benchmarks measure single-turn prediction accuracy and lack feedback from physical experiments back to the computational model. These challenges are not just questions of scale and scaffolding; they require revisiting fundamental design choices. To build truly autonomous AI scientists, we recommend the use of scientific simulations as verifiers for training, the design of persistent world models that represent the shifting objectives governing real investigations, the establishment of a centralized preregistration repository for all AI-generated hypotheses, and application driven by scientific need rather than tool affordance.",
+      "citations": null,
+      "role": "coauthor",
+      "highlighted": false,
+      "pillar": "evaluation",
+      "topic": 2,
+      "x": 0.2609,
+      "y": 0.0345
+    },
+    {
+      "doi": "10.48550/arXiv.2604.18805",
+      "url": "https://arxiv.org/abs/2604.18805",
+      "title": "AI scientists produce results without reasoning scientifically",
+      "authors": [
+        "Martiño Ríos-García",
+        "Nawaf Alampara",
+        "Chandan Gupta",
+        "Indrajeet Mandal",
+        "Sajid Mannan",
+        "Ali Asghar Aghajani",
+        "N. M. Anoop Krishnan",
+        "Kevin Maik Jablonka"
+      ],
+      "venue": "arXiv",
+      "year": 2026,
+      "abstract": "Large language model (LLM)-based systems are increasingly deployed to conduct scientific research autonomously, yet whether their reasoning adheres to the epistemic norms that make scientific inquiry self-correcting is poorly understood. Here, we evaluate LLM-based scientific agents across eight domains, spanning workflow execution to hypothesis-driven inquiry, through more than 25,000 agent runs and two complementary lenses: (i) a systematic performance analysis that decomposes the contributions of the base model and the agent scaffold, and (ii) a behavioral analysis of the epistemological structure of agent reasoning. We observe that the base model is the primary determinant of both performance and behavior, accounting for 41.4% of explained variance versus 1.5% for the scaffold. Across all configurations, evidence is ignored in 68% of traces, refutation-driven belief revision occurs in 26%, and convergent multi-test evidence is rare. The same reasoning pattern appears whether the agent executes a computational workflow or conducts hypothesis-driven inquiry. They persist even when agents receive near-complete successful reasoning trajectories as context, and the resulting unreliability compounds across repeated trials in epistemically demanding domains. Thus, current LLM-based agents execute scientific workflows but do not exhibit the epistemic patterns that characterize scientific reasoning. Outcome-based evaluation cannot detect these failures, and scaffold engineering alone cannot repair them. Until reasoning itself becomes a training target, the scientific knowledge produced by such agents cannot be justified by the process that generated it.",
+      "citations": 5,
+      "role": "corresponding",
+      "highlighted": false,
+      "pillar": "evaluation",
+      "topic": 2,
+      "x": 0.2526,
+      "y": 0.0407
+    },
+    {
+      "doi": "10.48550/arXiv.2601.17807",
+      "url": "https://arxiv.org/abs/2601.17807",
+      "title": "An autonomous living database for perovskite photovoltaics",
+      "authors": [
+        "Sherjeel Shabih",
+        "Hampus Näsström",
+        "Sharat Patil",
+        "Asmin Askin",
+        "Keely Dodd-Clements",
+        "Jessica Helisa Hautrive Rossato",
+        "Hugo Gajardoni de Lemos",
+        "Yuxin Liu",
+        "Florian Mathies",
+        "Natalia Maticiuc",
+        "Rico Meitzner",
+        "Edgar Nandayapa",
+        "Juan José Patiño López",
+        "Yaru Wang",
+        "Lauri Himanen",
+        "Eva Unger",
+        "T. Jesper Jacobsson",
+        "José A. Márquez",
+        "Kevin Maik Jablonka"
+      ],
+      "venue": "arXiv",
+      "year": 2026,
+      "abstract": "Scientific discovery is severely bottlenecked by the inability of manual curation to keep pace with exponential publication rates. This creates a widening knowledge gap. This is especially stark in photovoltaics, where the leading database for perovskite solar cells has been stagnant since 2021 despite massive ongoing research output. Here, we resolve this challenge by establishing an autonomous, self-updating living database (PERLA). Our pipeline integrates large language models with physics-aware validation to extract complex device data from the continuous literature stream, achieving human-level precision (>90%) and eliminating annotator variance. By employing this system on the previously inaccessible post-2021 literature, we uncover critical evolutionary trends hidden by data lag: the field has decisively shifted toward inverted architectures employing self-assembled monolayers and formamidinium-rich compositions, driving a clear trajectory of sustained voltage loss reduction. PERLA transforms static publications into dynamic knowledge resources that enable data-driven discovery to operate at the speed of publication.",
+      "citations": null,
+      "role": "corresponding",
+      "highlighted": false,
+      "pillar": "perception",
+      "topic": 0,
+      "x": 0.1814,
+      "y": 0.0095
+    },
+    {
+      "doi": "10.48550/arXiv.2602.04696",
+      "url": "https://arxiv.org/abs/2602.04696",
+      "title": "Beyond Learning on Molecules by Weakly Supervising on Molecules",
+      "authors": [
+        "Gordan Prastalo",
+        "Kevin Maik Jablonka"
+      ],
+      "venue": "arXiv",
+      "year": 2026,
+      "abstract": "Molecular representations are inherently task-dependent, yet most pre-trained molecular encoders are not. Task conditioning promises representations that reorganize based on task descriptions, but existing approaches rely on expensive labeled data. We show that weak supervision on programmatically derived molecular motifs is sufficient. Our Adaptive Chemical Embedding Model (ACE-Mol) learns from hundreds of motifs paired with natural language descriptors that are cheap to compute, trivial to scale. Conventional encoders slowly search the embedding space for task-relevant structure, whereas ACE-Mol immediately aligns its representations with the task. ACE-Mol achieves state-of-the-art performance across molecular property prediction benchmarks with interpretable, chemically meaningful representations.",
+      "citations": null,
+      "role": "corresponding",
+      "highlighted": false,
+      "pillar": "reasoning",
+      "topic": 1,
+      "x": 0.0697,
+      "y": -0.1603
+    },
+    {
+      "doi": "10.48550/arXiv.2602.17730",
+      "url": "https://arxiv.org/abs/2602.17730",
+      "title": "Clever Materials: When Models Identify Good Materials for the Wrong Reasons",
+      "authors": [
+        "Kevin Maik Jablonka"
+      ],
+      "venue": "arXiv",
+      "year": 2026,
+      "abstract": "Machine learning can accelerate materials discovery. Models perform impressively on many benchmarks. However, strong benchmark performance does not imply that a model learned chemistry. I test a concrete alternative hypothesis: that property prediction can be driven by bibliographic confounding. Across five tasks spanning MOFs (thermal and solvent stability), perovskite solar cells (efficiency), batteries (capacity), and TADF emitters (emission wavelength), models trained on standard chemical descriptors predict author, journal, and publication year well above chance. When these predicted metadata (\"bibliographic fingerprints\") are used as the sole input to a second model, performance is sometimes competitive with conventional descriptor-based predictors. These results show that many datasets do not rule out non-chemical explanations of success. Progress requires routine falsification tests (e.g., group/time splits and metadata ablations), datasets designed to resist spurious correlations, and explicit separation of two goals: predictive utility versus evidence of chemical understanding.",
+      "citations": null,
+      "role": "corresponding",
+      "highlighted": false,
+      "pillar": "evaluation",
+      "topic": 2,
+      "x": -0.0271,
+      "y": -0.1925
+    },
     {
       "doi": "10.1038/s41467-026-73846-y",
       "url": "https://doi.org/10.1038/s41467-026-73846-y",
@@ -36,10 +161,11 @@
       "abstract": "Elucidating molecular structures from spectroscopic data remains one of chemistry’s most fundamental challenges, typically requiring extensive expert knowledge and manual interpretation of multiple analytical techniques. This is because the structure elucidation problem often has degenerate solutions for a limited set of experimental data. Existing computational approaches are limited to single spectroscopic modalities, require extensive manual preprocessing, and lack the confidence estimates and context necessary for practical application. Here we present , a framework that combines contrastive learning with evolutionary algorithms to automate structure elucidation directly from raw, multimodal spectroscopic data. By aligning embeddings across NMR, infrared, and mass spectrometry, mimics how experts use multiple spectroscopic lenses while providing calibrated confidence scores and relevant database context. On challenging molecular identification tasks, matches expert chemist performance in head-to-head comparisons in a pilot study. The system successfully identifies incorrect structure assignments in published literature and adapts to new chemical domains without retraining by updating its reference database. Our approach demonstrates how synergistic combination of machine learning paradigms can solve analytical bottlenecks that have constrained chemical discovery.",
       "citations": 0,
       "role": "corresponding",
-      "highlighted": true,
-      "topic": 2,
-      "x": -0.0933,
-      "y": 0.0
+      "highlighted": false,
+      "pillar": "perception",
+      "topic": 0,
+      "x": 0.0822,
+      "y": -0.1192
     },
     {
       "doi": "10.1021/acs.chemrev.5c00583",
@@ -62,9 +188,10 @@
       "citations": 4,
       "role": "corresponding",
       "highlighted": false,
-      "topic": 2,
-      "x": 0.2463,
-      "y": -0.0669
+      "pillar": "reasoning",
+      "topic": 1,
+      "x": -0.1834,
+      "y": 0.1492
     },
     {
       "doi": "10.1016/j.carbpol.2026.124890",
@@ -89,9 +216,49 @@
       "citations": 1,
       "role": "coauthor",
       "highlighted": false,
+      "pillar": "action",
+      "topic": 3,
+      "x": 0.0863,
+      "y": -0.2877
+    },
+    {
+      "doi": "10.48550/arXiv.2605.13826",
+      "url": "https://arxiv.org/abs/2605.13826",
+      "title": "Reducing cross-sample prediction churn in scientific machine learning",
+      "authors": [
+        "Gordan Prastalo",
+        "Kevin Maik Jablonka"
+      ],
+      "venue": "arXiv",
+      "year": 2026,
+      "abstract": "Scientific machine learning reports predictive performance. It does not report whether the same prediction would survive a different draw of training data. Across $9$ chemistry benchmarks, two classifiers trained on independent bootstraps of the same training set agree on aggregate accuracy to within $1.3\\text{--}4.2$ percentage points but disagree on the class label of $8.0\\text{--}21.8\\%$ of test molecules. We call this gap \\emph{cross-sample prediction churn}. The standard parameter-side techniques (deep ensembles, MC dropout, stochastic weight averaging) do not reduce this gap; two data-side methods do. The first is $K$-bootstrap bagging, which cuts the rate $40\\text{--}54\\%$ on every dataset at no accuracy cost ($K{\\times}$-ERM compute). The second is \\emph{twin-bootstrap}, our proposal: two networks trained jointly on independent bootstraps with a sym-KL consistency loss between their predictions, which at matched $2{\\times}$-ERM compute reduces churn a further median $45\\%$ beyond bagging-$K{=}2$. Cross-sample prediction churn deserves a column alongside predictive performance in scientific-ML benchmark reports, because without it the parameter-side and data-side methods are indistinguishable on the metric they actually differ on.",
+      "citations": null,
+      "role": "corresponding",
+      "highlighted": false,
+      "pillar": "evaluation",
       "topic": 2,
-      "x": -0.1672,
-      "y": 0.1266
+      "x": 0.0614,
+      "y": -0.2112
+    },
+    {
+      "doi": "10.48550/arXiv.2601.21618",
+      "url": "https://arxiv.org/abs/2601.21618",
+      "title": "Semantic Content Determines Algorithmic Performance",
+      "authors": [
+        "Martiño Ríos-García",
+        "Nawaf Alampara",
+        "Kevin Maik Jablonka"
+      ],
+      "venue": "arXiv",
+      "year": 2026,
+      "abstract": "Counting should not depend on what is being counted; more generally, any algorithm's behavior should be invariant to the semantic content of its arguments. We introduce WhatCounts to test this property in isolation. Unlike prior work that conflates semantic sensitivity with reasoning complexity or prompt variation, WhatCounts is atomic: count items in an unambiguous, delimited list with no duplicates, distractors, or reasoning steps for different semantic types. Frontier LLMs show over 40% accuracy variation depending solely on what is being counted - cities versus chemicals, names versus symbols. Controlled ablations rule out confounds. The gap is semantic, and it shifts unpredictably with small amounts of unrelated fine-tuning. LLMs do not implement algorithms; they approximate them, and the approximation is argument-dependent. As we show with an agentic example, this has implications beyond counting: any LLM function may carry hidden dependencies on the meaning of its inputs.",
+      "citations": null,
+      "role": "corresponding",
+      "highlighted": false,
+      "pillar": "evaluation",
+      "topic": 2,
+      "x": 0.1276,
+      "y": -0.1004
     },
     {
       "doi": "10.1038/s41557-025-01815-x",
@@ -139,10 +306,11 @@
       "abstract": "Large language models (LLMs) have gained widespread interest owing to their ability to process human language and perform tasks on which they have not been explicitly trained. However, we possess only a limited systematic understanding of the chemical capabilities of LLMs, which would be required to improve models and mitigate potential harm. Here we introduce ChemBench, an automated framework for evaluating the chemical knowledge and reasoning abilities of state-of-the-art LLMs against the expertise of chemists. We curated more than 2,700 question–answer pairs, evaluated leading open- and closed-source LLMs and found that the best models, on average, outperformed the best human chemists in our study. However, the models struggle with some basic tasks and provide overconfident predictions. These findings reveal LLMs’ impressive chemical capabilities while emphasizing the need for further research to improve their safety and usefulness. They also suggest adapting chemistry education and show the value of benchmarking frameworks for evaluating LLMs in specific domains.",
       "citations": 88,
       "role": "corresponding",
-      "highlighted": true,
-      "topic": 1,
-      "x": 0.2064,
-      "y": -0.3893
+      "highlighted": false,
+      "pillar": "evaluation",
+      "topic": 2,
+      "x": -0.0202,
+      "y": 0.5229
     },
     {
       "doi": "10.1038/s41557-025-01865-1",
@@ -157,9 +325,10 @@
       "citations": 3,
       "role": "corresponding",
       "highlighted": false,
+      "pillar": "evaluation",
       "topic": 2,
-      "x": 0.2394,
-      "y": -0.3765
+      "x": -0.0585,
+      "y": 0.5314
     },
     {
       "doi": "10.1039/d4sc04401k",
@@ -223,9 +392,42 @@
       "citations": 30,
       "role": "first",
       "highlighted": false,
+      "pillar": "evaluation",
+      "topic": 2,
+      "x": -0.6366,
+      "y": -0.0691
+    },
+    {
+      "doi": "10.48550/arXiv.2505.12534",
+      "url": "https://arxiv.org/abs/2505.12534",
+      "title": "ChemPile: A 250GB Diverse and Curated Dataset for Chemical Foundation Models",
+      "authors": [
+        "Adrian Mirza",
+        "Nawaf Alampara",
+        "Martiño Ríos-García",
+        "Mohamed Abdelalim",
+        "Jack Butler",
+        "Bethany Connolly",
+        "Tunca Dogan",
+        "Marianna Nezhurina",
+        "Bünyamin Şen",
+        "Santosh Tirunagari",
+        "Mark Worrall",
+        "Adamo Young",
+        "Philippe Schwaller",
+        "Michael Pieler",
+        "Kevin Maik Jablonka"
+      ],
+      "venue": "NeurIPS 2025",
+      "year": 2025,
+      "abstract": "Foundation models have shown remarkable success across scientific domains, yet their impact in chemistry remains limited due to the absence of diverse, large-scale, high-quality datasets that reflect the field's multifaceted nature. We present the ChemPile, an open dataset containing over 75 billion tokens of curated chemical data, specifically built for training and evaluating general-purpose models in the chemical sciences. The dataset mirrors the human learning journey through chemistry -- from educational foundations to specialized expertise -- spanning multiple modalities and content types including structured data in diverse chemical representations (SMILES, SELFIES, IUPAC names, InChI, molecular renderings), scientific and educational text, executable code, and chemical images. ChemPile integrates foundational knowledge (textbooks, lecture notes), specialized expertise (scientific articles and language-interfaced data), visual understanding (molecular structures, diagrams), and advanced reasoning (problem-solving traces and code) -- mirroring how human chemists develop expertise through diverse learning materials and experiences. Constructed through hundreds of hours of expert curation, the ChemPile captures both foundational concepts and domain-specific complexity. We provide standardized training, validation, and test splits, enabling robust benchmarking. ChemPile is openly released via HuggingFace with a consistent API, permissive license, and detailed documentation. We hope the ChemPile will serve as a catalyst for chemical AI, enabling the development of the next generation of chemical foundation models.",
+      "citations": null,
+      "role": "corresponding",
+      "highlighted": false,
+      "pillar": "reasoning",
       "topic": 1,
-      "x": 0.536,
-      "y": 0.2508
+      "x": -0.0529,
+      "y": 0.1836
     },
     {
       "doi": "10.1039/d4cs00913d",
@@ -247,9 +449,10 @@
       "citations": 72,
       "role": "corresponding",
       "highlighted": false,
-      "topic": 2,
-      "x": 0.2406,
-      "y": -0.3451
+      "pillar": "perception",
+      "topic": 0,
+      "x": -0.0339,
+      "y": 0.3301
     },
     {
       "doi": "10.1016/j.commatsci.2025.114041",
@@ -266,9 +469,10 @@
       "citations": null,
       "role": "corresponding",
       "highlighted": false,
+      "pillar": "evaluation",
       "topic": 2,
-      "x": 0.1174,
-      "y": 0.264
+      "x": -0.2351,
+      "y": -0.2199
     },
     {
       "doi": "10.1039/d5dd00109a",
@@ -287,36 +491,10 @@
       "citations": 14,
       "role": "coauthor",
       "highlighted": false,
+      "pillar": "action",
       "topic": 3,
-      "x": -0.3253,
-      "y": 0.004
-    },
-    {
-      "doi": "10.1021/acsmaterialsau.4c00139",
-      "url": "https://doi.org/10.1021/acsmaterialsau.4c00139",
-      "title": "Nonuniform Chiralization of Metal–Organic Frameworks Using Imine Chemistry",
-      "authors": [
-        "Balázs Álmos Novotny",
-        "Sauradeep Majumdar",
-        "Andres Ortega-Guerrero",
-        "Kevin Maik Jablonka",
-        "Elias Moubarak",
-        "Natalia Gasilova",
-        "Nency P. Domingues",
-        "Raluca-Ana Kessler",
-        "Emad Oveisi",
-        "Fatmah Mish Ebrahim",
-        "Berend Smit"
-      ],
-      "venue": "ACS Mater. Au",
-      "year": 2025,
-      "abstract": "Homochiral metal–organic frameworks (MOFs) are exceptional media for heterogeneous enantiodifferentiation processes. Modifying available achiral structure-bearing MOF scaffolds is a preferred method to extend this class of materials. Reported postsynthetic covalent chiralizations generally lead to uniform, site-specific modifications. The use of chemically versatile modifying agents, like aldehydes, may instead result in the statistical formation of chemically nonuniform anchored products. In addition, the use of such modifying agents gives rise to spatial nonuniformities in the radial direction, due to prohibited diffusion through the MOF bulk. The advantageous grain structure formation plus molecular nonuniformity greatly increase the complexity of such systems. The use of such modifying agents, therefore, necessitates a broader holistic characterization. The present work explores the adaptation of imine chemistry for postsynthetic chiralization. A chiral aldehyde and a chiral ketone are probed on two amine-functionalized MOF substrates—MIL-125 NH2 and UiO-66 NH2. The UiO-66 NH2 modified with the natural product-derived (R)-2,2-dimethyl-1,3-dioxolane-4-carboxaldehyde ((R)-1 aldehyde) is found to have the best performance in terms of reactivity and MOF stability. A comprehensive toolbox of methods was demonstrated to robustly characterize the obtained material. This includes high-resolution accurate mass electrospray ionization mass spectrometry (HRAM-ESI-MS) to reveal the competing reactions that yield a set of oligomer-rich structures. In silico modeling correctly predicts the localization of the modification. The modification is found to be covalent and chiral and mainly proceeds through imine formation, resulting in a surface enantioselector display formation. Restricted diffusion lengths in the solid phase infer good retention of resolving power in ascending van Deemter régimes in chromatography. Meeting this criterion makes the yielding material a promising potential stationary phase candidate for performant chromatographic enantioseparations.",
-      "citations": 1,
-      "role": "coauthor",
-      "highlighted": false,
-      "topic": 3,
-      "x": -0.2784,
-      "y": 0.0713
+      "x": 0.1937,
+      "y": -0.1588
     },
     {
       "doi": "10.1088/2632-2153/ae0d5d",
@@ -337,9 +515,10 @@
       "citations": 1,
       "role": "coauthor",
       "highlighted": false,
-      "topic": 2,
-      "x": -0.0507,
-      "y": -0.0648
+      "pillar": "unclassified",
+      "topic": 4,
+      "x": 0.0665,
+      "y": -0.0624
     },
     {
       "doi": "10.1038/s41524-025-01823-y",
@@ -355,9 +534,10 @@
       "citations": 7,
       "role": "corresponding",
       "highlighted": false,
-      "topic": 0,
-      "x": -0.0862,
-      "y": 0.1775
+      "pillar": "action",
+      "topic": 3,
+      "x": 0.0522,
+      "y": -0.2876
     },
     {
       "doi": "10.1038/s43588-025-00836-3",
@@ -378,10 +558,11 @@
       "abstract": "Recent advancements in artificial intelligence have sparked interest in scientific assistants that could support researchers across the full spectrum of scientific workflows, from literature review to experimental design and data analysis. A key capability for such systems is the ability to process and reason about scientific information in both visual and textual forms—from interpreting spectroscopic data to understanding laboratory set-ups. Here we introduce MaCBench, a comprehensive benchmark for evaluating how vision language models handle real-world chemistry and materials science tasks across three core aspects: data extraction, experimental execution and results interpretation. Through a systematic evaluation of leading models, we find that although these systems show promising capabilities in basic perception tasks—achieving near-perfect performance in equipment identification and standardized data extraction—they exhibit fundamental limitations in spatial reasoning, cross-modal information synthesis and multi-step logical inference. Our insights have implications beyond chemistry and materials science, suggesting that developing reliable multimodal AI scientific assistants may require advances in curating suitable training data and approaches to training those models.",
       "citations": 51,
       "role": "corresponding",
-      "highlighted": true,
+      "highlighted": false,
+      "pillar": "evaluation",
       "topic": 2,
-      "x": 0.0654,
-      "y": -0.3297
+      "x": 0.075,
+      "y": 0.1335
     },
     {
       "doi": "10.1038/s41570-025-00750-2",
@@ -397,9 +578,10 @@
       "citations": 6,
       "role": "corresponding",
       "highlighted": false,
-      "topic": 1,
-      "x": -0.1859,
-      "y": -0.092
+      "pillar": "unclassified",
+      "topic": 4,
+      "x": 0.2032,
+      "y": -0.1635
     },
     {
       "doi": "10.1038/s43588-025-00871-0",
@@ -415,46 +597,10 @@
       "citations": 1,
       "role": "corresponding",
       "highlighted": false,
+      "pillar": "evaluation",
       "topic": 2,
-      "x": -0.0458,
-      "y": -0.4339
-    },
-    {
-      "doi": "10.1038/s41586-024-07683-8",
-      "url": "https://doi.org/10.1038/s41586-024-07683-8",
-      "title": "A holistic platform for accelerating sorbent-based carbon capture",
-      "authors": [
-        "Charithea Charalambous",
-        "Elias Moubarak",
-        "Johannes Schilling",
-        "Eva Sanchez Fernandez",
-        "Jin-Yu Wang",
-        "Laura Herraiz",
-        "Fergus Mcilwaine",
-        "Shing Bo Peh",
-        "Matthew Garvin",
-        "Kevin Maik Jablonka",
-        "Seyed Mohamad Moosavi",
-        "Joren Van Herck",
-        "Aysu Yurdusen Ozturk",
-        "Alireza Pourghaderi",
-        "Ah-Young Song",
-        "Georges Mouchaham",
-        "Christian Serre",
-        "Jeffrey A. Reimer",
-        "André Bardow",
-        "Berend Smit",
-        "Susana Garcia"
-      ],
-      "venue": "Nature",
-      "year": 2024,
-      "abstract": "Reducing carbon dioxide (CO 2 ) emissions urgently requires the large-scale deployment of carbon-capture technologies. These technologies must separate CO 2 from various sources and deliver it to different sinks 1,2 . The quest for optimal solutions for specific source–sink pairs is a complex, multi-objective challenge involving multiple stakeholders and depends on social, economic and regional contexts. Currently, research follows a sequential approach: chemists focus on materials design 3 and engineers on optimizing processes 4,5 , which are then operated at a scale that impacts the economy and the environment. Assessing these impacts, such as the greenhouse gas emissions over the plant’s lifetime, is typically one of the final steps 6 . Here we introduce the PrISMa (Process-Informed design of tailor-made Sorbent Materials) platform, which integrates materials, process design, techno-economics and life-cycle assessment. We compare more than 60 case studies capturing CO 2 from various sources in 5 global regions using different technologies. The platform simultaneously informs various stakeholders about the cost-effectiveness of technologies, process configurations and locations, reveals the molecular characteristics of the top-performing sorbents, and provides insights on environmental impacts, co-benefits and trade-offs. By uniting stakeholders at an early research stage, PrISMa accelerates carbon-capture technology development during this critical period as we aim for a net-zero world.",
-      "citations": 78,
-      "role": "coauthor",
-      "highlighted": false,
-      "topic": 1,
-      "x": -0.2021,
-      "y": 0.0873
+      "x": 0.2458,
+      "y": 0.213
     },
     {
       "doi": "10.1016/j.chempr.2024.10.010",
@@ -480,28 +626,30 @@
       "citations": 4,
       "role": "coauthor",
       "highlighted": false,
-      "topic": 0,
-      "x": -0.0133,
-      "y": 0.1625
+      "pillar": "unclassified",
+      "topic": 4,
+      "x": 0.0078,
+      "y": -0.0981
     },
     {
-      "doi": "10.1039/d4dd00116h",
-      "url": "https://doi.org/10.1039/d4dd00116h",
-      "title": "Deep learning-based recommendation system for metal–organic frameworks (MOFs)",
+      "doi": "10.48550/arXiv.2406.17295",
+      "url": "https://arxiv.org/abs/2406.17295",
+      "title": "Less can be more for predicting properties with large language models",
       "authors": [
-        "Xiaoqi Zhang",
-        "Kevin Maik Jablonka",
-        "Berend Smit"
+        "Nawaf Alampara",
+        "Santiago Miret",
+        "Kevin Maik Jablonka"
       ],
-      "venue": "Digital Discovery",
+      "venue": "arXiv",
       "year": 2024,
-      "abstract": "This work presents a recommendation system for metal–organic frameworks (MOFs) inspired by online content platforms.",
-      "citations": 2,
-      "role": "coauthor",
+      "abstract": "Predicting properties from coordinate-category data -- sets of vectors paired with categorical information -- is fundamental to computational science. In materials science, this challenge manifests as predicting properties like formation energies or elastic moduli from crystal structures comprising atomic positions (vectors) and element types (categorical information). While large language models (LLMs) have increasingly been applied to such tasks, with researchers encoding structural data as text, optimal strategies for achieving reliable predictions remain elusive. Here, we report fundamental limitations in LLM's ability to learn from coordinate information in coordinate-category data. Through systematic experiments using synthetic datasets with tunable coordinate and category contributions, combined with a comprehensive benchmarking framework (MatText) spanning multiple representations and model scales, we find that LLMs consistently fail to capture coordinate information while excelling at category patterns. This geometric blindness persists regardless of model size (up to 70B parameters), dataset scale (up to 2M structures), or text representation strategy. Our findings suggest immediate practical implications: for materials property prediction tasks dominated by structural effects, specialized geometric architectures consistently outperform LLMs by significant margins, as evidenced by a clear \"GNN-LM wall\" in performance benchmarks. Based on our analysis, we provide concrete guidelines for architecture selection in scientific machine learning, while highlighting the critical importance of understanding model inductive biases when tackling scientific prediction problems.",
+      "citations": null,
+      "role": "corresponding",
       "highlighted": false,
+      "pillar": "action",
       "topic": 3,
-      "x": -0.331,
-      "y": 0.0589
+      "x": 0.0072,
+      "y": 0.0671
     },
     {
       "doi": "10.1038/s42256-023-00788-1",
@@ -519,9 +667,10 @@
       "citations": 379,
       "role": "first",
       "highlighted": false,
-      "topic": 1,
-      "x": 0.6339,
-      "y": 0.3776
+      "pillar": "action",
+      "topic": 3,
+      "x": -0.7695,
+      "y": -0.1374
     },
     {
       "doi": "10.1021/acscentsci.3c00500",
@@ -551,9 +700,10 @@
       "citations": 4,
       "role": "coauthor",
       "highlighted": false,
-      "topic": 2,
-      "x": -0.1983,
-      "y": -0.2133
+      "pillar": "unclassified",
+      "topic": 4,
+      "x": 0.2422,
+      "y": -0.0786
     },
     {
       "doi": "10.1039/d3dd00113j",
@@ -620,94 +770,10 @@
       "citations": 177,
       "role": "corresponding",
       "highlighted": false,
-      "topic": 2,
-      "x": 0.2616,
-      "y": -0.0549
-    },
-    {
-      "doi": "10.1021/acscentsci.2c01177",
-      "url": "https://doi.org/10.1021/acscentsci.2c01177",
-      "title": "An Ecosystem for Digital Reticular Chemistry",
-      "authors": [
-        "Kevin Maik Jablonka",
-        "Andrew S. Rosen",
-        "Aditi S. Krishnapriyan",
-        "Berend Smit"
-      ],
-      "venue": "ACS Cent. Sci.",
-      "year": 2023,
-      "abstract": "The vastness of the materials design space makes it impractical to explore using traditional brute-force methods, particularly in reticular chemistry. However, machine learning has shown promise in expediting and guiding materials design. Despite numerous successful applications of machine learning to reticular materials, progress in the field has stagnated, possibly because digital chemistry is more an art than a science and its limited accessibility to inexperienced researchers. To address this issue, we present mofdscribe, a software ecosystem tailored to novice and seasoned digital chemists that streamlines the ideation, modeling, and publication process. Though optimized for reticular chemistry, our tools are versatile and can be used in nonreticular materials research. We believe that mofdscribe will enable a more reliable, efficient, and comparable field of digital chemistry.",
-      "citations": 41,
-      "role": "first",
-      "highlighted": false,
-      "topic": 0,
-      "x": -0.0555,
-      "y": 0.271
-    },
-    {
-      "doi": "10.1039/d3dd00079f",
-      "url": "https://doi.org/10.1039/d3dd00079f",
-      "title": "Biomass to energy: a machine learning model for optimum gasification pathways",
-      "authors": [
-        "María Victoria Gil",
-        "Kevin Maik Jablonka",
-        "Susana Garcia",
-        "Covadonga Pevida",
-        "Berend Smit"
-      ],
-      "venue": "Digital Discovery",
-      "year": 2023,
-      "abstract": "Machine learning model to identify the optimal gasification-based biomass conversion route from biomass properties. It allows us to connect the wide diversity of biomass feedstocks with the most suitable application.",
-      "citations": 20,
-      "role": "coauthor",
-      "highlighted": false,
-      "topic": 3,
-      "x": -0.0875,
-      "y": 0.2593
-    },
-    {
-      "doi": "10.1002/adfm.202301594",
-      "url": "https://doi.org/10.1002/adfm.202301594",
-      "title": "In Search of Covalent Organic Framework Photocatalysts: A DFT‐Based Screening Approach",
-      "authors": [
-        "Beatriz Mourino",
-        "Kevin Maik Jablonka",
-        "Andres Ortega‐Guerrero",
-        "Berend Smit"
-      ],
-      "venue": "Adv Funct Materials",
-      "year": 2023,
-      "abstract": "Covalent organic frameworks (COFs) stand out as prospective organic‐based photocatalysts given their intriguing optoelectronic properties, such as visible light absorption and high charge‐carrier mobility. The “Clean, Uniform, Refined with Automatic Tracking from Experimental Database” (CURATED) COFs is a database of reported experimental COFs that until now remained mostly unexplored for photocatalysis. In this study, the CURATED COFs database is screened for discovering potential photocatalysts using a set of DFT‐based descriptors that cost‐effectively assesses visible light absorption, preliminary thermodynamic feasibility of the desired pair of redox reactions, charge separation, and charge‐carrier mobility. The workflow can shortlist 13 COFs as prospective candidates for water splitting, and identify materials (N x ‐COF ( x = 0–3)) that have been reported as candidates for hydrogen evolution reaction. Overall, the strategy addresses the challenge of exploring a large number of COFs by directing future research toward a selective group of COFs, while providing valuable insights into the structural design for achieving a desired photocatalytic process.",
-      "citations": 33,
-      "role": "coauthor",
-      "highlighted": false,
-      "topic": 3,
-      "x": -0.2551,
-      "y": 0.0372
-    },
-    {
-      "doi": "10.1126/sciadv.adc9576",
-      "url": "https://doi.org/10.1126/sciadv.adc9576",
-      "title": "Machine learning for industrial processes: Forecasting amine emissions from a carbon capture plant",
-      "authors": [
-        "Kevin Maik Jablonka",
-        "Charithea Charalambous",
-        "Eva Sanchez Fernandez",
-        "Georg Wiechers",
-        "Juliana Monteiro",
-        "Peter Moser",
-        "Berend Smit",
-        "Susana Garcia"
-      ],
-      "venue": "Sci. Adv.",
-      "year": 2023,
-      "abstract": "One of the main environmental impacts of amine-based carbon capture processes is the emission of the solvent into the atmosphere. To understand how these emissions are affected by the intermittent operation of a power plant, we performed stress tests on a plant operating with a mixture of two amines, 2-amino-2-methyl-1-propanol and piperazine (CESAR1). To forecast the emissions and model the impact of interventions, we developed a machine learning model. Our model showed that some interventions have opposite effects on the emissions of the components of the solvent. Thus, mitigation strategies required for capture plants operating on a single component solvent (e.g., monoethanolamine) need to be reconsidered if operated using a mixture of amines. Amine emissions from a solvent-based carbon capture plant are an example of a process that is too complex to be described by conventional process models. We, therefore, expect that our approach can be more generally applied.",
-      "citations": 41,
-      "role": "first",
-      "highlighted": false,
-      "topic": 2,
-      "x": -0.1712,
-      "y": 0.2183
+      "pillar": "reasoning",
+      "topic": 1,
+      "x": -0.1986,
+      "y": 0.1312
     }
   ]
 }

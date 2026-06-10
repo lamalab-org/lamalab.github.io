@@ -30,6 +30,10 @@ jobs:
         run: pip install -r publications/requirements.txt
 
       - name: Rebuild data/publications.json
+        env:
+          # optional — when set, pillars are classified by a strong LLM reading
+          # each abstract; without it the script falls back to embeddings/keywords
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python publications/build.py ${{ inputs.force && '--force' || '' }}
 
       - name: Open pull request with refreshed data
