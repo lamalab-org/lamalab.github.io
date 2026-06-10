@@ -6,8 +6,11 @@ Pipeline:  dois.txt -> metadata + abstracts (CrossRef / Semantic Scholar)
            -> data/publications.json  (committed; rendered by Hugo, never recomputed
               at build time).
 
-The expensive backends degrade gracefully so the script runs anywhere:
-  * embeddings: sentence-transformers if installed, else TF-IDF + TruncatedSVD
+The backends degrade gracefully so the script runs anywhere:
+  * embeddings: a hosted model over HTTPS (OPENAI_API_KEY -> text-embedding-3-large,
+                or VOYAGE_API_KEY -> voyage-3.5; no torch) -> local
+                sentence-transformers -> TF-IDF + TruncatedSVD
+  * pillars:    a strong LLM (ANTHROPIC_API_KEY) -> embedding similarity -> keywords
   * 2D layout:  UMAP if installed, else PCA
 
 Human review = edit data/publications.json directly. Re-runs preserve human-renamed
@@ -257,8 +260,42 @@ def fetch(entry: dict, force: bool) -> dict | None:
 # --------------------------------------------------------------------------- #
 # embeddings + 2D projection
 # --------------------------------------------------------------------------- #
+def _api_embed(texts: list[str]) -> np.ndarray | None:
+    """Embed via a hosted model over plain HTTPS — no torch. Prefers OpenAI
+    (`text-embedding-3-large`), then Voyage. Returns None if no key is set."""
+    texts = [t[:8000] for t in texts]                      # stay under token limits
+    if os.environ.get("OPENAI_API_KEY"):
+        key = os.environ["OPENAI_API_KEY"]
+        model = os.environ.get("PUBLICATIONS_EMBED_MODEL", "text-embedding-3-large")
+        url, payload, prov = ("https://api.openai.com/v1/embeddings",
+                              {"model": model, "input": texts}, "OpenAI")
+    elif os.environ.get("VOYAGE_API_KEY"):
+        key = os.environ["VOYAGE_API_KEY"]
+        model = os.environ.get("PUBLICATIONS_EMBED_MODEL", "voyage-3.5")
+        url, payload, prov = ("https://api.voyageai.com/v1/embeddings",
+                              {"model": model, "input": texts, "input_type": "document"}, "Voyage")
+    else:
+        return None
+    try:
+        from sklearn.preprocessing import normalize
+        r = requests.post(url, headers={"Authorization": f"Bearer {key}"},
+                          json=payload, timeout=120)
+        r.raise_for_status()
+        rows = sorted(r.json()["data"], key=lambda d: d.get("index", 0))
+        print(f"  embeddings: {prov} {model}")
+        return normalize(np.asarray([d["embedding"] for d in rows], dtype=float))
+    except Exception as e:                                  # noqa: BLE001
+        print(f"  embeddings: {prov} API failed ({e.__class__.__name__}), falling back",
+              file=sys.stderr)
+        return None
+
+
 def embed(texts: list[str]) -> np.ndarray:
-    """Dense embeddings; transformer model if available, else TF-IDF + SVD."""
+    """Dense embeddings. Preference: hosted model (OpenAI/Voyage, no torch) →
+    local sentence-transformers → TF-IDF + SVD."""
+    api = _api_embed(texts)
+    if api is not None:
+        return api
     try:
         from sentence_transformers import SentenceTransformer
         model = SentenceTransformer("all-MiniLM-L6-v2")

@@ -31,8 +31,10 @@ jobs:
 
       - name: Rebuild data/publications.json
         env:
-          # optional — when set, pillars are classified by a strong LLM reading
-          # each abstract; without it the script falls back to embeddings/keywords
+          # OPENAI_API_KEY -> text-embedding-3-large for the landscape layout
+          # ANTHROPIC_API_KEY -> Claude classifies each paper into a research thread
+          # Both optional: the script falls back gracefully if a key is absent.
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python publications/build.py ${{ inputs.force && '--force' || '' }}
 
