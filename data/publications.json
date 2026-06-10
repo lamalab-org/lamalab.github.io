@@ -46,8 +46,8 @@
       "highlighted": false,
       "pillar": "evaluation",
       "topic": 2,
-      "x": 0.2609,
-      "y": 0.0345
+      "x": 19.2985,
+      "y": -7.3753
     },
     {
       "doi": "10.48550/arXiv.2604.18805",
@@ -71,8 +71,8 @@
       "highlighted": false,
       "pillar": "evaluation",
       "topic": 2,
-      "x": 0.2526,
-      "y": 0.0407
+      "x": 18.5481,
+      "y": -7.4213
     },
     {
       "doi": "10.48550/arXiv.2601.17807",
@@ -107,8 +107,8 @@
       "highlighted": false,
       "pillar": "perception",
       "topic": 0,
-      "x": 0.1814,
-      "y": 0.0095
+      "x": 19.1377,
+      "y": -9.7207
     },
     {
       "doi": "10.48550/arXiv.2602.04696",
@@ -126,8 +126,8 @@
       "highlighted": false,
       "pillar": "reasoning",
       "topic": 1,
-      "x": 0.0697,
-      "y": -0.1603
+      "x": 17.9014,
+      "y": -9.2874
     },
     {
       "doi": "10.48550/arXiv.2602.17730",
@@ -144,8 +144,8 @@
       "highlighted": false,
       "pillar": "evaluation",
       "topic": 2,
-      "x": -0.0271,
-      "y": -0.1925
+      "x": 19.0327,
+      "y": -9.1635
     },
     {
       "doi": "10.1038/s41467-026-73846-y",
@@ -164,8 +164,8 @@
       "highlighted": false,
       "pillar": "perception",
       "topic": 0,
-      "x": 0.0822,
-      "y": -0.1192
+      "x": 18.0212,
+      "y": -8.873
     },
     {
       "doi": "10.1021/acs.chemrev.5c00583",
@@ -190,8 +190,8 @@
       "highlighted": false,
       "pillar": "reasoning",
       "topic": 1,
-      "x": -0.1834,
-      "y": 0.1492
+      "x": 17.1524,
+      "y": -8.5882
     },
     {
       "doi": "10.1016/j.carbpol.2026.124890",
@@ -218,8 +218,8 @@
       "highlighted": false,
       "pillar": "action",
       "topic": 3,
-      "x": 0.0863,
-      "y": -0.2877
+      "x": 18.5469,
+      "y": -9.9732
     },
     {
       "doi": "10.48550/arXiv.2605.13826",
@@ -237,8 +237,8 @@
       "highlighted": false,
       "pillar": "evaluation",
       "topic": 2,
-      "x": 0.0614,
-      "y": -0.2112
+      "x": 19.5796,
+      "y": -9.2338
     },
     {
       "doi": "10.48550/arXiv.2601.21618",
@@ -257,8 +257,8 @@
       "highlighted": false,
       "pillar": "evaluation",
       "topic": 2,
-      "x": 0.1276,
-      "y": -0.1004
+      "x": 17.3799,
+      "y": -7.4382
     },
     {
       "doi": "10.1038/s41557-025-01815-x",
@@ -309,8 +309,8 @@
       "highlighted": false,
       "pillar": "evaluation",
       "topic": 2,
-      "x": -0.0202,
-      "y": 0.5229
+      "x": 16.7249,
+      "y": -9.0245
     },
     {
       "doi": "10.1038/s41557-025-01865-1",
@@ -327,8 +327,8 @@
       "highlighted": false,
       "pillar": "evaluation",
       "topic": 2,
-      "x": -0.0585,
-      "y": 0.5314
+      "x": 16.3362,
+      "y": -7.7378
     },
     {
       "doi": "10.1039/d4sc04401k",
@@ -394,8 +394,8 @@
       "highlighted": false,
       "pillar": "evaluation",
       "topic": 2,
-      "x": -0.6366,
-      "y": -0.0691
+      "x": 16.5992,
+      "y": -8.4209
     },
     {
       "doi": "10.48550/arXiv.2505.12534",
@@ -426,8 +426,8 @@
       "highlighted": false,
       "pillar": "reasoning",
       "topic": 1,
-      "x": -0.0529,
-      "y": 0.1836
+      "x": 17.3152,
+      "y": -9.9324
     },
     {
       "doi": "10.1039/d4cs00913d",
@@ -451,8 +451,8 @@
       "highlighted": false,
       "pillar": "perception",
       "topic": 0,
-      "x": -0.0339,
-      "y": 0.3301
+      "x": 16.7744,
+      "y": -7.9235
     },
     {
       "doi": "10.1016/j.commatsci.2025.114041",
@@ -471,8 +471,8 @@
       "highlighted": false,
       "pillar": "evaluation",
       "topic": 2,
-      "x": -0.2351,
-      "y": -0.2199
+      "x": 19.453,
+      "y": -8.7715
     },
     {
       "doi": "10.1039/d5dd00109a",
@@ -493,8 +493,8 @@
       "highlighted": false,
       "pillar": "action",
       "topic": 3,
-      "x": 0.1937,
-      "y": -0.1588
+      "x": 18.4849,
+      "y": -9.2542
     },
     {
       "doi": "10.1088/2632-2153/ae0d5d",
@@ -517,8 +517,8 @@
       "highlighted": false,
       "pillar": "unclassified",
       "topic": 4,
-      "x": 0.0665,
-      "y": -0.0624
+      "x": 19.0701,
+      "y": -8.3107
     },
     {
       "doi": "10.1038/s41524-025-01823-y",
@@ -536,8 +536,8 @@
       "highlighted": false,
       "pillar": "action",
       "topic": 3,
-      "x": 0.0522,
-      "y": -0.2876
+      "x": 18.061,
+      "y": -9.9028
     },
     {
       "doi": "10.1038/s43588-025-00836-3",
@@ -561,8 +561,8 @@
       "highlighted": false,
       "pillar": "evaluation",
       "topic": 2,
-      "x": 0.075,
-      "y": 0.1335
+      "x": 18.3374,
+      "y": -8.3481
     },
     {
       "doi": "10.1038/s41570-025-00750-2",
@@ -580,8 +580,8 @@
       "highlighted": false,
       "pillar": "unclassified",
       "topic": 4,
-      "x": 0.2032,
-      "y": -0.1635
+      "x": 19.1788,
+      "y": -7.7055
     },
     {
       "doi": "10.1038/s43588-025-00871-0",
@@ -599,8 +599,8 @@
       "highlighted": false,
       "pillar": "evaluation",
       "topic": 2,
-      "x": 0.2458,
-      "y": 0.213
+      "x": 18.0358,
+      "y": -7.603
     },
     {
       "doi": "10.1016/j.chempr.2024.10.010",
@@ -628,8 +628,8 @@
       "highlighted": false,
       "pillar": "unclassified",
       "topic": 4,
-      "x": 0.0078,
-      "y": -0.0981
+      "x": 17.0149,
+      "y": -9.6532
     },
     {
       "doi": "10.48550/arXiv.2406.17295",
@@ -648,8 +648,8 @@
       "highlighted": false,
       "pillar": "action",
       "topic": 3,
-      "x": 0.0072,
-      "y": 0.0671
+      "x": 17.5347,
+      "y": -8.0629
     },
     {
       "doi": "10.1038/s42256-023-00788-1",
@@ -669,8 +669,8 @@
       "highlighted": false,
       "pillar": "action",
       "topic": 3,
-      "x": -0.7695,
-      "y": -0.1374
+      "x": 17.3702,
+      "y": -9.013
     },
     {
       "doi": "10.1021/acscentsci.3c00500",
@@ -702,8 +702,8 @@
       "highlighted": false,
       "pillar": "unclassified",
       "topic": 4,
-      "x": 0.2422,
-      "y": -0.0786
+      "x": 18.8791,
+      "y": -7.1421
     },
     {
       "doi": "10.1039/d3dd00113j",
@@ -772,8 +772,8 @@
       "highlighted": false,
       "pillar": "reasoning",
       "topic": 1,
-      "x": -0.1986,
-      "y": 0.1312
+      "x": 16.1064,
+      "y": -8.3725
     }
   ]
 }

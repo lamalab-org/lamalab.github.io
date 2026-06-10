@@ -44,6 +44,21 @@ MAILTO = "kevin.jablonka@uni-jena.de"
 HEADERS = {"User-Agent": f"lamalab-publications/1.0 (mailto:{MAILTO})"}
 
 
+def load_dotenv() -> None:
+    """Load KEY=VALUE pairs from a `.env` (repo root or publications/) into the
+    environment, without overriding variables already set. Keeps API keys out of
+    the shell history and the repo (`.env` is git-ignored)."""
+    for path in (REPO / ".env", HERE / ".env"):
+        if not path.exists():
+            continue
+        for line in path.read_text().splitlines():
+            line = line.strip().removeprefix("export ").strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, _, val = line.partition("=")
+            os.environ.setdefault(key.strip(), val.strip().strip('"').strip("'"))
+
+
 # --------------------------------------------------------------------------- #
 # input
 # --------------------------------------------------------------------------- #
@@ -476,6 +491,7 @@ def main() -> None:
                     help="ignore cache, re-fetch all metadata")
     args = ap.parse_args()
 
+    load_dotenv()
     entries = read_dois()
     if not entries:
         sys.exit("dois.txt is empty — add at least one DOI")

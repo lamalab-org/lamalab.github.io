@@ -65,7 +65,6 @@
         background: var(--light-bg, #FAFAFA); color: var(--secondary-color, #666);
         border: 1px solid var(--border-color, #E0E0E0);
     }
-    .pub-star { color: var(--primary-color, #A43830); font-weight: bold; }
     .pub-abstract {
         font-size: 0.9rem; line-height: 1.5; color: var(--text-color, #333);
         display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
@@ -80,7 +79,7 @@
 </style>
 
 <div id="pub-landscape" class="pub-landscape"></div>
-<p class="pub-hint">each point is a paper · colour = topic · ★ = highlighted · hover to peek · click to jump · use the legend to toggle topics</p>
+<p class="pub-hint">each point is a paper · colour = research thread · hover to peek · click to jump · use the legend to toggle threads</p>
 
 <div class="pub-filters">
     <button class="pub-filter active" data-role="all">all</button>
@@ -95,7 +94,7 @@
     {{- $topic := index (where $data.topics "id" .topic) 0 -}}
     <div class="pub-card" id="{{ $id }}" data-role="{{ .role | default "" }}">
         <h3 class="pub-card-title">
-            {{ if .highlighted }}<span class="pub-star" title="highlighted">★</span> {{ end }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ .title }}</a>
+            <a href="{{ .url }}" target="_blank" rel="noopener">{{ .title }}</a>
         </h3>
         <div class="pub-meta">
             <span class="pub-authors">{{ delimit (first 8 .authors) ", " }}{{ if gt (len .authors) 8 }}, et al.{{ end }}</span><br>
@@ -119,7 +118,7 @@
     var DATA = JSON.parse({{ $data | jsonify }});
     var idOf = function (doi) { return "pub-" + doi.replace(/[^a-zA-Z0-9]+/g, "-"); };
 
-    // one Plotly trace per topic; highlighted papers get a larger star marker
+    // one Plotly trace per research thread (pillar)
     var traces = DATA.topics.map(function (t) {
         var pts = DATA.papers.filter(function (p) { return p.topic === t.id; });
         return {
@@ -133,8 +132,7 @@
             type: "scatter",
             marker: {
                 color: t.color,
-                size: pts.map(function (p) { return p.highlighted ? 16 : 11; }),
-                symbol: pts.map(function (p) { return p.highlighted ? "star" : "circle"; }),
+                size: 11,
                 line: { width: 1, color: "rgba(255,255,255,0.8)" },
                 opacity: 0.9
             },
