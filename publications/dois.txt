@@ -30,6 +30,7 @@
 arXiv:2505.12534                # ChemPile: 250GB dataset for chemical foundation models {type=peer-reviewed, venue=NeurIPS 2025}
 
 # ── preprints ───────────────────────────────────────────────────────────────
+10.26434/chemrxiv.15004102/v2   # Condition-aware prediction of copolymer architecture
 arXiv:2406.17295                # Less can be more for predicting properties with LLMs
 arXiv:2604.18805                # AI scientists produce results without reasoning scientifically
 arXiv:2602.17730                # Clever materials: good materials for the wrong reasons

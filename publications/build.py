@@ -40,6 +40,27 @@ MAILTO = "kevin.jablonka@uni-jena.de"
 HEADERS = {"User-Agent": f"lamalab-publications/1.0 (mailto:{MAILTO})"}
 
 
+LINKS_FILE = HERE / "links.json"
+# DOI prefixes that identify preprint servers (arXiv, ChemRxiv, bioRxiv, Research
+# Square, ChemRxiv legacy) — used to default `type` to "preprint".
+PREPRINT_PREFIXES = ("10.48550/arxiv", "10.26434/chemrxiv", "10.1101/",
+                     "10.21203/", "10.33774/", "10.31223/", "10.31224/")
+
+
+def _is_preprint(doi: str) -> bool:
+    return doi.lower().startswith(PREPRINT_PREFIXES)
+
+
+def load_links() -> dict:
+    """Optional curated media/news links per DOI: {doi: [{label, url}, ...]}."""
+    if not LINKS_FILE.exists():
+        return {}
+    try:
+        return {k.lower(): v for k, v in json.loads(LINKS_FILE.read_text()).items()}
+    except Exception:                                      # noqa: BLE001
+        return {}
+
+
 def load_dotenv() -> None:
     """Load KEY=VALUE pairs from a `.env` (repo root or publications/) into the
     environment, without overriding variables already set. Keeps API keys out of
@@ -363,8 +384,11 @@ def _llm_classify(papers: list[dict]) -> list[list[str]] | None:
         "You assign scientific papers to a research group's threads. The four "
         f"research threads:\n{pillar_block}\n- community: non-research outputs "
         "(editorials, comments, education, perspectives).\n\n"
-        "For each paper below, pick the ONE or TWO threads that genuinely fit "
-        "(prefer one; use two only when a paper substantively spans both). Use "
+        "For each paper, pick ONE or TWO threads. Assign a second thread whenever "
+        "the paper makes a genuine, substantive contribution to it — many of this "
+        "group's papers legitimately span two threads (e.g. a benchmark that is "
+        "also about reasoning, or a method that is both perception and action). "
+        "Use a single thread when the paper is clearly about just one. Use "
         "'community' only for non-research outputs, and then alone.\n\n"
         f"Papers:\n{json.dumps(items, ensure_ascii=False)}\n\n"
         "Respond with ONLY a JSON array, no prose, each element "
@@ -394,14 +418,36 @@ def suggest_pillars(papers: list[dict], texts: list[str]) -> list[list[str]]:
     return [_keyword_pillars(t) for t in texts]
 
 
-def classify_pillars(papers: list[dict], texts: list[str]) -> None:
-    """Fill in pillars for papers lacking an explicit annotation. Mutates in place."""
-    need = [i for i, p in enumerate(papers) if not p.get("pillars")]
+_PILLAR_CACHE = CACHE_DIR / "pillars.json"
+
+
+def classify_pillars(papers: list[dict], texts: list[str], force: bool = False) -> None:
+    """Fill in pillars for papers lacking an explicit annotation. Cached per DOI so
+    rebuilds are stable — only genuinely new papers are (re)classified. Mutates in
+    place."""
+    cache = {}
+    if not force and _PILLAR_CACHE.exists():
+        try:
+            cache = json.loads(_PILLAR_CACHE.read_text())
+        except Exception:                                  # noqa: BLE001
+            cache = {}
+    need = []
+    for i, p in enumerate(papers):
+        if p.get("pillars"):                               # explicit annotation wins
+            continue
+        cached = cache.get(p["doi"].lower())
+        if cached:
+            p["pillars"], p["pillar_auto"] = cached, True
+        else:
+            need.append(i)
     if need:
         suggestions = suggest_pillars([papers[i] for i in need], [texts[i] for i in need])
         for idx, pillars in zip(need, suggestions):
             papers[idx]["pillars"] = pillars or ["community"]
-            papers[idx]["pillar_auto"] = True              # flag for human review
+            papers[idx]["pillar_auto"] = True
+            cache[papers[idx]["doi"].lower()] = papers[idx]["pillars"]
+        CACHE_DIR.mkdir(exist_ok=True)
+        _PILLAR_CACHE.write_text(json.dumps(cache, indent=2, ensure_ascii=False))
 
 
 # --------------------------------------------------------------------------- #
@@ -425,16 +471,19 @@ def main() -> None:
         if rec:
             rec["highlighted"] = entry["highlight"]
             rec["pillars"] = entry["pillars"] or None       # explicit annotation, else LLM fills
-            is_arxiv = rec["doi"].lower().startswith("10.48550/arxiv")
-            rec["type"] = entry["type"] or ("preprint" if is_arxiv else "peer-reviewed")
+            rec["type"] = entry["type"] or ("preprint" if _is_preprint(rec["doi"]) else "peer-reviewed")
             print(f"  ✓ {rec['year']}  {rec['title'][:70]}")
             papers.append(rec)
     if not papers:
         sys.exit("no papers resolved — check the DOIs")
 
+    links = load_links()                                   # curated media/news per DOI
+    for p in papers:
+        p["media"] = links.get(p["doi"].lower(), [])
+
     texts = [f"{p['title']}. {p.get('abstract', '')}".strip() for p in papers]
     print("classifying into research threads ...")
-    classify_pillars(papers, texts)                        # fills any missing pillars
+    classify_pillars(papers, texts, args.force)            # fills any missing pillars
 
     # threads are the group's pillars — canonical order, fixed colours + blurbs
     present = [name for name in PILLAR_ORDER
@@ -443,7 +492,17 @@ def main() -> None:
                 "color": PILLAR_COLOR[name], "description": PILLAR_BLURB[name]}
                for name in present]
 
-    papers.sort(key=lambda p: (-(p["year"] or 0), p["title"].lower()))
+    # order papers so the figure's rows (and the card list) group by primary
+    # thread, singles before multis, multis by their second thread, then by year.
+    order = {name: i for i, name in enumerate(PILLAR_ORDER)}
+
+    def sort_key(p: dict):
+        cols = [order[x] for x in p["pillars"] if x in order] or [0]
+        secondary = max(cols[1:]) if len(cols) > 1 else -1
+        return (cols[0], 1 if len(cols) > 1 else 0, secondary,
+                -(p["year"] or 0), p["title"].lower())
+
+    papers.sort(key=sort_key)
 
     OUT_FILE.parent.mkdir(exist_ok=True)
     OUT_FILE.write_text(json.dumps({"threads": threads, "papers": papers},

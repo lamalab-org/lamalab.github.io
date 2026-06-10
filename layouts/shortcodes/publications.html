@@ -1,4 +1,17 @@
 {{- $data := .Site.Data.publications -}}
+{{- /* structured data: the publication list, for search engines */ -}}
+{{- $items := slice -}}
+{{- range $i, $p := $data.papers -}}
+    {{- $authors := slice -}}
+    {{- range $p.authors -}}{{- $authors = $authors | append (dict "@type" "Person" "name" .) -}}{{- end -}}
+    {{- $article := dict "@type" "ScholarlyArticle" "name" $p.title "headline" $p.title "url" $p.url "sameAs" $p.url "author" $authors -}}
+    {{- with $p.year -}}{{- $article = merge $article (dict "datePublished" (printf "%.0f" .)) -}}{{- end -}}
+    {{- with $p.venue -}}{{- $article = merge $article (dict "isPartOf" (dict "@type" "Periodical" "name" .)) -}}{{- end -}}
+    {{- $items = $items | append (dict "@type" "ListItem" "position" (add $i 1) "item" $article) -}}
+{{- end -}}
+<script type="application/ld+json">
+{{ (dict "@context" "https://schema.org" "@type" "ItemList" "name" "Publications — Lab for AI in Materials Science" "itemListElement" $items) | jsonify (dict "indent" "  ") | safeJS }}
+</script>
 <style>
     .pub-landscape { width: 100%; height: 520px; margin: 1.5rem 0 0.5rem;
         border: 1px solid var(--border-color, #E0E0E0); border-radius: 6px; }
@@ -43,10 +56,12 @@
     .pub-abstract.open { -webkit-line-clamp: unset; }
     .pub-more { font-family: "JetBrains Mono", monospace; font-size: 0.75rem; background: none;
         border: none; padding: 0.2rem 0; cursor: pointer; color: var(--primary-color, #A43830); }
+    .pub-media { font-size: 0.8rem; color: var(--secondary-color, #666); margin-top: 0.35rem; }
+    .pub-attrib { font-size: 0.72rem; color: var(--secondary-color, #888); margin: 1.75rem 0 0; }
 </style>
 
 <div id="pub-landscape" class="pub-landscape"></div>
-<p class="pub-hint">each paper sits on the research thread(s) it belongs to — papers shared by two threads sit between them, linked to both · hover to peek · click to jump · use the legend to toggle threads</p>
+<p class="pub-hint">columns are the research threads, each row is a paper (grouped by thread) — a dot marks each membership and a line links the threads a paper spans · hover to peek · click to jump · toggle threads in the legend</p>
 
 <ul class="pub-threads">
     {{- range $data.threads }}
@@ -80,7 +95,7 @@
         </h3>
         <div class="pub-meta">
             <span class="pub-authors">{{ delimit (first 8 .authors) ", " }}{{ if gt (len .authors) 8 }}, et al.{{ end }}</span><br>
-            {{ with .venue }}{{ . }} · {{ end }}{{ .year }}{{ if .citations }}{{ if gt .citations 0.0 }} · {{ .citations }} citations{{ end }}{{ end }}
+            {{ with .venue }}{{ . }} · {{ end }}{{ .year }}{{ if .citations }}{{ if gt .citations 0.0 }} · <span title="citation count via Semantic Scholar">{{ .citations }} citations</span>{{ end }}{{ end }}
             &nbsp; <span class="pub-tags">
                 {{- range .pillars }}{{ $t := index (where $data.threads "name" .) 0 }}{{ with $t }}<span class="pub-topic"><span class="pub-dot" style="background:{{ .color }}"></span>{{ .name }}</span>{{ end }}{{ end }}
                 {{ if ne .type "peer-reviewed" }}<span class="pub-type">{{ .type }}</span>{{ end }}
@@ -90,9 +105,14 @@
         <div class="pub-abstract">{{ . }}</div>
         <button class="pub-more" onclick="this.previousElementSibling.classList.toggle('open');this.textContent=this.previousElementSibling.classList.contains('open')?'show less':'show more'">show more</button>
         {{ end }}
+        {{ with .media }}
+        <div class="pub-media">also: {{ range $i, $m := . }}{{ if $i }} · {{ end }}<a href="{{ $m.url }}" target="_blank" rel="noopener">{{ $m.label }}</a>{{ end }}</div>
+        {{ end }}
     </div>
     {{- end -}}
 </div>
+
+<p class="pub-attrib">metadata from CrossRef, Semantic Scholar &amp; arXiv · citation counts from Semantic Scholar · media links curated by us</p>
 
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
 <script>
@@ -100,78 +120,65 @@
     var DATA = JSON.parse({{ $data | jsonify }});
     var idOf = function (doi) { return "pub-" + doi.replace(/[^a-zA-Z0-9]+/g, "-"); };
     var threads = DATA.threads, n = threads.length;
+    var colx = {}; threads.forEach(function (t, i) { colx[t.name] = i; });
 
-    // place each thread on a circle; papers sit at the mean of their threads' anchors
-    var anchors = {};
-    threads.forEach(function (t, i) {
-        var a = -Math.PI / 2 + (i / n) * 2 * Math.PI;
-        anchors[t.name] = { x: Math.cos(a), y: Math.sin(a) };
-    });
-    var hash = function (s) {
-        var h = 2166136261;
-        for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
-        return h >>> 0;
-    };
-    DATA.papers.forEach(function (p) {
-        var ps = (p.pillars || []).filter(function (x) { return anchors[x]; });
+    // incidence matrix: threads are columns, papers are rows (already ordered by
+    // build.py so primary-thread blocks are contiguous). A dot marks each
+    // membership; a connector spans the threads a shared paper belongs to.
+    var rows = DATA.papers.map(function (p, idx) {
+        var ps = (p.pillars || []).filter(function (x) { return colx[x] !== undefined; });
         if (!ps.length) ps = [threads[0].name];
-        var cx = 0, cy = 0;
-        ps.forEach(function (x) { cx += anchors[x].x; cy += anchors[x].y; });
-        cx /= ps.length; cy /= ps.length;
-        var h = hash(p.doi), ang = (h % 628) / 100, rad = 0.10 + ((h >>> 9) % 100) / 100 * 0.16;
-        p._x = cx + rad * Math.cos(ang); p._y = cy + rad * Math.sin(ang); p._ps = ps;
+        return { p: p, ps: ps, cols: ps.map(function (x) { return colx[x]; }), y: -idx };
     });
+    var R = rows.length;
 
-    // faint links from a shared paper to each of its threads
+    var el = document.getElementById("pub-landscape");
+    el.style.height = Math.max(420, Math.min(1500, R * 22 + 96)) + "px";
+
+    // horizontal connector for papers spanning more than one thread
     var lx = [], ly = [];
-    DATA.papers.forEach(function (p) {
-        if (p._ps.length > 1) p._ps.forEach(function (x) {
-            lx.push(p._x, anchors[x].x, null); ly.push(p._y, anchors[x].y, null);
-        });
+    rows.forEach(function (row) {
+        if (row.cols.length > 1) {
+            lx.push(Math.min.apply(null, row.cols), Math.max.apply(null, row.cols), null);
+            ly.push(row.y, row.y, null);
+        }
     });
     var linkTrace = { x: lx, y: ly, mode: "lines", type: "scatter", hoverinfo: "skip",
-        showlegend: false, line: { color: "rgba(120,120,120,0.28)", width: 1 } };
+        showlegend: false, line: { color: "rgba(120,120,120,0.4)", width: 1 } };
 
-    // soft halo disc at each thread anchor
-    var anchorTrace = {
-        x: threads.map(function (t) { return anchors[t.name].x; }),
-        y: threads.map(function (t) { return anchors[t.name].y; }),
-        mode: "markers", type: "scatter", hoverinfo: "skip", showlegend: false,
-        marker: { size: 48, color: threads.map(function (t) { return t.color; }), opacity: 0.12 }
-    };
-
-    // one point trace per thread (coloured by the paper's primary thread)
-    var pointTraces = threads.map(function (t) {
-        var pts = DATA.papers.filter(function (p) { return p._ps[0] === t.name; });
+    // one dot trace per thread (a dot wherever a paper belongs to that thread)
+    var dotTraces = threads.map(function (t) {
+        var rs = rows.filter(function (row) { return row.ps.indexOf(t.name) >= 0; });
         return {
             name: t.name,
-            x: pts.map(function (p) { return p._x; }),
-            y: pts.map(function (p) { return p._y; }),
-            customdata: pts.map(function (p) { return [p.title, p.venue || "", p.year, idOf(p.doi)]; }),
+            x: rs.map(function () { return colx[t.name]; }),
+            y: rs.map(function (row) { return row.y; }),
+            customdata: rs.map(function (row) { return [row.p.title, row.p.venue || "", row.p.year, idOf(row.p.doi)]; }),
             mode: "markers", type: "scatter",
-            marker: { color: t.color, size: 11, line: { width: 1, color: "rgba(255,255,255,0.85)" }, opacity: 0.95 },
+            marker: { color: t.color, size: 11, line: { width: 1, color: "rgba(255,255,255,0.85)" } },
             hovertemplate: "<b>%{customdata[0]}</b><br>%{customdata[1]} · %{customdata[2]}<extra></extra>"
         };
     });
 
-    var hidden = { showgrid: false, zeroline: false, showticklabels: false, title: "", range: [-1.6, 1.6] };
     var layout = {
-        hovermode: "closest", dragmode: "pan", margin: { l: 10, r: 10, t: 10, b: 10 },
-        xaxis: hidden,
-        yaxis: { showgrid: false, zeroline: false, showticklabels: false, title: "",
-                 range: [-1.6, 1.6], scaleanchor: "x", scaleratio: 1 },
-        legend: { orientation: "h", y: -0.03, font: { size: 11 } },
+        hovermode: "closest", dragmode: false,
+        margin: { l: 14, r: 14, t: 10, b: 40 },
+        xaxis: { showgrid: false, zeroline: false, showticklabels: false, range: [-0.6, n - 0.4], fixedrange: true },
+        yaxis: { showgrid: false, zeroline: false, showticklabels: false, range: [-(R - 1) - 1.0, 1.8], fixedrange: true },
+        legend: { orientation: "h", y: -0.04, font: { size: 11 } },
         paper_bgcolor: "rgba(0,0,0,0)", plot_bgcolor: "rgba(0,0,0,0)",
         hoverlabel: { align: "left", bgcolor: "#fff", bordercolor: "#A43830" },
-        annotations: threads.map(function (t) {
-            var a = anchors[t.name];
-            return { x: a.x * 1.32, y: a.y * 1.32, text: t.name, showarrow: false,
-                     font: { size: 13, color: t.color }, xanchor: "center", yanchor: "middle" };
+        shapes: threads.map(function (t, i) {
+            return { type: "line", x0: i, x1: i, y0: 0.4, y1: -(R - 1) - 0.4,
+                     line: { color: "#ececec", width: 1 }, layer: "below" };
+        }),
+        annotations: threads.map(function (t, i) {
+            return { x: i, y: 1.2, text: t.name, showarrow: false, xanchor: "center", yanchor: "bottom",
+                     font: { size: 12, color: t.color } };
         })
     };
 
-    var el = document.getElementById("pub-landscape");
-    Plotly.newPlot(el, [linkTrace, anchorTrace].concat(pointTraces), layout,
+    Plotly.newPlot(el, [linkTrace].concat(dotTraces), layout,
                    { responsive: true, displayModeBar: false }).then(function () {
         el.on("plotly_click", function (ev) {
             var cd = ev.points[0].customdata; if (!cd) return;

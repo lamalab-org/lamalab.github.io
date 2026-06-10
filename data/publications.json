@@ -33,53 +33,6 @@
   ],
   "papers": [
     {
-      "doi": "10.48550/arXiv.2605.08956",
-      "url": "https://arxiv.org/abs/2605.08956",
-      "title": "Agentic AI Scientists Are Not Built For Autonomous Scientific Discovery",
-      "authors": [
-        "Harshit Bisht",
-        "Vinay Kumar",
-        "Kevin Maik Jablonka",
-        " Mausam",
-        "N. M. Anoop Krishnan"
-      ],
-      "venue": "arXiv",
-      "year": 2026,
-      "abstract": "A growing body of work pursues AI scientists capable of end-to-end autonomous scientific discovery. This position paper argues that although they already function as co-scientists, agentic AI scientists are not built for autonomous scientific discovery. We identify the following challenges in building and deploying autonomous AI scientists: (1) Problem selection is influenced by the McNamara fallacy; (2) Agents are built on large language models (LLMs) whose training corpora omit tacit procedural and failure knowledge of laboratory practice; (3) Preference optimisation during post-training compresses output diversity toward consensus; and (4) Most scientific benchmarks measure single-turn prediction accuracy and lack feedback from physical experiments back to the computational model. These challenges are not just questions of scale and scaffolding; they require revisiting fundamental design choices. To build truly autonomous AI scientists, we recommend the use of scientific simulations as verifiers for training, the design of persistent world models that represent the shifting objectives governing real investigations, the establishment of a centralized preregistration repository for all AI-generated hypotheses, and application driven by scientific need rather than tool affordance.",
-      "citations": null,
-      "highlighted": false,
-      "pillars": [
-        "evaluation"
-      ],
-      "type": "preprint",
-      "pillar_auto": true
-    },
-    {
-      "doi": "10.48550/arXiv.2604.18805",
-      "url": "https://arxiv.org/abs/2604.18805",
-      "title": "AI scientists produce results without reasoning scientifically",
-      "authors": [
-        "Martiño Ríos-García",
-        "Nawaf Alampara",
-        "Chandan Gupta",
-        "Indrajeet Mandal",
-        "Sajid Mannan",
-        "Ali Asghar Aghajani",
-        "N. M. Anoop Krishnan",
-        "Kevin Maik Jablonka"
-      ],
-      "venue": "arXiv",
-      "year": 2026,
-      "abstract": "Large language model (LLM)-based systems are increasingly deployed to conduct scientific research autonomously, yet whether their reasoning adheres to the epistemic norms that make scientific inquiry self-correcting is poorly understood. Here, we evaluate LLM-based scientific agents across eight domains, spanning workflow execution to hypothesis-driven inquiry, through more than 25,000 agent runs and two complementary lenses: (i) a systematic performance analysis that decomposes the contributions of the base model and the agent scaffold, and (ii) a behavioral analysis of the epistemological structure of agent reasoning. We observe that the base model is the primary determinant of both performance and behavior, accounting for 41.4% of explained variance versus 1.5% for the scaffold. Across all configurations, evidence is ignored in 68% of traces, refutation-driven belief revision occurs in 26%, and convergent multi-test evidence is rare. The same reasoning pattern appears whether the agent executes a computational workflow or conducts hypothesis-driven inquiry. They persist even when agents receive near-complete successful reasoning trajectories as context, and the resulting unreliability compounds across repeated trials in epistemically demanding domains. Thus, current LLM-based agents execute scientific workflows but do not exhibit the epistemic patterns that characterize scientific reasoning. Outcome-based evaluation cannot detect these failures, and scaffold engineering alone cannot repair them. Until reasoning itself becomes a training target, the scientific knowledge produced by such agents cannot be justified by the process that generated it.",
-      "citations": 5,
-      "highlighted": false,
-      "pillars": [
-        "evaluation"
-      ],
-      "type": "preprint",
-      "pillar_auto": true
-    },
-    {
       "doi": "10.48550/arXiv.2601.17807",
       "url": "https://arxiv.org/abs/2601.17807",
       "title": "An autonomous living database for perovskite photovoltaics",
@@ -113,44 +66,61 @@
         "perception"
       ],
       "type": "preprint",
+      "media": [],
       "pillar_auto": true
     },
     {
-      "doi": "10.48550/arXiv.2602.04696",
-      "url": "https://arxiv.org/abs/2602.04696",
-      "title": "Beyond Learning on Molecules by Weakly Supervising on Molecules",
+      "doi": "10.1039/d4cs00913d",
+      "url": "https://doi.org/10.1039/d4cs00913d",
+      "title": "From text to insight: large language models for chemical data extraction",
       "authors": [
-        "Gordan Prastalo",
+        "Mara Schilling-Wilhelmi",
+        "Martiño Ríos-García",
+        "Sherjeel Shabih",
+        "María Victoria Gil",
+        "Santiago Miret",
+        "Christoph T. Koch",
+        "José A. Márquez",
         "Kevin Maik Jablonka"
       ],
-      "venue": "arXiv",
-      "year": 2026,
-      "abstract": "Molecular representations are inherently task-dependent, yet most pre-trained molecular encoders are not. Task conditioning promises representations that reorganize based on task descriptions, but existing approaches rely on expensive labeled data. We show that weak supervision on programmatically derived molecular motifs is sufficient. Our Adaptive Chemical Embedding Model (ACE-Mol) learns from hundreds of motifs paired with natural language descriptors that are cheap to compute, trivial to scale. Conventional encoders slowly search the embedding space for task-relevant structure, whereas ACE-Mol immediately aligns its representations with the task. ACE-Mol achieves state-of-the-art performance across molecular property prediction benchmarks with interpretable, chemically meaningful representations.",
-      "citations": null,
+      "venue": "Chem. Soc. Rev.",
+      "year": 2025,
+      "abstract": "Large language models (LLMs) allow for the extraction of structured data from unstructured sources, such as scientific papers, with unprecedented accuracy and performance.",
+      "citations": 72,
       "highlighted": false,
       "pillars": [
-        "reasoning",
-        "action"
+        "perception"
       ],
-      "type": "preprint",
+      "type": "peer-reviewed",
+      "media": [
+        {
+          "label": "matextract.pub",
+          "url": "https://matextract.pub/"
+        }
+      ],
       "pillar_auto": true
     },
     {
-      "doi": "10.48550/arXiv.2602.17730",
-      "url": "https://arxiv.org/abs/2602.17730",
-      "title": "Clever Materials: When Models Identify Good Materials for the Wrong Reasons",
+      "doi": "10.1039/d5dd00109a",
+      "url": "https://doi.org/10.1039/d5dd00109a",
+      "title": "MOFChecker: a package for validating and correcting metal–organic framework (MOF) structures",
       "authors": [
-        "Kevin Maik Jablonka"
+        "Xin Jin",
+        "Kevin Maik Jablonka",
+        "Elias Moubarak",
+        "Yutao Li",
+        "Berend Smit"
       ],
-      "venue": "arXiv",
-      "year": 2026,
-      "abstract": "Machine learning can accelerate materials discovery. Models perform impressively on many benchmarks. However, strong benchmark performance does not imply that a model learned chemistry. I test a concrete alternative hypothesis: that property prediction can be driven by bibliographic confounding. Across five tasks spanning MOFs (thermal and solvent stability), perovskite solar cells (efficiency), batteries (capacity), and TADF emitters (emission wavelength), models trained on standard chemical descriptors predict author, journal, and publication year well above chance. When these predicted metadata (\"bibliographic fingerprints\") are used as the sole input to a second model, performance is sometimes competitive with conventional descriptor-based predictors. These results show that many datasets do not rule out non-chemical explanations of success. Progress requires routine falsification tests (e.g., group/time splits and metadata ablations), datasets designed to resist spurious correlations, and explicit separation of two goals: predictive utility versus evidence of chemical understanding.",
-      "citations": null,
+      "venue": "Digital Discovery",
+      "year": 2025,
+      "abstract": "MOFChecker, a package for MOF duplicate detection, geometric and charge error checking, and structure correction.",
+      "citations": 14,
       "highlighted": false,
       "pillars": [
-        "evaluation"
+        "perception"
       ],
-      "type": "preprint",
+      "type": "peer-reviewed",
+      "media": [],
       "pillar_auto": true
     },
     {
@@ -168,9 +138,11 @@
       "citations": 0,
       "highlighted": false,
       "pillars": [
-        "perception"
+        "perception",
+        "reasoning"
       ],
       "type": "peer-reviewed",
+      "media": [],
       "pillar_auto": true
     },
     {
@@ -197,34 +169,103 @@
         "reasoning"
       ],
       "type": "peer-reviewed",
+      "media": [],
       "pillar_auto": true
     },
     {
-      "doi": "10.1016/j.carbpol.2026.124890",
-      "url": "https://doi.org/10.1016/j.carbpol.2026.124890",
-      "title": "Predicting acetalated dextran nanoparticle features: Controlled synthesis, formulation, and testing in a high-throughput process",
+      "doi": "10.48550/arXiv.2505.12534",
+      "url": "https://arxiv.org/abs/2505.12534",
+      "title": "ChemPile: A 250GB Diverse and Curated Dataset for Chemical Foundation Models",
       "authors": [
-        "Thorben Köhler",
-        "Sreekanth Kunchapu",
-        "Antje Vollrath",
-        "Kourosh Rezaei",
-        "Julian Kimmig",
-        "Steffi Stumpf",
-        "Stephanie Hoeppener",
-        "Ivo Nischang",
-        "Kevin M. Jablonka",
-        "Ulrich S. Schubert",
-        "Stephanie Schubert"
+        "Adrian Mirza",
+        "Nawaf Alampara",
+        "Martiño Ríos-García",
+        "Mohamed Abdelalim",
+        "Jack Butler",
+        "Bethany Connolly",
+        "Tunca Dogan",
+        "Marianna Nezhurina",
+        "Bünyamin Şen",
+        "Santosh Tirunagari",
+        "Mark Worrall",
+        "Adamo Young",
+        "Philippe Schwaller",
+        "Michael Pieler",
+        "Kevin Maik Jablonka"
       ],
-      "venue": "Carbohydrate Polymers",
-      "year": 2026,
-      "abstract": "The hydrophobic, pH-labile, and biodegradable acetalated dextran (Ac(e)Dex) is a promising material for drug delivery in nanomedicine. However, fundamental knowledge about the structure-property relationships is still missing, which hinders its application in preclinical and clinical trials. In this study, we synthesized a library of 36 Ac(e)Dex derivatives with different molar masses, types, and degrees of functionalization. A high-throughput formulation screening (> 1000 formulations) was conducted using a liquid handling robot optimizing the concentration of polymer, the solvent, and the addition of additives. Selected formulations were scaled up and evaluated for their stability. To further correlate polymer properties with stability, a machine learning (ML) model was developed, providing a predictive tool for Ac(e)Dex nanoparticle degradation based on synthesis/formulation data. The novelty of this work lies in the integrated synthesis-to-prediction pipeline combining controlled polymer synthesis, high-throughput formulation, and ML-based stability modeling, rather than introducing new chemical mechanisms. By eludicating how structural parameters (molar mass, type, and degree of functionalization) influence formulation properties (i.e., size, dispersity, repeatability) and particle stability, this work enables standardized comparisons of Ac(e)Dex between different studies and supports its future preclinical development.",
-      "citations": 1,
+      "venue": "NeurIPS 2025",
+      "year": 2025,
+      "abstract": "Foundation models have shown remarkable success across scientific domains, yet their impact in chemistry remains limited due to the absence of diverse, large-scale, high-quality datasets that reflect the field's multifaceted nature. We present the ChemPile, an open dataset containing over 75 billion tokens of curated chemical data, specifically built for training and evaluating general-purpose models in the chemical sciences. The dataset mirrors the human learning journey through chemistry -- from educational foundations to specialized expertise -- spanning multiple modalities and content types including structured data in diverse chemical representations (SMILES, SELFIES, IUPAC names, InChI, molecular renderings), scientific and educational text, executable code, and chemical images. ChemPile integrates foundational knowledge (textbooks, lecture notes), specialized expertise (scientific articles and language-interfaced data), visual understanding (molecular structures, diagrams), and advanced reasoning (problem-solving traces and code) -- mirroring how human chemists develop expertise through diverse learning materials and experiences. Constructed through hundreds of hours of expert curation, the ChemPile captures both foundational concepts and domain-specific complexity. We provide standardized training, validation, and test splits, enabling robust benchmarking. ChemPile is openly released via HuggingFace with a consistent API, permissive license, and detailed documentation. We hope the ChemPile will serve as a catalyst for chemical AI, enabling the development of the next generation of chemical foundation models.",
+      "citations": 6,
       "highlighted": false,
       "pillars": [
-        "action"
+        "reasoning"
       ],
       "type": "peer-reviewed",
+      "media": [],
+      "pillar_auto": true
+    },
+    {
+      "doi": "10.48550/arXiv.2602.04696",
+      "url": "https://arxiv.org/abs/2602.04696",
+      "title": "Beyond Learning on Molecules by Weakly Supervising on Molecules",
+      "authors": [
+        "Gordan Prastalo",
+        "Kevin Maik Jablonka"
+      ],
+      "venue": "arXiv",
+      "year": 2026,
+      "abstract": "Molecular representations are inherently task-dependent, yet most pre-trained molecular encoders are not. Task conditioning promises representations that reorganize based on task descriptions, but existing approaches rely on expensive labeled data. We show that weak supervision on programmatically derived molecular motifs is sufficient. Our Adaptive Chemical Embedding Model (ACE-Mol) learns from hundreds of motifs paired with natural language descriptors that are cheap to compute, trivial to scale. Conventional encoders slowly search the embedding space for task-relevant structure, whereas ACE-Mol immediately aligns its representations with the task. ACE-Mol achieves state-of-the-art performance across molecular property prediction benchmarks with interpretable, chemically meaningful representations.",
+      "citations": 0,
+      "highlighted": false,
+      "pillars": [
+        "reasoning",
+        "action"
+      ],
+      "type": "preprint",
+      "media": [],
+      "pillar_auto": true
+    },
+    {
+      "doi": "10.48550/arXiv.2605.08956",
+      "url": "https://arxiv.org/abs/2605.08956",
+      "title": "Agentic AI Scientists Are Not Built For Autonomous Scientific Discovery",
+      "authors": [
+        "Harshit Bisht",
+        "Vinay Kumar",
+        "Kevin Maik Jablonka",
+        " Mausam",
+        "N. M. Anoop Krishnan"
+      ],
+      "venue": "arXiv",
+      "year": 2026,
+      "abstract": "A growing body of work pursues AI scientists capable of end-to-end autonomous scientific discovery. This position paper argues that although they already function as co-scientists, agentic AI scientists are not built for autonomous scientific discovery. We identify the following challenges in building and deploying autonomous AI scientists: (1) Problem selection is influenced by the McNamara fallacy; (2) Agents are built on large language models (LLMs) whose training corpora omit tacit procedural and failure knowledge of laboratory practice; (3) Preference optimisation during post-training compresses output diversity toward consensus; and (4) Most scientific benchmarks measure single-turn prediction accuracy and lack feedback from physical experiments back to the computational model. These challenges are not just questions of scale and scaffolding; they require revisiting fundamental design choices. To build truly autonomous AI scientists, we recommend the use of scientific simulations as verifiers for training, the design of persistent world models that represent the shifting objectives governing real investigations, the establishment of a centralized preregistration repository for all AI-generated hypotheses, and application driven by scientific need rather than tool affordance.",
+      "citations": null,
+      "highlighted": false,
+      "pillars": [
+        "evaluation"
+      ],
+      "type": "preprint",
+      "media": [],
+      "pillar_auto": true
+    },
+    {
+      "doi": "10.48550/arXiv.2602.17730",
+      "url": "https://arxiv.org/abs/2602.17730",
+      "title": "Clever Materials: When Models Identify Good Materials for the Wrong Reasons",
+      "authors": [
+        "Kevin Maik Jablonka"
+      ],
+      "venue": "arXiv",
+      "year": 2026,
+      "abstract": "Machine learning can accelerate materials discovery. Models perform impressively on many benchmarks. However, strong benchmark performance does not imply that a model learned chemistry. I test a concrete alternative hypothesis: that property prediction can be driven by bibliographic confounding. Across five tasks spanning MOFs (thermal and solvent stability), perovskite solar cells (efficiency), batteries (capacity), and TADF emitters (emission wavelength), models trained on standard chemical descriptors predict author, journal, and publication year well above chance. When these predicted metadata (\"bibliographic fingerprints\") are used as the sole input to a second model, performance is sometimes competitive with conventional descriptor-based predictors. These results show that many datasets do not rule out non-chemical explanations of success. Progress requires routine falsification tests (e.g., group/time splits and metadata ablations), datasets designed to resist spurious correlations, and explicit separation of two goals: predictive utility versus evidence of chemical understanding.",
+      "citations": null,
+      "highlighted": false,
+      "pillars": [
+        "evaluation"
+      ],
+      "type": "preprint",
+      "media": [],
       "pillar_auto": true
     },
     {
@@ -244,6 +285,7 @@
         "evaluation"
       ],
       "type": "preprint",
+      "media": [],
       "pillar_auto": true
     },
     {
@@ -264,6 +306,113 @@
         "evaluation"
       ],
       "type": "preprint",
+      "media": [],
+      "pillar_auto": true
+    },
+    {
+      "doi": "10.1016/j.commatsci.2025.114041",
+      "url": "https://doi.org/10.1016/j.commatsci.2025.114041",
+      "title": "Lessons from the trenches on evaluating machine learning systems in materials science",
+      "authors": [
+        "Nawaf Alampara",
+        "Mara Schilling-Wilhelmi",
+        "Kevin Maik Jablonka"
+      ],
+      "venue": "Computational Materials Science",
+      "year": 2025,
+      "abstract": "",
+      "citations": null,
+      "highlighted": false,
+      "pillars": [
+        "evaluation"
+      ],
+      "type": "peer-reviewed",
+      "media": [],
+      "pillar_auto": true
+    },
+    {
+      "doi": "10.1038/s43588-025-00836-3",
+      "url": "https://doi.org/10.1038/s43588-025-00836-3",
+      "title": "Probing the limitations of multimodal language models for chemistry and materials research",
+      "authors": [
+        "Nawaf Alampara",
+        "Mara Schilling-Wilhelmi",
+        "Martiño Ríos-García",
+        "Indrajeet Mandal",
+        "Pranav Khetarpal",
+        "Hargun Singh Grover",
+        "N. M. Anoop Krishnan",
+        "Kevin Maik Jablonka"
+      ],
+      "venue": "Nat Comput Sci",
+      "year": 2025,
+      "abstract": "Recent advancements in artificial intelligence have sparked interest in scientific assistants that could support researchers across the full spectrum of scientific workflows, from literature review to experimental design and data analysis. A key capability for such systems is the ability to process and reason about scientific information in both visual and textual forms—from interpreting spectroscopic data to understanding laboratory set-ups. Here we introduce MaCBench, a comprehensive benchmark for evaluating how vision language models handle real-world chemistry and materials science tasks across three core aspects: data extraction, experimental execution and results interpretation. Through a systematic evaluation of leading models, we find that although these systems show promising capabilities in basic perception tasks—achieving near-perfect performance in equipment identification and standardized data extraction—they exhibit fundamental limitations in spatial reasoning, cross-modal information synthesis and multi-step logical inference. Our insights have implications beyond chemistry and materials science, suggesting that developing reliable multimodal AI scientific assistants may require advances in curating suitable training data and approaches to training those models.",
+      "citations": 51,
+      "highlighted": false,
+      "pillars": [
+        "evaluation",
+        "perception"
+      ],
+      "type": "peer-reviewed",
+      "media": [
+        {
+          "label": "research briefing",
+          "url": "https://www.nature.com/articles/s43588-025-00871-0"
+        }
+      ],
+      "pillar_auto": true
+    },
+    {
+      "doi": "10.1038/s43588-025-00871-0",
+      "url": "https://doi.org/10.1038/s43588-025-00871-0",
+      "title": "Vision language models excel at perception but struggles with scientific reasoning",
+      "authors": [
+        "K. Jablonka",
+        "N. Krishnan"
+      ],
+      "venue": "Nat Comput Sci",
+      "year": 2025,
+      "abstract": "Evaluation of leading VLMs reveals that they excel at basic scientific tasks such as equipment identification, but struggle with spatial reasoning and multistep analysis — a limitation for autonomous scientific discovery.",
+      "citations": 1,
+      "highlighted": false,
+      "pillars": [
+        "evaluation",
+        "perception"
+      ],
+      "type": "editorial",
+      "media": [],
+      "pillar_auto": true
+    },
+    {
+      "doi": "10.48550/arXiv.2604.18805",
+      "url": "https://arxiv.org/abs/2604.18805",
+      "title": "AI scientists produce results without reasoning scientifically",
+      "authors": [
+        "Martiño Ríos-García",
+        "Nawaf Alampara",
+        "Chandan Gupta",
+        "Indrajeet Mandal",
+        "Sajid Mannan",
+        "Ali Asghar Aghajani",
+        "N. M. Anoop Krishnan",
+        "Kevin Maik Jablonka"
+      ],
+      "venue": "arXiv",
+      "year": 2026,
+      "abstract": "Large language model (LLM)-based systems are increasingly deployed to conduct scientific research autonomously, yet whether their reasoning adheres to the epistemic norms that make scientific inquiry self-correcting is poorly understood. Here, we evaluate LLM-based scientific agents across eight domains, spanning workflow execution to hypothesis-driven inquiry, through more than 25,000 agent runs and two complementary lenses: (i) a systematic performance analysis that decomposes the contributions of the base model and the agent scaffold, and (ii) a behavioral analysis of the epistemological structure of agent reasoning. We observe that the base model is the primary determinant of both performance and behavior, accounting for 41.4% of explained variance versus 1.5% for the scaffold. Across all configurations, evidence is ignored in 68% of traces, refutation-driven belief revision occurs in 26%, and convergent multi-test evidence is rare. The same reasoning pattern appears whether the agent executes a computational workflow or conducts hypothesis-driven inquiry. They persist even when agents receive near-complete successful reasoning trajectories as context, and the resulting unreliability compounds across repeated trials in epistemically demanding domains. Thus, current LLM-based agents execute scientific workflows but do not exhibit the epistemic patterns that characterize scientific reasoning. Outcome-based evaluation cannot detect these failures, and scaffold engineering alone cannot repair them. Until reasoning itself becomes a training target, the scientific knowledge produced by such agents cannot be justified by the process that generated it.",
+      "citations": null,
+      "highlighted": false,
+      "pillars": [
+        "evaluation",
+        "reasoning"
+      ],
+      "type": "preprint",
+      "media": [
+        {
+          "label": "Science News",
+          "url": "https://www.sciencenews.org/article/ai-ignore-evidence-trust-science"
+        }
+      ],
       "pillar_auto": true
     },
     {
@@ -317,6 +466,24 @@
         "reasoning"
       ],
       "type": "peer-reviewed",
+      "media": [
+        {
+          "label": "chembench.lamalab.org",
+          "url": "http://chembench.lamalab.org/"
+        },
+        {
+          "label": "Chemistry World",
+          "url": "https://www.chemistryworld.com/news/large-language-models-are-better-than-humans-at-answering-chemistry-questions/4020562.article"
+        },
+        {
+          "label": "State of AI 2025",
+          "url": "https://www.stateof.ai"
+        },
+        {
+          "label": "research briefing",
+          "url": "https://www.nature.com/articles/s41557-025-01865-1"
+        }
+      ],
       "pillar_auto": true
     },
     {
@@ -336,6 +503,134 @@
         "reasoning"
       ],
       "type": "editorial",
+      "media": [],
+      "pillar_auto": true
+    },
+    {
+      "doi": "10.48550/arXiv.2406.17295",
+      "url": "https://arxiv.org/abs/2406.17295",
+      "title": "Less can be more for predicting properties with large language models",
+      "authors": [
+        "Nawaf Alampara",
+        "Santiago Miret",
+        "Kevin Maik Jablonka"
+      ],
+      "venue": "arXiv",
+      "year": 2024,
+      "abstract": "Predicting properties from coordinate-category data -- sets of vectors paired with categorical information -- is fundamental to computational science. In materials science, this challenge manifests as predicting properties like formation energies or elastic moduli from crystal structures comprising atomic positions (vectors) and element types (categorical information). While large language models (LLMs) have increasingly been applied to such tasks, with researchers encoding structural data as text, optimal strategies for achieving reliable predictions remain elusive. Here, we report fundamental limitations in LLM's ability to learn from coordinate information in coordinate-category data. Through systematic experiments using synthetic datasets with tunable coordinate and category contributions, combined with a comprehensive benchmarking framework (MatText) spanning multiple representations and model scales, we find that LLMs consistently fail to capture coordinate information while excelling at category patterns. This geometric blindness persists regardless of model size (up to 70B parameters), dataset scale (up to 2M structures), or text representation strategy. Our findings suggest immediate practical implications: for materials property prediction tasks dominated by structural effects, specialized geometric architectures consistently outperform LLMs by significant margins, as evidenced by a clear \"GNN-LM wall\" in performance benchmarks. Based on our analysis, we provide concrete guidelines for architecture selection in scientific machine learning, while highlighting the critical importance of understanding model inductive biases when tackling scientific prediction problems.",
+      "citations": null,
+      "highlighted": false,
+      "pillars": [
+        "evaluation",
+        "action"
+      ],
+      "type": "preprint",
+      "media": [],
+      "pillar_auto": true
+    },
+    {
+      "doi": "10.1016/j.carbpol.2026.124890",
+      "url": "https://doi.org/10.1016/j.carbpol.2026.124890",
+      "title": "Predicting acetalated dextran nanoparticle features: Controlled synthesis, formulation, and testing in a high-throughput process",
+      "authors": [
+        "Thorben Köhler",
+        "Sreekanth Kunchapu",
+        "Antje Vollrath",
+        "Kourosh Rezaei",
+        "Julian Kimmig",
+        "Steffi Stumpf",
+        "Stephanie Hoeppener",
+        "Ivo Nischang",
+        "Kevin M. Jablonka",
+        "Ulrich S. Schubert",
+        "Stephanie Schubert"
+      ],
+      "venue": "Carbohydrate Polymers",
+      "year": 2026,
+      "abstract": "The hydrophobic, pH-labile, and biodegradable acetalated dextran (Ac(e)Dex) is a promising material for drug delivery in nanomedicine. However, fundamental knowledge about the structure-property relationships is still missing, which hinders its application in preclinical and clinical trials. In this study, we synthesized a library of 36 Ac(e)Dex derivatives with different molar masses, types, and degrees of functionalization. A high-throughput formulation screening (> 1000 formulations) was conducted using a liquid handling robot optimizing the concentration of polymer, the solvent, and the addition of additives. Selected formulations were scaled up and evaluated for their stability. To further correlate polymer properties with stability, a machine learning (ML) model was developed, providing a predictive tool for Ac(e)Dex nanoparticle degradation based on synthesis/formulation data. The novelty of this work lies in the integrated synthesis-to-prediction pipeline combining controlled polymer synthesis, high-throughput formulation, and ML-based stability modeling, rather than introducing new chemical mechanisms. By eludicating how structural parameters (molar mass, type, and degree of functionalization) influence formulation properties (i.e., size, dispersity, repeatability) and particle stability, this work enables standardized comparisons of Ac(e)Dex between different studies and supports its future preclinical development.",
+      "citations": 1,
+      "highlighted": false,
+      "pillars": [
+        "action"
+      ],
+      "type": "peer-reviewed",
+      "media": [],
+      "pillar_auto": true
+    },
+    {
+      "doi": "10.1038/s41524-025-01823-y",
+      "url": "https://doi.org/10.1038/s41524-025-01823-y",
+      "title": "PolyMetriX: an ecosystem for digital polymer chemistry",
+      "authors": [
+        "Sreekanth Kunchapu",
+        "Kevin Maik Jablonka"
+      ],
+      "venue": "npj Comput Mater",
+      "year": 2025,
+      "abstract": "Digital polymer chemistry leverages computational methods to design and optimize polymer materials. While there have been advances in using machine learning to accelerate the design of polymers, the field is hampered by the lack of standards, which precludes comparability and makes it difficult to build on top of prior work. To address this gap, we introduce PolyMetriX, an open-source Python library designed to facilitate the entire polymer informatics workflow—from obtaining data to training models. PolyMetriX provides curated polymer property datasets, and novel featurization techniques that extract hierarchical structural information at the full polymer, backbone, and sidechain levels. Additionally, it incorporates polymer-specific data splitting strategies to ensure robust model generalization. PolyMetriX enhances the predictive performance of models while improving reproducibility in digital polymer chemistry.",
+      "citations": 7,
+      "highlighted": false,
+      "pillars": [
+        "action"
+      ],
+      "type": "peer-reviewed",
+      "media": [],
+      "pillar_auto": true
+    },
+    {
+      "doi": "10.26434/chemrxiv.15004102/v2",
+      "url": "https://doi.org/10.26434/chemrxiv.15004102/v2",
+      "title": "Condition-aware prediction of copolymer architecture",
+      "authors": [
+        "Mara Schilling-Wilhelmi",
+        "Boris Bulgakov",
+        "Luc Patiny",
+        "Sarthak Kapoor",
+        "Kevin Maik Jablonka"
+      ],
+      "venue": "",
+      "year": 2026,
+      "abstract": "The architecture of a copolymer determines how the material behaves. Designing a polymer for a target property, therefore, should begin with designing for a target architecture. Yet no method predicts the architecture a given monomer pair will react to under given conditions. Even though reactivity ratios have been known since Mayo and Lewis to depend on solvent, temperature, and polymerization mechanism, every predictive approach, from the Q–e scheme of Alfrey and Price to recent machine-learning models, takes monomer structure alone as input. Measurements for thousands of monomer pairs exist but are scattered across eight decades of literature, much of it predating machine-readable publishing and surviving only as scanned page images. We address this gap with PolyCARP, a classifier that predicts copolymer architecture from monomer pair and reaction conditions before any synthesis, trained on a database we extracted from the literature. A vision–language-model pipeline parses 1,206 publications, yielding 3,791 copolymerizations annotated with reactivity ratios, solvent, temperature, and polymerization mechanism. This, to our knowledge, is the first dataset at this scale to record reaction conditions per entry. For any monomer pair and set of conditions, PolyCARP returns an architecture class and the nearest experimental analogues in the database. We validate the tool against a literature case study, where it captures solvent-driven architectural transitions, and against three prospective laboratory copolymerizations. The database, model, and code are openly released—enabling the community to extend both data and models, and to make more of polymer chemistry predictable.",
+      "citations": null,
+      "highlighted": false,
+      "pillars": [
+        "action",
+        "perception"
+      ],
+      "type": "preprint",
+      "media": [],
+      "pillar_auto": true
+    },
+    {
+      "doi": "10.1038/s42256-023-00788-1",
+      "url": "https://doi.org/10.1038/s42256-023-00788-1",
+      "title": "Leveraging large language models for predictive chemistry",
+      "authors": [
+        "Kevin Maik Jablonka",
+        "Philippe Schwaller",
+        "Andres Ortega-Guerrero",
+        "Berend Smit"
+      ],
+      "venue": "Nat Mach Intell",
+      "year": 2024,
+      "abstract": "Machine learning has transformed many fields and has recently found applications in chemistry and materials science. The small datasets commonly found in chemistry sparked the development of sophisticated machine learning approaches that incorporate chemical knowledge for each application and, therefore, require specialized expertise to develop. Here we show that GPT-3, a large language model trained on vast amounts of text extracted from the Internet, can easily be adapted to solve various tasks in chemistry and materials science by fine-tuning it to answer chemical questions in natural language with the correct answer. We compared this approach with dedicated machine learning models for many applications spanning the properties of molecules and materials to the yield of chemical reactions. Surprisingly, our fine-tuned version of GPT-3 can perform comparably to or even outperform conventional machine learning techniques, in particular in the low-data limit. In addition, we can perform inverse design by simply inverting the questions. The ease of use and high performance, especially for small datasets, can impact the fundamental approach to using machine learning in the chemical and material sciences. In addition to a literature search, querying a pre-trained large language model might become a routine way to bootstrap a project by leveraging the collective knowledge encoded in these foundation models, or to provide a baseline for predictive tasks.",
+      "citations": 379,
+      "highlighted": false,
+      "pillars": [
+        "action",
+        "reasoning"
+      ],
+      "type": "peer-reviewed",
+      "media": [
+        {
+          "label": "MIT Technology Review",
+          "url": "https://www.technologyreview.com/2023/03/25/1070275/chatgpt-revolutionize-economy-decide-what-looks-like/"
+        },
+        {
+          "label": "Nature News",
+          "url": "https://www.nature.com/articles/d41586-024-00347-7"
+        }
+      ],
       "pillar_auto": true
     },
     {
@@ -401,108 +696,10 @@
       "highlighted": false,
       "pillars": [
         "action",
-        "reasoning"
-      ],
-      "type": "peer-reviewed",
-      "pillar_auto": true
-    },
-    {
-      "doi": "10.48550/arXiv.2505.12534",
-      "url": "https://arxiv.org/abs/2505.12534",
-      "title": "ChemPile: A 250GB Diverse and Curated Dataset for Chemical Foundation Models",
-      "authors": [
-        "Adrian Mirza",
-        "Nawaf Alampara",
-        "Martiño Ríos-García",
-        "Mohamed Abdelalim",
-        "Jack Butler",
-        "Bethany Connolly",
-        "Tunca Dogan",
-        "Marianna Nezhurina",
-        "Bünyamin Şen",
-        "Santosh Tirunagari",
-        "Mark Worrall",
-        "Adamo Young",
-        "Philippe Schwaller",
-        "Michael Pieler",
-        "Kevin Maik Jablonka"
-      ],
-      "venue": "NeurIPS 2025",
-      "year": 2025,
-      "abstract": "Foundation models have shown remarkable success across scientific domains, yet their impact in chemistry remains limited due to the absence of diverse, large-scale, high-quality datasets that reflect the field's multifaceted nature. We present the ChemPile, an open dataset containing over 75 billion tokens of curated chemical data, specifically built for training and evaluating general-purpose models in the chemical sciences. The dataset mirrors the human learning journey through chemistry -- from educational foundations to specialized expertise -- spanning multiple modalities and content types including structured data in diverse chemical representations (SMILES, SELFIES, IUPAC names, InChI, molecular renderings), scientific and educational text, executable code, and chemical images. ChemPile integrates foundational knowledge (textbooks, lecture notes), specialized expertise (scientific articles and language-interfaced data), visual understanding (molecular structures, diagrams), and advanced reasoning (problem-solving traces and code) -- mirroring how human chemists develop expertise through diverse learning materials and experiences. Constructed through hundreds of hours of expert curation, the ChemPile captures both foundational concepts and domain-specific complexity. We provide standardized training, validation, and test splits, enabling robust benchmarking. ChemPile is openly released via HuggingFace with a consistent API, permissive license, and detailed documentation. We hope the ChemPile will serve as a catalyst for chemical AI, enabling the development of the next generation of chemical foundation models.",
-      "citations": null,
-      "highlighted": false,
-      "pillars": [
-        "reasoning"
-      ],
-      "type": "peer-reviewed",
-      "pillar_auto": true
-    },
-    {
-      "doi": "10.1039/d4cs00913d",
-      "url": "https://doi.org/10.1039/d4cs00913d",
-      "title": "From text to insight: large language models for chemical data extraction",
-      "authors": [
-        "Mara Schilling-Wilhelmi",
-        "Martiño Ríos-García",
-        "Sherjeel Shabih",
-        "María Victoria Gil",
-        "Santiago Miret",
-        "Christoph T. Koch",
-        "José A. Márquez",
-        "Kevin Maik Jablonka"
-      ],
-      "venue": "Chem. Soc. Rev.",
-      "year": 2025,
-      "abstract": "Large language models (LLMs) allow for the extraction of structured data from unstructured sources, such as scientific papers, with unprecedented accuracy and performance.",
-      "citations": 72,
-      "highlighted": false,
-      "pillars": [
-        "perception"
-      ],
-      "type": "peer-reviewed",
-      "pillar_auto": true
-    },
-    {
-      "doi": "10.1016/j.commatsci.2025.114041",
-      "url": "https://doi.org/10.1016/j.commatsci.2025.114041",
-      "title": "Lessons from the trenches on evaluating machine learning systems in materials science",
-      "authors": [
-        "Nawaf Alampara",
-        "Mara Schilling-Wilhelmi",
-        "Kevin Maik Jablonka"
-      ],
-      "venue": "Computational Materials Science",
-      "year": 2025,
-      "abstract": "",
-      "citations": null,
-      "highlighted": false,
-      "pillars": [
         "evaluation"
       ],
       "type": "peer-reviewed",
-      "pillar_auto": true
-    },
-    {
-      "doi": "10.1039/d5dd00109a",
-      "url": "https://doi.org/10.1039/d5dd00109a",
-      "title": "MOFChecker: a package for validating and correcting metal–organic framework (MOF) structures",
-      "authors": [
-        "Xin Jin",
-        "Kevin Maik Jablonka",
-        "Elias Moubarak",
-        "Yutao Li",
-        "Berend Smit"
-      ],
-      "venue": "Digital Discovery",
-      "year": 2025,
-      "abstract": "MOFChecker, a package for MOF duplicate detection, geometric and charge error checking, and structure correction.",
-      "citations": 14,
-      "highlighted": false,
-      "pillars": [
-        "perception"
-      ],
-      "type": "peer-reviewed",
+      "media": [],
       "pillar_auto": true
     },
     {
@@ -527,51 +724,7 @@
         "community"
       ],
       "type": "editorial",
-      "pillar_auto": true
-    },
-    {
-      "doi": "10.1038/s41524-025-01823-y",
-      "url": "https://doi.org/10.1038/s41524-025-01823-y",
-      "title": "PolyMetriX: an ecosystem for digital polymer chemistry",
-      "authors": [
-        "Sreekanth Kunchapu",
-        "Kevin Maik Jablonka"
-      ],
-      "venue": "npj Comput Mater",
-      "year": 2025,
-      "abstract": "Digital polymer chemistry leverages computational methods to design and optimize polymer materials. While there have been advances in using machine learning to accelerate the design of polymers, the field is hampered by the lack of standards, which precludes comparability and makes it difficult to build on top of prior work. To address this gap, we introduce PolyMetriX, an open-source Python library designed to facilitate the entire polymer informatics workflow—from obtaining data to training models. PolyMetriX provides curated polymer property datasets, and novel featurization techniques that extract hierarchical structural information at the full polymer, backbone, and sidechain levels. Additionally, it incorporates polymer-specific data splitting strategies to ensure robust model generalization. PolyMetriX enhances the predictive performance of models while improving reproducibility in digital polymer chemistry.",
-      "citations": 7,
-      "highlighted": false,
-      "pillars": [
-        "action"
-      ],
-      "type": "peer-reviewed",
-      "pillar_auto": true
-    },
-    {
-      "doi": "10.1038/s43588-025-00836-3",
-      "url": "https://doi.org/10.1038/s43588-025-00836-3",
-      "title": "Probing the limitations of multimodal language models for chemistry and materials research",
-      "authors": [
-        "Nawaf Alampara",
-        "Mara Schilling-Wilhelmi",
-        "Martiño Ríos-García",
-        "Indrajeet Mandal",
-        "Pranav Khetarpal",
-        "Hargun Singh Grover",
-        "N. M. Anoop Krishnan",
-        "Kevin Maik Jablonka"
-      ],
-      "venue": "Nat Comput Sci",
-      "year": 2025,
-      "abstract": "Recent advancements in artificial intelligence have sparked interest in scientific assistants that could support researchers across the full spectrum of scientific workflows, from literature review to experimental design and data analysis. A key capability for such systems is the ability to process and reason about scientific information in both visual and textual forms—from interpreting spectroscopic data to understanding laboratory set-ups. Here we introduce MaCBench, a comprehensive benchmark for evaluating how vision language models handle real-world chemistry and materials science tasks across three core aspects: data extraction, experimental execution and results interpretation. Through a systematic evaluation of leading models, we find that although these systems show promising capabilities in basic perception tasks—achieving near-perfect performance in equipment identification and standardized data extraction—they exhibit fundamental limitations in spatial reasoning, cross-modal information synthesis and multi-step logical inference. Our insights have implications beyond chemistry and materials science, suggesting that developing reliable multimodal AI scientific assistants may require advances in curating suitable training data and approaches to training those models.",
-      "citations": 51,
-      "highlighted": false,
-      "pillars": [
-        "evaluation",
-        "perception"
-      ],
-      "type": "peer-reviewed",
+      "media": [],
       "pillar_auto": true
     },
     {
@@ -591,26 +744,7 @@
         "community"
       ],
       "type": "editorial",
-      "pillar_auto": true
-    },
-    {
-      "doi": "10.1038/s43588-025-00871-0",
-      "url": "https://doi.org/10.1038/s43588-025-00871-0",
-      "title": "Vision language models excel at perception but struggles with scientific reasoning",
-      "authors": [
-        "K. Jablonka",
-        "N. Krishnan"
-      ],
-      "venue": "Nat Comput Sci",
-      "year": 2025,
-      "abstract": "Evaluation of leading VLMs reveals that they excel at basic scientific tasks such as equipment identification, but struggle with spatial reasoning and multistep analysis — a limitation for autonomous scientific discovery.",
-      "citations": 1,
-      "highlighted": false,
-      "pillars": [
-        "evaluation",
-        "perception"
-      ],
-      "type": "editorial",
+      "media": [],
       "pillar_auto": true
     },
     {
@@ -640,49 +774,7 @@
         "community"
       ],
       "type": "editorial",
-      "pillar_auto": true
-    },
-    {
-      "doi": "10.48550/arXiv.2406.17295",
-      "url": "https://arxiv.org/abs/2406.17295",
-      "title": "Less can be more for predicting properties with large language models",
-      "authors": [
-        "Nawaf Alampara",
-        "Santiago Miret",
-        "Kevin Maik Jablonka"
-      ],
-      "venue": "arXiv",
-      "year": 2024,
-      "abstract": "Predicting properties from coordinate-category data -- sets of vectors paired with categorical information -- is fundamental to computational science. In materials science, this challenge manifests as predicting properties like formation energies or elastic moduli from crystal structures comprising atomic positions (vectors) and element types (categorical information). While large language models (LLMs) have increasingly been applied to such tasks, with researchers encoding structural data as text, optimal strategies for achieving reliable predictions remain elusive. Here, we report fundamental limitations in LLM's ability to learn from coordinate information in coordinate-category data. Through systematic experiments using synthetic datasets with tunable coordinate and category contributions, combined with a comprehensive benchmarking framework (MatText) spanning multiple representations and model scales, we find that LLMs consistently fail to capture coordinate information while excelling at category patterns. This geometric blindness persists regardless of model size (up to 70B parameters), dataset scale (up to 2M structures), or text representation strategy. Our findings suggest immediate practical implications: for materials property prediction tasks dominated by structural effects, specialized geometric architectures consistently outperform LLMs by significant margins, as evidenced by a clear \"GNN-LM wall\" in performance benchmarks. Based on our analysis, we provide concrete guidelines for architecture selection in scientific machine learning, while highlighting the critical importance of understanding model inductive biases when tackling scientific prediction problems.",
-      "citations": null,
-      "highlighted": false,
-      "pillars": [
-        "evaluation",
-        "action"
-      ],
-      "type": "preprint",
-      "pillar_auto": true
-    },
-    {
-      "doi": "10.1038/s42256-023-00788-1",
-      "url": "https://doi.org/10.1038/s42256-023-00788-1",
-      "title": "Leveraging large language models for predictive chemistry",
-      "authors": [
-        "Kevin Maik Jablonka",
-        "Philippe Schwaller",
-        "Andres Ortega-Guerrero",
-        "Berend Smit"
-      ],
-      "venue": "Nat Mach Intell",
-      "year": 2024,
-      "abstract": "Machine learning has transformed many fields and has recently found applications in chemistry and materials science. The small datasets commonly found in chemistry sparked the development of sophisticated machine learning approaches that incorporate chemical knowledge for each application and, therefore, require specialized expertise to develop. Here we show that GPT-3, a large language model trained on vast amounts of text extracted from the Internet, can easily be adapted to solve various tasks in chemistry and materials science by fine-tuning it to answer chemical questions in natural language with the correct answer. We compared this approach with dedicated machine learning models for many applications spanning the properties of molecules and materials to the yield of chemical reactions. Surprisingly, our fine-tuned version of GPT-3 can perform comparably to or even outperform conventional machine learning techniques, in particular in the low-data limit. In addition, we can perform inverse design by simply inverting the questions. The ease of use and high performance, especially for small datasets, can impact the fundamental approach to using machine learning in the chemical and material sciences. In addition to a literature search, querying a pre-trained large language model might become a routine way to bootstrap a project by leveraging the collective knowledge encoded in these foundation models, or to provide a baseline for predictive tasks.",
-      "citations": 379,
-      "highlighted": false,
-      "pillars": [
-        "action",
-        "reasoning"
-      ],
-      "type": "peer-reviewed",
+      "media": [],
       "pillar_auto": true
     },
     {
@@ -716,6 +808,7 @@
         "community"
       ],
       "type": "editorial",
+      "media": [],
       "pillar_auto": true
     },
     {
@@ -786,6 +879,7 @@
         "community"
       ],
       "type": "peer-reviewed",
+      "media": [],
       "pillar_auto": true
     }
   ]
