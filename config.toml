@@ -19,6 +19,22 @@ customHead = ["extra-head.html"]
 [[params.social]]
 name = "github"
 link = "https://github.com/lamalab-org"
+icon = "fab fa-github"
+
+[[params.social]]
+name = "linkedin"
+link = "https://www.linkedin.com/company/lamalab-org"
+icon = "fab fa-linkedin"
+
+[[params.social]]
+name = "x"
+link = "https://x.com/jablonkagroup"
+icon = "fab fa-x-twitter"
+
+[[params.social]]
+name = "bluesky"
+link = "https://bsky.app/profile/jablonkagroup.bsky.social"
+icon = "fab fa-bluesky"
 
 [[menu.main]]
 name = "team"
