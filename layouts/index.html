@@ -3,18 +3,5 @@
     <section>
         {{ .Content }}
     </section>
-    {{ with .Site.Params.social }}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <style>
-        .home-social { display: flex; gap: 1.4rem; margin: 1.5rem 0 0.5rem; font-size: 1.4rem; }
-        .home-social a { color: var(--secondary-color, #666) !important; background: none !important; }
-        .home-social a:hover { color: var(--primary-color, #A43830) !important; }
-    </style>
-    <section class="home-social">
-        {{ range . }}
-        <a href="{{ .link }}" target="_blank" rel="me noopener" aria-label="{{ .name }}" title="{{ .name }}"><i class="{{ .icon | default (printf "fab fa-%s" .name) }}" aria-hidden="true"></i></a>
-        {{ end }}
-    </section>
-    {{ end }}
 </div>
 {{ end }}

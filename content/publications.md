@@ -5,8 +5,8 @@ description: "Publications from the Lab for AI in Materials Science (group of Ke
 
 a map of what we work on, organised around our four research threads —
 **perception, reasoning, evaluation, action** — plus the community work around
-them. each paper sits on the thread(s) it belongs to; papers that span two
-threads sit between them. hover to peek, click to jump to the paper, and filter
-the list below by type or thread.
+them. the columns are the threads and each row is a paper; a dot marks each
+thread a paper belongs to, and a line links the threads a paper spans. hover to
+peek, click to jump to the paper, and filter the list below by type or thread.
 
 {{< publications >}}
