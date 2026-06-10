@@ -1,0 +1,14 @@
+# Dependencies for publications/build.py — intentionally light (no torch).
+requests
+numpy
+scikit-learn
+umap-learn          # 2D projection of the embeddings (PCA fallback if absent)
+anthropic           # LLM pillar classification (needs ANTHROPIC_API_KEY)
+
+# Embeddings come from a hosted model over plain HTTPS (no SDK, no torch):
+#   OPENAI_API_KEY  -> text-embedding-3-large   (preferred)
+#   VOYAGE_API_KEY  -> voyage-3.5
+# If neither key is set, the script falls back to a local model and finally to
+# TF-IDF. The local fallback is heavy (pulls torch) and only for offline use —
+# install it yourself when needed, it is deliberately NOT in this list:
+#   pip install sentence-transformers

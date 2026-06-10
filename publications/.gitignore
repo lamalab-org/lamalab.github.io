@@ -1,0 +1,6 @@
+# API keys — never commit
+.env
+
+# cached API responses — safe to delete, regenerated on demand
+.cache/
+__pycache__/
