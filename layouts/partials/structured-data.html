@@ -5,7 +5,7 @@
       "@type" (slice "EducationalOrganization" "ResearchOrganization")
       "@id" (printf "%s#organization" $base)
       "name" .Site.Title
-      "alternateName" (slice "LamaLab" "Laboratory for AI in Materials Science")
+      "alternateName" (slice "Jablonka Group" "Jablonka Research Group" "jablonkagroup" "LamaLab" "Laboratory for AI in Materials Science")
       "url" $base
       "description" .Site.Params.description
       "parentOrganization" (dict "@type" "CollegeOrUniversity" "name" "Friedrich Schiller University Jena" "url" "https://www.uni-jena.de/")
@@ -21,6 +21,7 @@
       "@type" "Person"
       "@id" (printf "%s#kevin" $base)
       "name" "Kevin Maik Jablonka"
+      "alternateName" (slice "Kevin Jablonka" "K. M. Jablonka")
       "givenName" "Kevin Maik"
       "familyName" "Jablonka"
       "jobTitle" "Group Leader"
