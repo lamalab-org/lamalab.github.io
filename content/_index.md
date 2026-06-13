@@ -3,7 +3,7 @@ title: "Jablonka Group · Lab for AI in Materials Science"
 description: "The Jablonka group (LamaLab) of Kevin Maik Jablonka at Friedrich Schiller University Jena — AI and machine learning for chemistry and materials science."
 ---
 
-we are the **jablonka group** (lamalab), led by [kevin maik jablonka](https://kjablonka.com) at [friedrich-schiller-university jena (fsu jena)](https://www.uni-jena.de/) and the [helmholtz institute for polymers in energy applications jena (hipole)](https://www.hipole-jena.de/). we apply data-driven techniques to discover materials that work in the real world. through novel machine learning approaches and close collaboration with experimental partners, we bridge the gap between computational predictions and practical applications.
+we are the **jablonka group** (lamalab), led by [kevin maik jablonka](https://kjablonka.com) at [friedrich-schiller-university jena (fsu jena)](https://www.uni-jena.de/) and the [helmholtz institute for polymers in energy applications jena (hipole)](https://www.hipole-jena.de/) — a joint institute of fsu jena and the [helmholtz-zentrum berlin (hzb)](https://www.helmholtz-berlin.de/). we apply data-driven techniques to discover materials that work in the real world. through novel machine learning approaches and close collaboration with experimental partners, we bridge the gap between computational predictions and practical applications.
 
 our group is funded by the carl-zeiss foundation as the "czs research group polymers in energy applications". we are part of the [friedrich-schiller-university jena](https://www.uni-jena.de/) and the [helmholz institute for polymers in energy applications jena](https://www.hipole-jena.de/).
 
