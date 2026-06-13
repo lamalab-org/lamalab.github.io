@@ -9,6 +9,7 @@
       "url" $base
       "description" .Site.Params.description
       "parentOrganization" (dict "@type" "CollegeOrUniversity" "name" "Friedrich Schiller University Jena" "url" "https://www.uni-jena.de/")
+      "address" (dict "@type" "PostalAddress" "streetAddress" "Leutragraben 1" "postalCode" "07743" "addressLocality" "Jena" "addressCountry" "DE")
       "founder" (dict "@id" (printf "%s#kevin" $base))
       "member" (dict "@id" (printf "%s#kevin" $base))
       "sameAs" (slice
@@ -26,7 +27,10 @@
       "familyName" "Jablonka"
       "jobTitle" "Group Leader"
       "url" $base
-      "affiliation" (dict "@type" "CollegeOrUniversity" "name" "Friedrich Schiller University Jena" "url" "https://www.uni-jena.de/")
+      "affiliation" (slice
+        (dict "@type" "CollegeOrUniversity" "name" "Friedrich Schiller University Jena" "url" "https://www.uni-jena.de/")
+        (dict "@type" "ResearchOrganization" "name" "Helmholtz Institute for Polymers in Energy Applications Jena (HIPOLE)" "url" "https://www.hipole-jena.de/"))
+      "workLocation" (dict "@type" "Place" "address" (dict "@type" "PostalAddress" "addressLocality" "Jena" "addressCountry" "DE"))
       "worksFor" (dict "@id" (printf "%s#organization" $base))
       "sameAs" (slice
         "https://scholar.google.com/citations?user=R2ntI8IAAAAJ&hl=en"
