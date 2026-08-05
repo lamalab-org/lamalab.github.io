@@ -10,13 +10,15 @@ Classification degrades gracefully: a strong LLM reads the abstract
 (ANTHROPIC_API_KEY) -> keyword heuristic. An explicit pillar in dois.txt always
 wins. The figure is anchored on the pillars (no embeddings needed).
 
-Human review = edit data/publications.json directly. Re-runs preserve human-renamed
-topics by matching each new cluster to the prior topic with the most DOIs in common.
-Paper inclusion is driven solely by dois.txt.
+Human review = edit data/publications.json directly. Local annotations in dois.txt
+remain authoritative. Paper inclusion normally comes from dois.txt; automated syncs
+can instead supply lamalab-org/outputs/outputs/publications.yaml.
 
 Usage:
     python build.py            # uses on-disk cache for network fetches
     python build.py --force    # ignore cache, re-fetch everything
+    python build.py --outputs-file publications.yaml
+                               # use lamalab-org/outputs as the publication list
 """
 from __future__ import annotations
 
@@ -26,6 +28,7 @@ import os
 import re
 import sys
 import time
+from collections.abc import Mapping
 from pathlib import Path
 
 import requests
@@ -121,8 +124,24 @@ def _parse_annotations(comment: str) -> dict:
     return ann
 
 
-def read_dois() -> list[dict]:
-    """Parse dois.txt. Each line is a DOI (or `arXiv:ID`) plus an optional
+def _parse_identifier(ident: str, comment: str = "") -> dict | None:
+    """Normalize one DOI/arXiv identifier and its optional annotation comment."""
+    ident = ident.strip()
+    doi = re.sub(r"^https?://(dx\.)?doi\.org/", "", ident, flags=re.I)
+    if not doi:
+        return None
+    # arXiv entries: accept `arXiv:2505.12534`, an abs URL, or the arXiv DOI.
+    arxiv = None
+    m_ax = (re.match(r"(?:arxiv:|https?://arxiv\.org/abs/)(\d{4}\.\d{4,5}(?:v\d+)?)$", ident, re.I)
+            or re.match(r"10\.48550/arxiv\.(\d{4}\.\d{4,5}(?:v\d+)?)$", doi, re.I))
+    if m_ax:
+        arxiv = m_ax.group(1)
+        doi = f"10.48550/arXiv.{arxiv.split('v')[0]}"
+    return {"doi": doi, "arxiv": arxiv, **_parse_annotations(comment)}
+
+
+def read_dois(path: Path = DOIS_FILE) -> list[dict]:
+    """Parse a curated DOI file. Each line is a DOI (or `arXiv:ID`) plus an optional
     `# comment` that may carry curated annotations inside braces, e.g.
 
         10.1038/s41557-025-01815-x   # ChemBench {evaluation, corresponding, highlight}
@@ -131,28 +150,69 @@ def read_dois() -> list[dict]:
     Recognised: a pillar (perception|reasoning|evaluation|action), a role
     (corresponding|first|coauthor), `highlight`, and `venue=...`. These come from
     human curation (the source of truth) and flow straight into the output."""
-    if not DOIS_FILE.exists():
-        sys.exit(f"missing {DOIS_FILE}")
+    if not path.exists():
+        sys.exit(f"missing {path}")
     out, seen = [], set()
-    for raw in DOIS_FILE.read_text().splitlines():
+    for raw in path.read_text().splitlines():
         doi_part, _, comment = raw.partition("#")
-        ident = doi_part.strip()
-        doi = re.sub(r"^https?://(dx\.)?doi\.org/", "", ident, flags=re.I)
-        if not doi:
+        entry = _parse_identifier(doi_part, comment)
+        if not entry:
             continue
-        # arXiv entries: accept `arXiv:2505.12534`, an abs URL, or the arXiv DOI.
-        arxiv = None
-        m_ax = (re.match(r"(?:arxiv:|https?://arxiv\.org/abs/)(\d{4}\.\d{4,5}(?:v\d+)?)$", ident, re.I)
-                or re.match(r"10\.48550/arxiv\.(\d{4}\.\d{4,5}(?:v\d+)?)$", doi, re.I))
-        if m_ax:
-            arxiv = m_ax.group(1)
-            doi = f"10.48550/arXiv.{arxiv.split('v')[0]}"
-        ann = _parse_annotations(comment)
-        key = doi.lower()
+        key = entry["doi"].lower()
         if key not in seen:
             seen.add(key)
-            out.append({"doi": doi, "arxiv": arxiv, **ann})
+            out.append(entry)
     return out
+
+
+def read_outputs(path: Path) -> list[dict]:
+    """Read the publications list from lamalab-org/outputs.
+
+    Matching entries in the local dois.txt keep their curated pillar, venue, and
+    type annotations. Upstream owns inclusion plus the default publication type
+    and highlight flag.
+    """
+    try:
+        import yaml
+    except ImportError:
+        sys.exit("PyYAML is required when --outputs-file is used")
+
+    try:
+        document = yaml.safe_load(path.read_text())
+    except (OSError, yaml.YAMLError) as e:
+        sys.exit(f"could not read outputs publications file {path}: {e}")
+    if not isinstance(document, Mapping):
+        sys.exit(f"invalid outputs publications file {path}: top level must be a mapping")
+    outputs = document.get("outputs", [])
+    if not isinstance(outputs, list):
+        sys.exit(f"invalid outputs publications file {path}: 'outputs' must be a list")
+
+    curated = ({entry["doi"].lower(): entry for entry in read_dois()}
+               if DOIS_FILE.exists() else {})
+    type_map = {"paper": "peer-reviewed", "preprint": "preprint", "editorial": "editorial"}
+    entries, seen = [], set()
+    for index, output in enumerate(outputs, start=1):
+        if not isinstance(output, Mapping):
+            sys.exit(f"invalid outputs publications file {path}: "
+                     f"'outputs' item {index} must be a mapping")
+        ident = output.get("doi") or (f"arXiv:{output['arxiv']}" if output.get("arxiv") else "")
+        entry = _parse_identifier(str(ident))
+        if not entry:
+            continue
+        key = entry["doi"].lower()
+        if key in seen:
+            continue
+        seen.add(key)
+
+        local = curated.get(key, {})
+        raw_type = str(output.get("type", "")).lower()
+        entry["pillars"] = local.get("pillars", [])
+        entry["venue"] = local.get("venue") or output.get("venue")
+        entry["type"] = local.get("type") or type_map.get(raw_type, raw_type or None)
+        entry["role"] = local.get("role")
+        entry["highlight"] = bool(local.get("highlight") or output.get("highlight"))
+        entries.append(entry)
+    return entries
 
 
 # --------------------------------------------------------------------------- #
@@ -457,12 +517,14 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--force", action="store_true",
                     help="ignore cache, re-fetch all metadata")
+    ap.add_argument("--outputs-file", type=Path,
+                    help="lamalab-org/outputs publications.yaml to use for inclusion")
     args = ap.parse_args()
 
     load_dotenv()
-    entries = read_dois()
+    entries = read_outputs(args.outputs_file) if args.outputs_file else read_dois()
     if not entries:
-        sys.exit("dois.txt is empty — add at least one DOI")
+        sys.exit("publication input is empty — add at least one DOI or arXiv ID")
     print(f"fetching metadata for {len(entries)} DOIs ...")
 
     papers = []
