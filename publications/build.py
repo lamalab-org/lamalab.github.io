@@ -28,6 +28,7 @@ import os
 import re
 import sys
 import time
+from collections.abc import Mapping
 from pathlib import Path
 
 import requests
@@ -177,15 +178,23 @@ def read_outputs(path: Path) -> list[dict]:
         sys.exit("PyYAML is required when --outputs-file is used")
 
     try:
-        document = yaml.safe_load(path.read_text()) or {}
+        document = yaml.safe_load(path.read_text())
     except (OSError, yaml.YAMLError) as e:
         sys.exit(f"could not read outputs publications file {path}: {e}")
+    if not isinstance(document, Mapping):
+        sys.exit(f"invalid outputs publications file {path}: top level must be a mapping")
+    outputs = document.get("outputs", [])
+    if not isinstance(outputs, list):
+        sys.exit(f"invalid outputs publications file {path}: 'outputs' must be a list")
 
     curated = ({entry["doi"].lower(): entry for entry in read_dois()}
                if DOIS_FILE.exists() else {})
     type_map = {"paper": "peer-reviewed", "preprint": "preprint", "editorial": "editorial"}
     entries, seen = [], set()
-    for output in document.get("outputs", []):
+    for index, output in enumerate(outputs, start=1):
+        if not isinstance(output, Mapping):
+            sys.exit(f"invalid outputs publications file {path}: "
+                     f"'outputs' item {index} must be a mapping")
         ident = output.get("doi") or (f"arXiv:{output['arxiv']}" if output.get("arxiv") else "")
         entry = _parse_identifier(str(ident))
         if not entry:
