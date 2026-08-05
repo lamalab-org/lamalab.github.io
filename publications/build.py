@@ -181,7 +181,8 @@ def read_outputs(path: Path) -> list[dict]:
     except (OSError, yaml.YAMLError) as e:
         sys.exit(f"could not read outputs publications file {path}: {e}")
 
-    curated = {entry["doi"].lower(): entry for entry in read_dois()}
+    curated = ({entry["doi"].lower(): entry for entry in read_dois()}
+               if DOIS_FILE.exists() else {})
     type_map = {"paper": "peer-reviewed", "preprint": "preprint", "editorial": "editorial"}
     entries, seen = [], set()
     for output in document.get("outputs", []):
@@ -195,9 +196,10 @@ def read_outputs(path: Path) -> list[dict]:
         seen.add(key)
 
         local = curated.get(key, {})
+        raw_type = str(output.get("type", "")).lower()
         entry["pillars"] = local.get("pillars", [])
         entry["venue"] = local.get("venue") or output.get("venue")
-        entry["type"] = local.get("type") or type_map.get(str(output.get("type", "")).lower())
+        entry["type"] = local.get("type") or type_map.get(raw_type, raw_type or None)
         entry["role"] = local.get("role")
         entry["highlight"] = bool(local.get("highlight") or output.get("highlight"))
         entries.append(entry)
