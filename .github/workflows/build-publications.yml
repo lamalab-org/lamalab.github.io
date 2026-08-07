@@ -1,11 +1,9 @@
 name: Rebuild publications data
 
-# lamalab-org/outputs sends an `outputs-pull-request` repository dispatch when a
-# pull request closes. Only merged pull requests are allowed to start the rebuild.
-# The manual trigger remains available for forced metadata refreshes.
+# Manual trigger only — the publications landscape is expensive to compute, so it
+# is regenerated on demand (not on every site build). The job opens a pull request
+# with the refreshed data/publications.json for human review before it goes live.
 on:
-  repository_dispatch:
-    types: [outputs-pull-request]
   workflow_dispatch:
     inputs:
       force:
@@ -17,26 +15,11 @@ permissions:
   contents: write
   pull-requests: write
 
-concurrency:
-  group: publications-data
-  cancel-in-progress: false
-
 jobs:
   rebuild:
-    if: >-
-      github.event_name == 'workflow_dispatch' ||
-      (github.event.client_payload.repository.full_name == 'lamalab-org/outputs' &&
-      github.event.client_payload.action == 'closed' &&
-      github.event.client_payload.pull_request.merged == true)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Prepare upstream publications list
-        if: github.event_name == 'repository_dispatch'
-        run: >-
-          jq -r '.client_payload.publications_yaml'
-          "$GITHUB_EVENT_PATH" > "$RUNNER_TEMP/outputs-publications.yaml"
 
       - uses: actions/setup-python@v5
         with:
@@ -51,24 +34,16 @@ jobs:
           # ANTHROPIC_API_KEY -> Claude assigns each paper to one or two threads.
           # Optional: without it the script falls back to a keyword heuristic.
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          OUTPUTS_FILE: ${{ github.event_name == 'repository_dispatch' && format('{0}/outputs-publications.yaml', runner.temp) || '' }}
-          FORCE_REFRESH: ${{ github.event_name == 'workflow_dispatch' && inputs.force || false }}
-        run: |
-          args=()
-          [[ -n "$OUTPUTS_FILE" ]] && args+=(--outputs-file "$OUTPUTS_FILE")
-          [[ "$FORCE_REFRESH" == "true" ]] && args+=(--force)
-          python publications/build.py "${args[@]}"
+        run: python publications/build.py ${{ inputs.force && '--force' || '' }}
 
       - name: Open pull request with refreshed data
         uses: peter-evans/create-pull-request@v6
         with:
           branch: bot/publications-data
           title: "Refresh publications data"
-          commit-message: "chore: refresh data/publications.json"
+          commit-message: "chore: refresh data/publications.json from dois.txt"
           body: |
-            Automated rebuild of the publications landscape.
-
-            ${{ github.event_name == 'repository_dispatch' && format('Triggered by lamalab-org/outputs pull request #{0}: {1}', github.event.client_payload.pull_request.number, github.event.client_payload.pull_request.html_url) || 'Triggered manually.' }}
+            Automated rebuild of the publications landscape from `publications/dois.txt`.
 
             **Review before merging** — in particular the auto-generated topic names
             (edit them in `data/publications.json`; renames are preserved on the next run).
