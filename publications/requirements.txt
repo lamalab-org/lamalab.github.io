@@ -1,7 +1,6 @@
 # Dependencies for publications/build.py — intentionally tiny.
 requests            # metadata + abstracts from CrossRef / Semantic Scholar / arXiv
 anthropic           # LLM thread classification (needs ANTHROPIC_API_KEY)
-PyYAML               # parse the canonical lamalab-org/outputs publication list
 
 # Classification falls back to a keyword heuristic if anthropic / the key is
 # absent. The figure is anchored on the pillars, so no embedding model is needed.
