@@ -1,9 +1,10 @@
 name: Rebuild publications data
 
-# Manual trigger only — the publications landscape is expensive to compute, so it
-# is regenerated on demand (not on every site build). The job opens a pull request
-# with the refreshed data/publications.json for human review before it goes live.
+# Pull the canonical catalogue from the private lamalab-org/outputs repository
+# once a week. Manual runs remain available for testing and forced refreshes.
 on:
+  schedule:
+    - cron: "0 6 * * 1" # Mondays at 06:00 UTC
   workflow_dispatch:
     inputs:
       force:
@@ -15,11 +16,41 @@ permissions:
   contents: write
   pull-requests: write
 
+concurrency:
+  group: publications-data
+  cancel-in-progress: false
+
 jobs:
   rebuild:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout website
+        uses: actions/checkout@v4
+
+      - name: Check sync token
+        env:
+          SYNC_TOKEN: >-
+            ${{ secrets.PUBLICATION_SYNC_TOKEN || secrets.OUTPUTS_TOKEN }}
+        run: |
+          if [[ -z "$SYNC_TOKEN" ]]; then
+            echo "::error::PUBLICATION_SYNC_TOKEN or OUTPUTS_TOKEN is not configured"
+            exit 1
+          fi
+
+      - name: Checkout outputs catalogue
+        uses: actions/checkout@v4
+        with:
+          repository: lamalab-org/outputs
+          token: ${{ secrets.PUBLICATION_SYNC_TOKEN || secrets.OUTPUTS_TOKEN }}
+          path: upstream-outputs
+          persist-credentials: false
+
+      - name: Check publications catalogue
+        run: |
+          if [[ ! -r upstream-outputs/outputs/publications.yaml ]]; then
+            echo "::error::outputs/publications.yaml is missing or unreadable"
+            exit 1
+          fi
 
       - uses: actions/setup-python@v5
         with:
@@ -34,16 +65,21 @@ jobs:
           # ANTHROPIC_API_KEY -> Claude assigns each paper to one or two threads.
           # Optional: without it the script falls back to a keyword heuristic.
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: python publications/build.py ${{ inputs.force && '--force' || '' }}
+          FORCE_REFRESH: ${{ github.event_name == 'workflow_dispatch' && inputs.force || false }}
+        run: |
+          args=(--outputs-file upstream-outputs/outputs/publications.yaml)
+          [[ "$FORCE_REFRESH" == "true" ]] && args+=(--force)
+          python publications/build.py "${args[@]}"
 
       - name: Open pull request with refreshed data
         uses: peter-evans/create-pull-request@v6
         with:
           branch: bot/publications-data
           title: "Refresh publications data"
-          commit-message: "chore: refresh data/publications.json from dois.txt"
+          commit-message: "chore: refresh data/publications.json"
           body: |
-            Automated rebuild of the publications landscape from `publications/dois.txt`.
+            Weekly automated rebuild of the publications landscape from
+            `lamalab-org/outputs/outputs/publications.yaml`.
 
             **Review before merging** — in particular the auto-generated topic names
             (edit them in `data/publications.json`; renames are preserved on the next run).
