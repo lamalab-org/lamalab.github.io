@@ -494,7 +494,7 @@
       "venue": "Nature Chemistry",
       "year": 2025,
       "abstract": "Large language models (LLMs) have gained widespread interest owing to their ability to process human language and perform tasks on which they have not been explicitly trained. However, we possess only a limited systematic understanding of the chemical capabilities of LLMs, which would be required to improve models and mitigate potential harm. Here we introduce ChemBench, an automated framework for evaluating the chemical knowledge and reasoning abilities of state-of-the-art LLMs against the expertise of chemists. We curated more than 2,700 question–answer pairs, evaluated leading open- and closed-source LLMs and found that the best models, on average, outperformed the best human chemists in our study. However, the models struggle with some basic tasks and provide overconfident predictions. These findings reveal LLMs’ impressive chemical capabilities while emphasizing the need for further research to improve their safety and usefulness. They also suggest adapting chemistry education and show the value of benchmarking frameworks for evaluating LLMs in specific domains.",
-      "citations": 134,
+      "citations": 149,
       "highlighted": false,
       "pillars": [
         "evaluation"
@@ -657,7 +657,7 @@
       "venue": "Chemical Society Reviews",
       "year": 2025,
       "abstract": "Large language models (LLMs) allow for the extraction of structured data from unstructured sources, such as scientific papers, with unprecedented accuracy and performance.",
-      "citations": 102,
+      "citations": 108,
       "highlighted": false,
       "pillars": [
         "perception"
@@ -706,7 +706,7 @@
       "venue": "Digital Discovery",
       "year": 2025,
       "abstract": "MOFChecker, a package for MOF duplicate detection, geometric and charge error checking, and structure correction.",
-      "citations": 23,
+      "citations": 25,
       "highlighted": false,
       "pillars": [
         "community"
@@ -751,7 +751,7 @@
       "venue": "npj Computational Materials",
       "year": 2025,
       "abstract": "Digital polymer chemistry leverages computational methods to design and optimize polymer materials. While there have been advances in using machine learning to accelerate the design of polymers, the field is hampered by the lack of standards, which precludes comparability and makes it difficult to build on top of prior work. To address this gap, we introduce PolyMetriX, an open-source Python library designed to facilitate the entire polymer informatics workflow—from obtaining data to training models. PolyMetriX provides curated polymer property datasets, and novel featurization techniques that extract hierarchical structural information at the full polymer, backbone, and sidechain levels. Additionally, it incorporates polymer-specific data splitting strategies to ensure robust model generalization. PolyMetriX enhances the predictive performance of models while improving reproducibility in digital polymer chemistry.",
-      "citations": 15,
+      "citations": 17,
       "highlighted": false,
       "pillars": [
         "action"
@@ -777,7 +777,7 @@
       "venue": "Nature Computational Science",
       "year": 2025,
       "abstract": "Recent advancements in artificial intelligence have sparked interest in scientific assistants that could support researchers across the full spectrum of scientific workflows, from literature review to experimental design and data analysis. A key capability for such systems is the ability to process and reason about scientific information in both visual and textual forms—from interpreting spectroscopic data to understanding laboratory set-ups. Here we introduce MaCBench, a comprehensive benchmark for evaluating how vision language models handle real-world chemistry and materials science tasks across three core aspects: data extraction, experimental execution and results interpretation. Through a systematic evaluation of leading models, we find that although these systems show promising capabilities in basic perception tasks—achieving near-perfect performance in equipment identification and standardized data extraction—they exhibit fundamental limitations in spatial reasoning, cross-modal information synthesis and multi-step logical inference. Our insights have implications beyond chemistry and materials science, suggesting that developing reliable multimodal AI scientific assistants may require advances in curating suitable training data and approaches to training those models.",
-      "citations": 78,
+      "citations": 79,
       "highlighted": false,
       "pillars": [
         "perception"
@@ -895,7 +895,7 @@
       "venue": "Nature Machine Intelligence",
       "year": 2024,
       "abstract": "Machine learning has transformed many fields and has recently found applications in chemistry and materials science. The small datasets commonly found in chemistry sparked the development of sophisticated machine learning approaches that incorporate chemical knowledge for each application and, therefore, require specialized expertise to develop. Here we show that GPT-3, a large language model trained on vast amounts of text extracted from the Internet, can easily be adapted to solve various tasks in chemistry and materials science by fine-tuning it to answer chemical questions in natural language with the correct answer. We compared this approach with dedicated machine learning models for many applications spanning the properties of molecules and materials to the yield of chemical reactions. Surprisingly, our fine-tuned version of GPT-3 can perform comparably to or even outperform conventional machine learning techniques, in particular in the low-data limit. In addition, we can perform inverse design by simply inverting the questions. The ease of use and high performance, especially for small datasets, can impact the fundamental approach to using machine learning in the chemical and material sciences. In addition to a literature search, querying a pre-trained large language model might become a routine way to bootstrap a project by leveraging the collective knowledge encoded in these foundation models, or to provide a baseline for predictive tasks.",
-      "citations": 435,
+      "citations": 444,
       "highlighted": false,
       "pillars": [
         "reasoning"
@@ -1009,7 +1009,7 @@
       "venue": "Digital Discovery",
       "year": 2023,
       "abstract": "We report the findings of a hackathon focused on exploring the diverse applications of large language models in molecular and materials science.",
-      "citations": 202,
+      "citations": 207,
       "highlighted": false,
       "pillars": [
         "community"
