@@ -189,7 +189,7 @@
       "venue": "arXiv preprint",
       "year": 2026,
       "abstract": "Scientific discovery is severely bottlenecked by the inability of manual curation to keep pace with exponential publication rates. This creates a widening knowledge gap. This is especially stark in photovoltaics, where the leading database for perovskite solar cells has been stagnant since 2021 despite massive ongoing research output. Here, we resolve this challenge by establishing an autonomous, self-updating living database (PERLA). Our pipeline integrates large language models with physics-aware validation to extract complex device data from the continuous literature stream, achieving human-level precision (>90%) and eliminating annotator variance. By employing this system on the previously inaccessible post-2021 literature, we uncover critical evolutionary trends hidden by data lag: the field has decisively shifted toward inverted architectures employing self-assembled monolayers and formamidinium-rich compositions, driving a clear trajectory of sustained voltage loss reduction. PERLA transforms static publications into dynamic knowledge resources that enable data-driven discovery to operate at the speed of publication.",
-      "citations": 3,
+      "citations": 4,
       "highlighted": false,
       "pillars": [
         "reasoning"
@@ -272,7 +272,7 @@
       "venue": "Nature Communications",
       "year": 2026,
       "abstract": "Elucidating molecular structures from spectroscopic data remains one of chemistry’s most fundamental challenges, typically requiring extensive expert knowledge and manual interpretation of multiple analytical techniques. This is because the structure elucidation problem often has degenerate solutions for a limited set of experimental data. Existing computational approaches are limited to single spectroscopic modalities, require extensive manual preprocessing, and lack the confidence estimates and context necessary for practical application. Here we present , a framework that combines contrastive learning with evolutionary algorithms to automate structure elucidation directly from raw, multimodal spectroscopic data. By aligning embeddings across NMR, infrared, and mass spectrometry, mimics how experts use multiple spectroscopic lenses while providing calibrated confidence scores and relevant database context. On challenging molecular identification tasks, matches expert chemist performance in head-to-head comparisons in a pilot study. The system successfully identifies incorrect structure assignments in published literature and adapts to new chemical domains without retraining by updating its reference database. Our approach demonstrates how synergistic combination of machine learning paradigms can solve analytical bottlenecks that have constrained chemical discovery.",
-      "citations": 6,
+      "citations": 9,
       "highlighted": true,
       "pillars": [
         "perception"
@@ -299,10 +299,31 @@
       "venue": "Chemical Reviews",
       "year": 2026,
       "abstract": "Data-driven techniques have a large potential to transform and accelerate the chemical sciences. However, chemical sciences also pose the unique challenge of very diverse, small, fuzzy data sets that are difficult to leverage in conventional machine learning approaches. A new class of models, which can be summarized under the term general-purpose models (GPMs) such as large language models, has shown the ability to solve tasks they have not been directly trained on, and to flexibly operate with low amounts of data in different formats. In this review, we discuss the fundamental building principles of GPMs and review recent and emerging applications of those models in the chemical sciences. While many of these applications are still in the prototype phase, we expect that the increasing interest in GPMs will make many of them mature in the coming years.",
-      "citations": 10,
+      "citations": 14,
       "highlighted": false,
       "pillars": [
         "community"
+      ],
+      "type": "peer-reviewed",
+      "media": [],
+      "pillar_auto": true
+    },
+    {
+      "doi": "10.1038/s43588-026-01045-2",
+      "url": "https://doi.org/10.1038/s43588-026-01045-2",
+      "title": "Less can be more for predicting properties with large language models",
+      "authors": [
+        "Nawaf Alampara",
+        "Santiago Miret",
+        "Kevin Maik Jablonka"
+      ],
+      "venue": "Nature Computational Science",
+      "year": 2026,
+      "abstract": "Predicting properties from coordinate–category data—sets of vectors paired with categorical information—is fundamental to computational science, manifesting in materials science as predicting formation energies or elastic moduli from crystal structures. While large language models (LLMs) have increasingly been applied to such tasks, optimal strategies for achieving reliable predictions remain elusive. Here we report fundamental limitations in LLM’s ability to learn from coordinate information in coordinate–category data. Through systematic experiments using synthetic datasets with tunable coordinate and category contributions, and a comprehensive benchmarking framework (MatText), we find that LLMs consistently fail to capture coordinate information while excelling at category patterns. This geometric blindness persists regardless of model size (up to 70 billion parameters), dataset scale (up to 2 × 10 6 structures) or text representation strategy. For material property prediction tasks dominated by structural effects, specialized geometric architectures consistently outperform LLMs, as evidenced by a clear ‘Graph Neural Network Language Model (GNN-LM) wall’ in performance benchmarks. Our analysis provides concrete guidelines for architecture selection in scientific machine learning.",
+      "citations": 10,
+      "highlighted": false,
+      "pillars": [
+        "action"
       ],
       "type": "peer-reviewed",
       "media": [],
@@ -441,7 +462,7 @@
       "venue": "arXiv preprint",
       "year": 2026,
       "abstract": "Counting should not depend on what is being counted; more generally, any algorithm's behavior should be invariant to the semantic content of its arguments. We introduce WhatCounts to test this property in isolation. Unlike prior work that conflates semantic sensitivity with reasoning complexity or prompt variation, WhatCounts is atomic: count items in an unambiguous, delimited list with no duplicates, distractors, or reasoning steps for different semantic types. Frontier LLMs show over 40% accuracy variation depending solely on what is being counted - cities versus chemicals, names versus symbols. Controlled ablations rule out confounds. The gap is semantic, and it shifts unpredictably with small amounts of unrelated fine-tuning. LLMs do not implement algorithms; they approximate them, and the approximation is argument-dependent. As we show with an agentic example, this has implications beyond counting: any LLM function may carry hidden dependencies on the meaning of its inputs.",
-      "citations": null,
+      "citations": 1,
       "highlighted": false,
       "pillars": [
         "reasoning"
@@ -494,7 +515,7 @@
       "venue": "Nature Chemistry",
       "year": 2025,
       "abstract": "Large language models (LLMs) have gained widespread interest owing to their ability to process human language and perform tasks on which they have not been explicitly trained. However, we possess only a limited systematic understanding of the chemical capabilities of LLMs, which would be required to improve models and mitigate potential harm. Here we introduce ChemBench, an automated framework for evaluating the chemical knowledge and reasoning abilities of state-of-the-art LLMs against the expertise of chemists. We curated more than 2,700 question–answer pairs, evaluated leading open- and closed-source LLMs and found that the best models, on average, outperformed the best human chemists in our study. However, the models struggle with some basic tasks and provide overconfident predictions. These findings reveal LLMs’ impressive chemical capabilities while emphasizing the need for further research to improve their safety and usefulness. They also suggest adapting chemistry education and show the value of benchmarking frameworks for evaluating LLMs in specific domains.",
-      "citations": 154,
+      "citations": 167,
       "highlighted": false,
       "pillars": [
         "evaluation"
@@ -598,7 +619,7 @@
       "venue": "Chemical Science",
       "year": 2025,
       "abstract": "We studied the performance of fine-tuning open-source LLMs for a range of different chemical questions. We benchmark their performances against “traditional” machine learning models and find that, in most cases, the fine-tuning approach is superior.",
-      "citations": 39,
+      "citations": null,
       "highlighted": false,
       "pillars": [
         "reasoning"
@@ -657,7 +678,7 @@
       "venue": "Chemical Society Reviews",
       "year": 2025,
       "abstract": "Large language models (LLMs) allow for the extraction of structured data from unstructured sources, such as scientific papers, with unprecedented accuracy and performance.",
-      "citations": 112,
+      "citations": 120,
       "highlighted": false,
       "pillars": [
         "perception"
@@ -706,7 +727,7 @@
       "venue": "Digital Discovery",
       "year": 2025,
       "abstract": "MOFChecker, a package for MOF duplicate detection, geometric and charge error checking, and structure correction.",
-      "citations": 25,
+      "citations": null,
       "highlighted": false,
       "pillars": [
         "community"
@@ -731,7 +752,7 @@
       "venue": "Machine Learning: Science and Technology",
       "year": 2025,
       "abstract": "The intersection of artificial intelligence and materials science has become increasingly interconnected, driving ambitious research initiatives across both fields. Since 2022, the AI for accelerated materials design (AI4Mat) workshops have provided a leading venue for showcasing cutting-edge advances in this emerging interdisciplinary domain while fostering critical discussions about the most pressing scientific and technical challenges. In 2024, AI4Mat hosted workshops at BOKU University and NeurIPS 2024, attracting researchers and practitioners from academia, industry, and government institutions worldwide. These workshops explored diverse research areas currently shaping the field, with participants engaging in comprehensive discussions that addressed the intersection’s most significant challenges from scientific, technical, and commercial perspectives. Through this holistic approach, AI4Mat’s 2024 workshops successfully illuminated the multifaceted nature of AI-driven materials research, highlighting both current achievements and future opportunities in this rapidly evolving field. In this article, the AI4Mat-2024 organizing committee presents key insights from our workshops and community discussions, outlining critical challenges in this emerging field while summarizing the latest advances in AI-accelerated materials design. We examine persistent challenges around data creation and reproducibility, alongside the growing commercial interest in developing new markets and optimization materials production processes at scale. The article also highlights significant research breakthroughs showcased at AI4Mat, including the application of large language models to accelerate materials science tasks, the development of sophisticated generative models for materials discovery, and the growing demand for interpretable AI methodologies that provide transparent insights into materials behavior.",
-      "citations": 2,
+      "citations": null,
       "highlighted": false,
       "pillars": [
         "action"
@@ -751,7 +772,7 @@
       "venue": "npj Computational Materials",
       "year": 2025,
       "abstract": "Digital polymer chemistry leverages computational methods to design and optimize polymer materials. While there have been advances in using machine learning to accelerate the design of polymers, the field is hampered by the lack of standards, which precludes comparability and makes it difficult to build on top of prior work. To address this gap, we introduce PolyMetriX, an open-source Python library designed to facilitate the entire polymer informatics workflow—from obtaining data to training models. PolyMetriX provides curated polymer property datasets, and novel featurization techniques that extract hierarchical structural information at the full polymer, backbone, and sidechain levels. Additionally, it incorporates polymer-specific data splitting strategies to ensure robust model generalization. PolyMetriX enhances the predictive performance of models while improving reproducibility in digital polymer chemistry.",
-      "citations": 18,
+      "citations": 20,
       "highlighted": false,
       "pillars": [
         "action"
@@ -777,7 +798,7 @@
       "venue": "Nature Computational Science",
       "year": 2025,
       "abstract": "Recent advancements in artificial intelligence have sparked interest in scientific assistants that could support researchers across the full spectrum of scientific workflows, from literature review to experimental design and data analysis. A key capability for such systems is the ability to process and reason about scientific information in both visual and textual forms—from interpreting spectroscopic data to understanding laboratory set-ups. Here we introduce MaCBench, a comprehensive benchmark for evaluating how vision language models handle real-world chemistry and materials science tasks across three core aspects: data extraction, experimental execution and results interpretation. Through a systematic evaluation of leading models, we find that although these systems show promising capabilities in basic perception tasks—achieving near-perfect performance in equipment identification and standardized data extraction—they exhibit fundamental limitations in spatial reasoning, cross-modal information synthesis and multi-step logical inference. Our insights have implications beyond chemistry and materials science, suggesting that developing reliable multimodal AI scientific assistants may require advances in curating suitable training data and approaches to training those models.",
-      "citations": 80,
+      "citations": null,
       "highlighted": false,
       "pillars": [
         "perception"
@@ -802,7 +823,7 @@
       "venue": "Nature Reviews Chemistry",
       "year": 2025,
       "abstract": "This work proposes a framework for collaboration between artificial intelligence and domain experts to genuinely accelerate discovery and finds that current practices tend to reward incremental improvements in benchmark performance.",
-      "citations": 9,
+      "citations": 10,
       "highlighted": false,
       "pillars": [
         "evaluation"
@@ -822,7 +843,7 @@
       "venue": "Nature Computational Science",
       "year": 2025,
       "abstract": "Evaluation of leading VLMs reveals that they excel at basic scientific tasks such as equipment identification, but struggle with spatial reasoning and multistep analysis — a limitation for autonomous scientific discovery.",
-      "citations": 3,
+      "citations": 4,
       "highlighted": false,
       "pillars": [
         "reasoning"
@@ -862,27 +883,6 @@
       "pillar_auto": true
     },
     {
-      "doi": "10.48550/arXiv.2406.17295",
-      "url": "https://arxiv.org/abs/2406.17295",
-      "title": "Less can be more for predicting properties with large language models",
-      "authors": [
-        "Nawaf Alampara",
-        "Santiago Miret",
-        "Kevin Maik Jablonka"
-      ],
-      "venue": "arXiv preprint",
-      "year": 2024,
-      "abstract": "Predicting properties from coordinate-category data -- sets of vectors paired with categorical information -- is fundamental to computational science. In materials science, this challenge manifests as predicting properties like formation energies or elastic moduli from crystal structures comprising atomic positions (vectors) and element types (categorical information). While large language models (LLMs) have increasingly been applied to such tasks, with researchers encoding structural data as text, optimal strategies for achieving reliable predictions remain elusive. Here, we report fundamental limitations in LLM's ability to learn from coordinate information in coordinate-category data. Through systematic experiments using synthetic datasets with tunable coordinate and category contributions, combined with a comprehensive benchmarking framework (MatText) spanning multiple representations and model scales, we find that LLMs consistently fail to capture coordinate information while excelling at category patterns. This geometric blindness persists regardless of model size (up to 70B parameters), dataset scale (up to 2M structures), or text representation strategy. Our findings suggest immediate practical implications: for materials property prediction tasks dominated by structural effects, specialized geometric architectures consistently outperform LLMs by significant margins, as evidenced by a clear \"GNN-LM wall\" in performance benchmarks. Based on our analysis, we provide concrete guidelines for architecture selection in scientific machine learning, while highlighting the critical importance of understanding model inductive biases when tackling scientific prediction problems.",
-      "citations": null,
-      "highlighted": false,
-      "pillars": [
-        "action"
-      ],
-      "type": "preprint",
-      "media": [],
-      "pillar_auto": true
-    },
-    {
       "doi": "10.1038/s42256-023-00788-1",
       "url": "https://doi.org/10.1038/s42256-023-00788-1",
       "title": "Leveraging large language models for predictive chemistry",
@@ -895,7 +895,7 @@
       "venue": "Nature Machine Intelligence",
       "year": 2024,
       "abstract": "Machine learning has transformed many fields and has recently found applications in chemistry and materials science. The small datasets commonly found in chemistry sparked the development of sophisticated machine learning approaches that incorporate chemical knowledge for each application and, therefore, require specialized expertise to develop. Here we show that GPT-3, a large language model trained on vast amounts of text extracted from the Internet, can easily be adapted to solve various tasks in chemistry and materials science by fine-tuning it to answer chemical questions in natural language with the correct answer. We compared this approach with dedicated machine learning models for many applications spanning the properties of molecules and materials to the yield of chemical reactions. Surprisingly, our fine-tuned version of GPT-3 can perform comparably to or even outperform conventional machine learning techniques, in particular in the low-data limit. In addition, we can perform inverse design by simply inverting the questions. The ease of use and high performance, especially for small datasets, can impact the fundamental approach to using machine learning in the chemical and material sciences. In addition to a literature search, querying a pre-trained large language model might become a routine way to bootstrap a project by leveraging the collective knowledge encoded in these foundation models, or to provide a baseline for predictive tasks.",
-      "citations": 451,
+      "citations": 483,
       "highlighted": false,
       "pillars": [
         "reasoning"
@@ -938,7 +938,7 @@
       "venue": "ACS Central Science",
       "year": 2024,
       "abstract": "",
-      "citations": 4,
+      "citations": null,
       "highlighted": false,
       "pillars": [
         "community"
@@ -1009,7 +1009,7 @@
       "venue": "Digital Discovery",
       "year": 2023,
       "abstract": "We report the findings of a hackathon focused on exploring the diverse applications of large language models in molecular and materials science.",
-      "citations": 210,
+      "citations": null,
       "highlighted": false,
       "pillars": [
         "community"
